@@ -16,6 +16,8 @@
   background-color: #f7f8ff;
   --color-primary: #171c37;
   --color-primary-2: #5469e7;
+  --color-primary-3: #f7f8ff;
+  --color-hover: #4258d2;
 }
 
 body {

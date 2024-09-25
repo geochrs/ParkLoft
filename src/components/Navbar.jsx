@@ -9,7 +9,7 @@ export default function Navbar() {
         <img src={logo} alt='site logo' className={classes.logo}/>
       </a>
       <nav>
-        <ul className={classes.list}>
+        <ul className={classes.navList}>
           <li>
             <NavLink
               to="/"
@@ -27,11 +27,17 @@ export default function Navbar() {
         </ul>
       </nav>
       <div>
-        <ul>
+        <ul className={classes.authList}>
           <li>
-            <Link to='/login'
+            <Link to='/login' className={classes.loginLink}
             >
-            Get Started 
+            Log in
+            </Link>
+          </li>
+          <li>
+            <Link to='/signup' className={classes.signupLink}
+            >
+            Sign up
             </Link>
           </li>
         </ul>
