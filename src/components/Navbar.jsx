@@ -1,9 +1,13 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import classes from './Navbar.module.css';
+import logo from '../assets/parkloftLogo.png'
 
 export default function Navbar() {
   return (
     <header className={classes.header}>
+      <a className='siteLogo'>
+        <img src={logo} alt='site logo' className={classes.logo}/>
+      </a>
       <nav>
         <ul className={classes.list}>
           <li>
@@ -22,6 +26,16 @@ export default function Navbar() {
           </li>
         </ul>
       </nav>
+      <div>
+        <ul>
+          <li>
+            <Link to='/login'
+            >
+            Get Started 
+            </Link>
+          </li>
+        </ul>
+      </div>
     </header>
   );
 }

@@ -3,7 +3,13 @@
   margin: auto;
   padding: 2rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-between; /* Space between logo and navigation */
+  align-items: center; /* Align logo and nav items vertically */
+}
+
+.logo {
+  width: 200px;
+  height: 60px;
 }
 
 .list {
