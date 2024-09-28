@@ -8,7 +8,6 @@ export default function PageContent({ title, imageSrc, children }) {
         <img className={classes.img} src={imageSrc} alt={title} />
       </div>
       <div className={classes.content}>{children}</div>
-      <p>dsadasdasd</p>
     </section>
   );
 }

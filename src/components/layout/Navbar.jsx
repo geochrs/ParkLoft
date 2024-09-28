@@ -1,6 +1,6 @@
 import { NavLink, Link } from 'react-router-dom';
 import classes from './Navbar.module.css';
-import logo from '../assets/parkloftLogo.png'
+import logo from '../../assets/parkloftLogo.png'
 
 export default function Navbar() {
   return (

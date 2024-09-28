@@ -1,4 +1,4 @@
-import PageContent from '../components/PageContent';
+import PageContent from '../components/content/PageContent';
 import parkImg from '../assets/parkloft.jpg';
 
 export default function HomePage() {
