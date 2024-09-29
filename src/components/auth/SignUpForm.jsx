@@ -41,7 +41,7 @@ export default function SignUpForm() {
         <label htmlFor="password">Password</label>
       </div>
       <div className={classes.actions}>
-        <button disabled={isSubmitting}>
+        <button type="submit" disabled={isSubmitting}>
           {isSubmitting ? 'Creating...' : 'Create'}
         </button>
       </div>

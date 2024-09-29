@@ -5,6 +5,7 @@ import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import { loginAction } from './components/auth/loginAction';
 import { signupAction } from './components/auth/signUpAction';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: 'login', element: <LoginPage />, action: loginAction },
       { path: 'signup', element: <SignUpPage />, action: signupAction },
+      { path: 'forgot-password', element: <ForgotPasswordPage /> },
     ],
   },
 ]);

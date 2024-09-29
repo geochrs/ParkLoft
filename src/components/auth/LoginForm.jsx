@@ -37,7 +37,7 @@ export default function LoginForm() {
         </p>
       </div>
       <div className={classes.actions}>
-        <button disabled={isSubmitting}>
+        <button type="submit" disabled={isSubmitting}>
           {isSubmitting ? 'Logging in...' : 'Log in'}
         </button>
       </div>
