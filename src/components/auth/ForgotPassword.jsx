@@ -9,7 +9,7 @@ export default function ForgotPassword() {
 
   return (
     <Form method="post" className={classes.form}>
-      <h2 className={classes.title}>Forgot Your Password?</h2>
+      <h2 className={classes.title}>Forgot Password</h2>
       {data?.errors && (
         <ul>
           {Object.values(data.errors).map((error) => (
