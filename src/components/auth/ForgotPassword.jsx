@@ -11,7 +11,7 @@ export default function ForgotPassword() {
     <Form method="post" className={classes.form}>
       <h2 className={classes.title}>Forgot Password</h2>
       {data?.errors && (
-        <ul>
+        <ul className={classes.errorList}>
           {Object.values(data.errors).map((error) => (
             <li key={error}>{error}</li>
           ))}
@@ -23,7 +23,6 @@ export default function ForgotPassword() {
       </div>
       <div className={classes.actions}>
         <button type="submit" disabled={isSubmitting}>
-          {' '}
           {isSubmitting ? 'Sending...' : 'Send Reset Link'}
         </button>
       </div>
