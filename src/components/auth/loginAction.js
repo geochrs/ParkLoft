@@ -26,6 +26,6 @@ export async function loginAction({ request }) {
       throw json({ message: 'Login failed, please try again.' }, { status: 500 });
     }
   
-    return redirect('/dashboard');
+    return redirect('/');
   }
   

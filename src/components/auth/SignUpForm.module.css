@@ -9,6 +9,26 @@
   flex-direction: column;
 }
 
+.title {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 0 0 1.5rem 0;
+  color: var(--color-primary);
+}
+
+.loginPrompt {
+  text-align: center;
+  margin: 1rem 0 0 0;
+}
+
+.loginLink {
+  text-decoration: none;
+}
+
+.loginLink:hover {
+  color: var(--color-hover);
+}
+
 .inputGroup {
   position: relative;
   margin-bottom: 1.5rem;
@@ -87,34 +107,4 @@ ul {
 
 ul li {
   margin-bottom: 0.5rem;
-}
-
-.title {
-  font-size: 1.5rem;
-  text-align: center;
-  margin: 0 0 1.5rem 0;
-  color: var(--color-primary);
-}
-
-.signupPrompt {
-  text-align: center;
-  margin: 1rem 0 0 0;
-}
-
-.signupLink {
-  text-decoration: none;
-}
-
-.signupLink:hover {
-  color: var(--color-hover);
-}
-
-.forgotPassword {
-  text-align: left;
-  font-size: 0.875rem;
-  margin: 0;
-}
-
-.forgotPassword a {
-  text-decoration: none;
 }

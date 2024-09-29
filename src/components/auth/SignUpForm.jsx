@@ -1,15 +1,14 @@
 import { Form, useActionData, useNavigation, Link } from 'react-router-dom';
-import classes from './LoginForm.module.css';
+import classes from './SignUpForm.module.css';
 
-export default function LoginForm() {
+export default function SignUpForm() {
   const data = useActionData();
   const navigation = useNavigation();
 
   const isSubmitting = navigation.state === 'submitting';
-
   return (
     <Form method="post" className={classes.form}>
-      <h2 className={classes.title}>Log in</h2>
+      <h2 className={classes.title}>Create an Account</h2>
       {data?.errors && (
         <ul>
           {Object.values(data.errors).map((error) => (
@@ -17,6 +16,16 @@ export default function LoginForm() {
           ))}
         </ul>
       )}
+      <div className={classes.inputGroup}>
+        <input
+          id="username"
+          type="text"
+          name="username"
+          required
+          placeholder=" "
+        />
+        <label htmlFor="username">Username</label>
+      </div>
       <div className={classes.inputGroup}>
         <input id="email" type="email" name="email" required placeholder=" " />
         <label htmlFor="email">Email</label>
@@ -31,20 +40,15 @@ export default function LoginForm() {
         />
         <label htmlFor="password">Password</label>
       </div>
-      <div className>
-        <p className={classes.forgotPassword}>
-          <Link to="/forgot-password">Forgot your password?</Link>
-        </p>
-      </div>
       <div className={classes.actions}>
         <button disabled={isSubmitting}>
-          {isSubmitting ? 'Logging in...' : 'Log in'}
+          {isSubmitting ? 'Creating...' : 'Create'}
         </button>
       </div>
-      <p className={classes.signupPrompt}>
-        New to ParkLoft? <br />
-        <Link to="/signup" className={classes.signupLink}>
-          Create an account
+      <p className={classes.loginPrompt}>
+        Already on ParkLoft?{' '}
+        <Link to="/login" className={classes.loginLink}>
+          Log in
         </Link>
       </p>
     </Form>
