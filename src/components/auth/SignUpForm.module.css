@@ -23,10 +23,12 @@
 
 .loginLink {
   text-decoration: none;
+  color: var(--color-primary-2);
 }
 
 .loginLink:hover {
   color: var(--color-hover);
+  text-decoration: underline;
 }
 
 .inputGroup {

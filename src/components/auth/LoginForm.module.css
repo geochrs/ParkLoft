@@ -103,10 +103,12 @@ ul li {
 
 .signupLink {
   text-decoration: none;
+  color: var(--color-primary-2);
 }
 
 .signupLink:hover {
   color: var(--color-hover);
+  text-decoration: underline;
 }
 
 .forgotPassword {
@@ -117,4 +119,10 @@ ul li {
 
 .forgotPassword a {
   text-decoration: none;
+  color: var(--color-primary-2);
+}
+
+.forgotPassword a:hover {
+  text-decoration: underline;
+  color: var(--color-hover);
 }
