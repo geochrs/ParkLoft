@@ -28,7 +28,7 @@ export default function Navbar() {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/about">About</NavLink>
+              <NavLink to="/how-it-works">How it works</NavLink>
             </li>
           </ul>
         </nav>

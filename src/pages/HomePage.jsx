@@ -60,7 +60,7 @@ export default function HomePage() {
 
         <h3>Achievements</h3>
         <ul className={classes.aboutList}>
-          <li>Winner of the Green City Award 2022</li>
+          <li>Winner of the Green City Award 2024</li>
           <li>Featured in Urban Design Magazine</li>
         </ul>
 
