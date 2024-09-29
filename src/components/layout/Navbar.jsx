@@ -6,7 +6,7 @@ export default function Navbar() {
   const location = useLocation();
 
   const isAuthPage =
-    location.pathname === '/login' || location.pathname === '/signup';
+    location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/forgot-password';
 
   return (
     <header className={classes.header}>
