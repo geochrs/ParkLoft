@@ -11,7 +11,7 @@ export default function LoginForm() {
     <Form method="post" className={classes.form}>
       <h2 className={classes.title}>Log in</h2>
       {data?.errors && (
-        <ul>
+        <ul className={classes.errorList}>
           {Object.values(data.errors).map((error) => (
             <li key={error}>{error}</li>
           ))}

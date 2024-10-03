@@ -57,39 +57,11 @@ export default function HomePage() {
             loves connecting with locals.
           </li>
         </ul>
-
         <h3>Achievements</h3>
         <ul className={classes.aboutList}>
           <li>Winner of the Green City Award 2024</li>
           <li>Featured in Urban Design Magazine</li>
         </ul>
-
-        <h3>Join Us</h3>
-        <p>
-          If you share our passion for green spaces,{' '}
-          <a className={classes.aboutLink} href="#">
-            get involved
-          </a>{' '}
-          today!
-        </p>
-
-        <h3>Connect with Us</h3>
-        <p>
-          Follow us on{' '}
-          <a className={classes.aboutLink} href="#">
-            social media links
-          </a>
-          .
-        </p>
-
-        <h3>Contact Us</h3>
-        <p>
-          For more information, please email us at{' '}
-          <a className={classes.aboutLink} href="mailto:park@loft.com">
-            park@loft.com
-          </a>
-          .
-        </p>
       </AboutSection>
     </>
   );

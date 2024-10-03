@@ -1,10 +1,26 @@
 .header {
-  max-width: 1300px;
-  margin: auto;
-  padding: 1rem;
+  padding: 30px 0;
+  position: fixed; /* Make the navbar fixed */
+  width: 100%;
+  top: 0; /* Position it at the top */
+  left: 0;
+  right: 0;
+  z-index: 1000; /* Make sure it's above other content */
+  transition: all 0.3s ease; /* For sticky transition */
+}
+
+.innerContainer {
+  max-width: 1300px; /* Max width for inner content */
+  margin: auto; /* Center the content */
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-between; /* Align items */
+  align-items: center; /* Vertically center items */
+}
+
+.sticky {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow */
+  padding: 5px 0;
 }
 
 .logo {
@@ -12,7 +28,8 @@
   height: 60px;
 }
 
-.navList, .authList {
+.navList,
+.authList {
   display: flex;
   gap: 1.2rem;
 }
@@ -28,7 +45,8 @@
   transition: color 0.3s ease;
 }
 
-.loginLink, .signupLink {
+.loginLink,
+.signupLink {
   text-decoration: none;
   font-weight: 700;
 }
