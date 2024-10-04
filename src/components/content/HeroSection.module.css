@@ -4,7 +4,7 @@
   justify-content: space-between;
   padding: 180px 20px 100px;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto 5rem;
 }
 
 .left-content {
@@ -43,6 +43,7 @@
     flex-direction: column;
     text-align: center;
     padding: 120px 10px 50px;
+    margin: 0 auto;
   }
 
   .left-content {
@@ -50,7 +51,13 @@
   }
 
   .img {
-    /* max-width: 70%; */
     margin-top: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .img {
+    width: 350px;
+    height: 200px;
   }
 }

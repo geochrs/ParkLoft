@@ -47,3 +47,9 @@ h3 {
   text-decoration: underline;
   color: var(--color-hover);
 }
+
+@media (max-width: 768px) {
+  .section {
+    padding: 40px 10px;
+  }
+}
