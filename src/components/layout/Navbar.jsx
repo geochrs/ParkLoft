@@ -6,6 +6,7 @@ import logo from '../../assets/parkloftLogo.png';
 export default function Navbar() {
   const location = useLocation();
   const [isSticky, setIsSticky] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const isAuthPage =
     location.pathname === '/login' ||
@@ -25,6 +26,10 @@ export default function Navbar() {
     };
   }, []);
 
+  const toggleMenu = () => {
+    setMenuOpen((prev) => !prev);
+  };
+
   return (
     <header className={`${classes.header} ${isSticky ? classes.sticky : ''}`}>
       <div className={classes.innerContainer}>
@@ -32,7 +37,14 @@ export default function Navbar() {
           <img src={logo} alt="site logo" className={classes.logo} />
         </Link>
         {!isAuthPage && (
-          <nav>
+          <nav
+            className={`${menuOpen ? classes.navActive : ''} ${classes.navBar}`}
+          >
+            <div className={classes.hamburger} onClick={toggleMenu}>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
             <ul className={classes.navList}>
               <li>
                 <NavLink
@@ -48,12 +60,6 @@ export default function Navbar() {
               <li>
                 <NavLink to="/how-it-works">How it works</NavLink>
               </li>
-            </ul>
-          </nav>
-        )}
-        {!isAuthPage && (
-          <div>
-            <ul className={classes.authList}>
               <li>
                 <Link to="/login" className={classes.loginLink}>
                   Log in
@@ -65,7 +71,7 @@ export default function Navbar() {
                 </Link>
               </li>
             </ul>
-          </div>
+          </nav>
         )}
       </div>
     </header>
