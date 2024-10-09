@@ -26,21 +26,36 @@ export default function Navbar() {
     };
   }, []);
 
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
+
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
   };
 
   return (
-    <header className={`${classes.header} ${isSticky ? classes.sticky : ''}`}>
+    <header
+      className={`${classes.header} ${
+        isSticky && !menuOpen ? classes.sticky : undefined
+      }`}
+    >
       <div className={classes.innerContainer}>
-        <Link to="/" className="siteLogo">
+        <Link to="/" className={menuOpen ? classes.hideLogo : undefined}>
           <img src={logo} alt="site logo" className={classes.logo} />
         </Link>
         {!isAuthPage && (
           <nav
-            className={`${menuOpen ? classes.navActive : ''} ${classes.navBar}`}
+            className={`${
+              menuOpen ? `${classes.navActive} ${classes.navbarMobile}` : ''
+            } ${classes.navBar}`}
           >
-            <div className={classes.hamburger} onClick={toggleMenu}>
+            <div
+              className={`${classes.hamburger} ${
+                menuOpen ? classes.hamburgerActive : ''
+              }`}
+              onClick={toggleMenu}
+            >
               <div></div>
               <div></div>
               <div></div>
