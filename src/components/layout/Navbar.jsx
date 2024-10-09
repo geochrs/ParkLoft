@@ -2,11 +2,19 @@ import { NavLink, Link, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import classes from './Navbar.module.css';
 import logo from '../../assets/parkloftLogo.png';
+import { useDispatch } from 'react-redux';
+import { modalActions } from '../../store/modal';
 
 export default function Navbar() {
+  const dispatch = useDispatch();
   const location = useLocation();
   const [isSticky, setIsSticky] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleOpenModal = (e) => {
+    e.preventDefault();
+    dispatch(modalActions.openModal());
+  };
 
   const isAuthPage =
     location.pathname === '/login' ||
@@ -73,7 +81,9 @@ export default function Navbar() {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/how-it-works">How it works</NavLink>
+                <NavLink to="/" onClick={handleOpenModal}>
+                  How it works
+                </NavLink>
               </li>
               <li>
                 <Link to="/login" className={classes.loginLink}>

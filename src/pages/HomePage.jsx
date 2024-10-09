@@ -2,6 +2,7 @@ import parkImg from '../assets/parkloft.jpg';
 import classes from '../components/content/AboutSection.module.css';
 import HeroSection from '../components/content/HeroSection';
 import AboutSection from '../components/content/AboutSection';
+import Modal from '../components/layout/Modal';
 
 export default function HomePage() {
   return (
@@ -63,6 +64,9 @@ export default function HomePage() {
           <li>Featured in Urban Design Magazine</li>
         </ul>
       </AboutSection>
+      <Modal>
+        <h1>Hello</h1>
+      </Modal>
     </>
   );
 }

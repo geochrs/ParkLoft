@@ -31,7 +31,7 @@ export default function LoginForm() {
         />
         <label htmlFor="password">Password</label>
       </div>
-      <div className>
+      <div>
         <p className={classes.forgotPassword}>
           <Link to="/forgot-password">Forgot your password?</Link>
         </p>
