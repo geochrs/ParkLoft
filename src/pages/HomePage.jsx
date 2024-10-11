@@ -1,5 +1,6 @@
 import parkImg from '../assets/parkloft.jpg';
-import classes from '../components/content/AboutSection.module.css';
+import aboutStyles from '../components/content/AboutSection.module.css';
+import modalStyles from '../components/layout/Modal.module.css';
 import HeroSection from '../components/content/HeroSection';
 import AboutSection from '../components/content/AboutSection';
 import Modal from '../components/layout/Modal';
@@ -32,7 +33,7 @@ export default function HomePage() {
         </p>
 
         <h3>Our Values</h3>
-        <ul className={classes.aboutList}>
+        <ul className={aboutStyles.aboutList}>
           <li>
             <strong>Sustainability</strong>: We prioritize eco-friendly
             practices.
@@ -48,7 +49,7 @@ export default function HomePage() {
         </ul>
 
         <h3>Meet Our Team</h3>
-        <ul className={classes.aboutList}>
+        <ul className={aboutStyles.aboutList}>
           <li>
             <strong>John Doe</strong>: Founder and CEO with over 10 years of
             experience in urban planning.
@@ -59,13 +60,39 @@ export default function HomePage() {
           </li>
         </ul>
         <h3>Achievements</h3>
-        <ul className={classes.aboutList}>
+        <ul className={aboutStyles.aboutList}>
           <li>Winner of the Green City Award 2024</li>
           <li>Featured in Urban Design Magazine</li>
         </ul>
       </AboutSection>
-      <Modal>
-        <h1>Hello</h1>
+      <Modal className={modalStyles.homeModal}>
+        <h3>How It Works</h3>
+        <ul>
+          <li>
+            <span>1</span>
+            <div>
+              <h4>Find your car park!</h4>
+              <p>
+                Sign up and check our presence at hotels, restaurants,
+                airport...
+              </p>
+            </div>
+          </li>
+          <li>
+            <span>2</span>
+            <div>
+              <h4>Book!</h4>
+              <p>Select date and time, check availability, see prices...</p>
+            </div>
+          </li>
+          <li>
+            <span>3</span>
+            <div>
+              <h4>And Park!</h4>
+              <p>Upon arrival, just show your reservation in the car park</p>
+            </div>
+          </li>
+        </ul>
       </Modal>
     </>
   );

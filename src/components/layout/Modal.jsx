@@ -4,7 +4,7 @@ import classes from './Modal.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { modalActions } from '../../store/modal';
 
-export default function Modal({ children }) {
+export default function Modal({ children, className }) {
   const { isOpen } = useSelector((state) => state.modal);
   const dispatch = useDispatch();
   const dialog = useRef();
@@ -22,7 +22,14 @@ export default function Modal({ children }) {
   };
 
   return createPortal(
-    <dialog ref={dialog} className={classes.modal} onClose={handleClose}>
+    <dialog
+      ref={dialog}
+      className={`${classes.modal} ${className || ''} `}
+      onClose={handleClose}
+    >
+      <button className={classes.closeButton} onClick={handleClose}>
+        &times;
+      </button>
       {children}
     </dialog>,
     document.getElementById('modal')
