@@ -16,6 +16,7 @@ export default function Navbar() {
   const handleOpenModal = (e) => {
     e.preventDefault();
     dispatch(modalActions.openModal());
+    dispatch(menuActions.closeMenu());
   };
 
   const isAuthPage =
