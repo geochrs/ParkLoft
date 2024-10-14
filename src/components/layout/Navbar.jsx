@@ -12,11 +12,6 @@ export default function Navbar() {
   const isMenuOpen = useSelector((state) => state.menu.isOpen);
 
   const [isSticky, setIsSticky] = useState(false);
-  // const [menuOpen, setMenuOpen] = useState(false);
-
-  const handleOpenMenu = () => {
-    dispatch(menuActions.openMenu());
-  };
 
   const handleOpenModal = (e) => {
     e.preventDefault();
@@ -41,15 +36,13 @@ export default function Navbar() {
     };
   }, []);
 
-  // useEffect(() => {
-  //   if (isMenuOpen) {
-  //     dispatch(menuActions.closeMenu()); // Close the menu when the path changes
-  //   }
-  // }, [location.pathname, isMenuOpen, dispatch]);
+  useEffect(() => {
+    dispatch(menuActions.closeMenu());
+  }, [location.pathname, dispatch]);
 
-  // const toggleMenu = () => {
-  //   setMenuOpen((prev) => !prev);
-  // };
+  const toggleMenu = () => {
+    dispatch(menuActions.toggleMenu());
+  };
 
   return (
     <header
@@ -71,7 +64,7 @@ export default function Navbar() {
               className={`${classes.hamburger} ${
                 isMenuOpen ? classes.hamburgerActive : ''
               }`}
-              onClick={handleOpenMenu}
+              onClick={toggleMenu}
             >
               <div></div>
               <div></div>
