@@ -2,14 +2,21 @@ import { NavLink, Link, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import classes from './Navbar.module.css';
 import logo from '../../assets/parkloftLogo.png';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { modalActions } from '../../store/modal';
+import { menuActions } from '../../store/menu';
 
 export default function Navbar() {
   const dispatch = useDispatch();
   const location = useLocation();
+  const isMenuOpen = useSelector((state) => state.menu.isOpen);
+
   const [isSticky, setIsSticky] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  // const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleOpenMenu = () => {
+    dispatch(menuActions.openMenu());
+  };
 
   const handleOpenModal = (e) => {
     e.preventDefault();
@@ -34,35 +41,37 @@ export default function Navbar() {
     };
   }, []);
 
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [location.pathname]);
+  // useEffect(() => {
+  //   if (isMenuOpen) {
+  //     dispatch(menuActions.closeMenu()); // Close the menu when the path changes
+  //   }
+  // }, [location.pathname, isMenuOpen, dispatch]);
 
-  const toggleMenu = () => {
-    setMenuOpen((prev) => !prev);
-  };
+  // const toggleMenu = () => {
+  //   setMenuOpen((prev) => !prev);
+  // };
 
   return (
     <header
       className={`${classes.header} ${
-        isSticky && !menuOpen ? classes.sticky : undefined
+        isSticky && !isMenuOpen ? classes.sticky : undefined
       }`}
     >
       <div className={classes.innerContainer}>
-        <Link to="/" className={menuOpen ? classes.hideLogo : undefined}>
+        <Link to="/" className={isMenuOpen ? classes.hideLogo : undefined}>
           <img src={logo} alt="site logo" className={classes.logo} />
         </Link>
         {!isAuthPage && (
           <nav
             className={`${
-              menuOpen ? `${classes.navActive} ${classes.navbarMobile}` : ''
+              isMenuOpen ? `${classes.navActive} ${classes.navbarMobile}` : ''
             } ${classes.navBar}`}
           >
             <div
               className={`${classes.hamburger} ${
-                menuOpen ? classes.hamburgerActive : ''
+                isMenuOpen ? classes.hamburgerActive : ''
               }`}
-              onClick={toggleMenu}
+              onClick={handleOpenMenu}
             >
               <div></div>
               <div></div>
