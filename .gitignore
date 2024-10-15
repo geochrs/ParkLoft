@@ -4,21 +4,53 @@ logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Runtime data
+*.pid
+*.seed
+*.pid.lock
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# Dependency directories
+node_modules/
+
+# Build outputs
+dist/
+
+# Vite cache
+.vite/
+.vitepress/dist
+
+# Env files
+.env
+.env.*    # In case of multiple env files (e.g., .env.production, .env.development)
+
+# Local development directories and files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# macOS files
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+
+# Windows system files
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.bak
+*.orig
+
+# Coverage reports (if using test coverage)
+coverage/
+*.lcov
+
+# Typescript specific (if using Typescript)
+*.tsbuildinfo
+
+# Other optional ignores
+*.tgz
+*.lock-wscript
+*.log
