@@ -1,0 +1,17 @@
+.errorContainer {
+  text-align: center;
+  margin-top: 15rem;
+}
+
+.errorH1 {
+    font-size: 5.5rem;
+    color: var(--color-primary-2);
+    text-shadow: 
+      8px -3px 0 #f7f8ff99, 
+      9px 7px 0 #5469e799;
+}
+
+.errorMessage {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
