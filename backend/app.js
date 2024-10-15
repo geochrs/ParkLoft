@@ -7,12 +7,21 @@ import authRoutes from './routes/auth.js';
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: '*',
+  methods: 'GET,POST,PATCH,DELETE',
+  allowedHeaders: 'Content-Type',
+}));
 app.use(express.json());
 
-sequelize.sync().then(() => {
-  console.log('Database synced');
-});
+sequelize
+  .sync()
+  .then(() => {
+    console.log('Database synced with new User model.');
+  })
+  .catch((error) => {
+    console.error('Error syncing database:', error);
+  });
 
 app.use(authRoutes);
 
