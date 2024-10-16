@@ -110,3 +110,11 @@
 .errorList li {
   margin-bottom: 0.5rem;
 }
+
+.errorValidation {
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+  color: #c1121f; 
+  font-size: 0.875rem;
+}

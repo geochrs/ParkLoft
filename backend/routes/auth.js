@@ -1,4 +1,3 @@
-// routes/auth.js
 import express from 'express';
 import User from '../models/User.js';
 import jwt from 'jsonwebtoken';
@@ -18,18 +17,18 @@ router.post('/signup', async (req, res) => {
 
   const errors = validateSignupInput(username, email, password);
   if (errors.length > 0) {
-    return res.status(400).json({ error: errors });
+    return res.status(422).json({ error: errors });
   }
 
   try {
     const existingUsername = await User.findOne({ where: { username } });
     if (existingUsername) {
-      return res.status(400).json({ error: 'Username already taken.' });
+      return res.status(422).json({ error: 'Username already taken.' });
     }
 
     const existingEmail = await User.findOne({ where: { email } });
     if (existingEmail) {
-      return res.status(400).json({ error: 'Email already registered.' });
+      return res.status(422).json({ error: 'Email already registered.' });
     }
 
     const newUser = await User.create({ username, email, password });

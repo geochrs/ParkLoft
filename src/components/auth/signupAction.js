@@ -20,7 +20,8 @@ export async function signupAction({ request }) {
   });
 
   if (response.status === 422) {
-    return response;
+    const errorData = await response.json();
+    return { errors: errorData.error };
   }
 
   if (!response.ok) {
