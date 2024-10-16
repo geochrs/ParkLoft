@@ -2,6 +2,7 @@ import { Form, useActionData, useNavigation, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import classes from './SignUpForm.module.css';
 import { formActions } from '../../store/form';
+import { validateInputs } from '../../utils/validateForm';
 
 export default function SignUpForm() {
   const data = useActionData();
@@ -10,14 +11,6 @@ export default function SignUpForm() {
   const formErrors = useSelector((state) => state.form.errors);
 
   const isSubmitting = navigation.state === 'submitting';
-
-  const validateInputs = (username, email, password) => {
-    const errors = {};
-    if (!username) errors.username = 'Username is required.';
-    if (!email) errors.email = 'Email is required.';
-    if (!password) errors.password = 'Password is required.';
-    return errors;
-  };
 
   const handleClientValidation = (event) => {
     const formData = new FormData(event.currentTarget);

@@ -3,41 +3,47 @@ import { DataTypes } from 'sequelize';
 import sequelize from '../config/config.js';
 import bcrypt from 'bcryptjs';
 
-const User = sequelize.define('User', {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
-  public_id: {
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
-    allowNull: false,
-    unique: true,
-  },
-  role: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    defaultValue: 2, // Member
-  },
-  username: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
-  },
-  email: {
-    type: DataTypes.STRING,
-    unique: true,
-    allowNull: false,
-    validate: {
-      isEmail: true,
+const User = sequelize.define(
+  'User',
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    public_id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
+      unique: true,
+    },
+    role: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 2, // Member
+    },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    email: {
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false,
+      validate: {
+        isEmail: true,
+      },
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
   },
-  password: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-});
+  {
+    tableName: 'users',
+  }
+);
 
 User.beforeCreate(async (user) => {
   const salt = await bcrypt.genSalt(10);
