@@ -110,6 +110,19 @@
   background-color: var(--color-hover);
 }
 
+.logoutButton {
+  border: none;
+  font-size: inherit;
+  background: none;
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.logoutButton:hover {
+  color: var(--color-hover);
+  cursor: pointer;
+}
+
 .hamburger {
   display: none;
   flex-direction: column;

@@ -1,4 +1,10 @@
-import { NavLink, Link, useLocation } from 'react-router-dom';
+import {
+  NavLink,
+  Link,
+  useLocation,
+  Form,
+  useRouteLoaderData,
+} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import classes from './Navbar.module.css';
 import logo from '../../assets/parkloftLogo.png';
@@ -7,6 +13,7 @@ import { modalActions } from '../../store/modal';
 import { menuActions } from '../../store/menu';
 
 export default function Navbar() {
+  const token = useRouteLoaderData('root');
   const dispatch = useDispatch();
   const location = useLocation();
   const isMenuOpen = useSelector((state) => state.menu.isOpen);
@@ -88,16 +95,27 @@ export default function Navbar() {
                   How it works
                 </NavLink>
               </li>
-              <li>
-                <Link to="/login" className={classes.loginLink}>
-                  Log in
-                </Link>
-              </li>
-              <li>
-                <Link to="/signup" className={classes.signupLink}>
-                  Get Started
-                </Link>
-              </li>
+              {!token && (
+                <li>
+                  <Link to="/login" className={classes.loginLink}>
+                    Log in
+                  </Link>
+                </li>
+              )}
+              {!token && (
+                <li>
+                  <Link to="/signup" className={classes.signupLink}>
+                    Get Started
+                  </Link>
+                </li>
+              )}
+              {token && (
+                <li>
+                  <Form action="/logout" method="post">
+                    <button className={classes.logoutButton}>Log out</button>
+                  </Form>
+                </li>
+              )}
             </ul>
           </nav>
         )}
