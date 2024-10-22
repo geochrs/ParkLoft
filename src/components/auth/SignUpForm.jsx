@@ -2,7 +2,7 @@ import { Form, useActionData, useNavigation, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import classes from './SignUpForm.module.css';
 import { formActions } from '../../store/form';
-import { validateInputs } from '../../utils/validateForm';
+import { validateInputs } from './validateForm';
 
 export default function SignUpForm() {
   const data = useActionData();
@@ -18,7 +18,7 @@ export default function SignUpForm() {
     const email = formData.get('email');
     const password = formData.get('password');
 
-    const errors = validateInputs(username, email, password);
+    const errors = validateInputs(username, email, password, 'signup');
 
     if (Object.keys(errors).length > 0) {
       event.preventDefault();

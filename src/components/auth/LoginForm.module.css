@@ -126,3 +126,11 @@
   text-decoration: underline;
   color: var(--color-hover);
 }
+
+.errorValidation {
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+  color: #c1121f; 
+  font-size: 0.875rem;
+}
