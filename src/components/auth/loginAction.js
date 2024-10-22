@@ -27,5 +27,9 @@ export async function loginAction({ request }) {
     throw json({ message: 'Login failed, please try again.' }, { status: 500 });
   }
 
+  const resData = await response.json();
+  const token = resData.token;
+  localStorage.setItem('token', token);
+
   return redirect('/');
 }

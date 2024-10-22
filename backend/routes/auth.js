@@ -32,7 +32,12 @@ router.post('/signup', async (req, res) => {
     }
 
     const newUser = await User.create({ username, email, password });
-    res.status(201).json({ message: 'User created', user: newUser });
+
+    const token = jwt.sign({ id: newUser.id }, process.env.JWT_SECRET, {
+      expiresIn: '1h',
+    });
+
+    res.status(201).json({ message: 'User created', token });
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
   }
@@ -63,7 +68,6 @@ router.post('/login', async (req, res) => {
 
     res.status(200).json({
       token,
-      user: { id: user.id, username: user.username, email: user.email },
     });
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
