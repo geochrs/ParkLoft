@@ -1,7 +1,11 @@
 .section {
+  background-color: #fff;
+}
+
+.container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 120px 20px;
   text-align: left;
 }
 
@@ -21,7 +25,7 @@ h3 {
   line-height: 1.5;
 }
 
-.content ul {
+.content ul,p {
   padding-left: 20px;
   margin-bottom: 20px;
 }
@@ -49,7 +53,7 @@ h3 {
 }
 
 @media (max-width: 768px) {
-  .section {
-    padding: 40px 10px;
+  .container {
+    padding: 90px 10px;
   }
 }
