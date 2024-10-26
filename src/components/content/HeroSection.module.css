@@ -7,6 +7,13 @@
   margin: 0 auto 2rem;
 }
 
+.scrollDown {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
 .decorBottom {
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   background-color: #f7f8ff;
@@ -46,6 +53,26 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+.dot1 {
+  animation: fadeIn 2s ease-in-out infinite alternate;
+  animation-delay: 0s;
+}
+
+.dot2 {
+  animation: fadeIn 2s ease-in-out infinite alternate;
+  animation-delay: 0.4s;
+}
+
+.dot3 {
+  animation: fadeIn 2s ease-in-out infinite alternate;
+  animation-delay: 0.8s;
+}
+
+.dot4 {
+  animation: fadeIn 2s ease-in-out infinite alternate;
+  animation-delay: 1.2s;
+}
+
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
@@ -67,5 +94,17 @@
   .img {
     width: 350px;
     height: 200px;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
   }
 }
