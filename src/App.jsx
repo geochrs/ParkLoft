@@ -3,6 +3,7 @@ import Root from './pages/Root';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
+import ProfilePage from './pages/ProfilePage';
 import { loginAction } from './components/auth/loginAction';
 import { signupAction } from './components/auth/signupAction';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
       { path: 'signup', element: <SignUpPage />, action: signupAction },
       { path: 'forgot-password', element: <ForgotPasswordPage /> },
       { path: 'logout', action: logoutAction },
+      { path: 'profile', element: <ProfilePage /> },
     ],
   },
 ]);

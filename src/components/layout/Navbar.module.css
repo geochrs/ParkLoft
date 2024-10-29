@@ -84,7 +84,8 @@
 }
 
 .loginLink,
-.signupLink {
+.signupLink,
+.profileLink {
   text-decoration: none;
   font-weight: 700;
 }
@@ -98,7 +99,8 @@
   color: var(--color-hover);
 }
 
-.signupLink {
+.signupLink,
+.profileLink {
   color: var(--color-primary-3);
   background-color: var(--color-primary-2);
   border-radius: 50px;
@@ -106,7 +108,8 @@
   transition: background-color 0.3s ease;
 }
 
-.signupLink:hover {
+.signupLink:hover,
+.profileLink:hover {
   background-color: var(--color-hover);
 }
 

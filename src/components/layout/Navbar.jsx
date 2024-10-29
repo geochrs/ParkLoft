@@ -111,6 +111,13 @@ export default function Navbar() {
               )}
               {token && (
                 <li>
+                  <Link to="/profile" className={classes.profileLink}>
+                    My Profile
+                  </Link>
+                </li>
+              )}
+              {token && (
+                <li>
                   <Form action="/logout" method="post">
                     <button className={classes.logoutButton}>Log out</button>
                   </Form>
