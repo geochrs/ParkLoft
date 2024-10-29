@@ -5,7 +5,7 @@ export default function AboutSection({ title, children }) {
     <section className={classes.section}>
       <div className={classes.container}>
         <h2 className={classes.h2}>{title}</h2>
-        <div className={classes.content}>{children}</div>
+        <div className={classes.cards}>{children}</div>
       </div>
     </section>
   );
