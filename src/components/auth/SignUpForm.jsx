@@ -1,14 +1,13 @@
 import { Form, useActionData, useNavigation, Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import classes from './SignUpForm.module.css';
-import { formActions } from '../../store/form';
 import { validateInputs } from './validateForm';
+import { useState } from 'react';
 
 export default function SignUpForm() {
   const data = useActionData();
   const navigation = useNavigation();
-  const dispatch = useDispatch();
-  const formErrors = useSelector((state) => state.form.errors);
+
+  const [formErrors, setFormErrors] = useState({});
 
   const isSubmitting = navigation.state === 'submitting';
 
@@ -22,9 +21,9 @@ export default function SignUpForm() {
 
     if (Object.keys(errors).length > 0) {
       event.preventDefault();
-      dispatch(formActions.setErrors(errors));
+      setFormErrors(errors);
     } else {
-      dispatch(formActions.clearErrors());
+      setFormErrors({});
     }
   };
 
