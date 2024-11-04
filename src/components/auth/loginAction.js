@@ -20,7 +20,7 @@ export async function loginAction({ request }) {
 
   if (response.status === 422) {
     const errorData = await response.json();
-    return { errors: errorData.error };
+    return { errors: errorData.message };
   }
 
   if (!response.ok) {

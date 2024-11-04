@@ -17,18 +17,18 @@ router.post('/signup', async (req, res) => {
 
   const errors = validateSignupInput(username, email, password);
   if (errors.length > 0) {
-    return res.status(422).json({ error: errors });
+    return res.status(422).json({ message: errors });
   }
 
   try {
     const existingUsername = await User.findOne({ where: { username } });
     if (existingUsername) {
-      return res.status(422).json({ error: 'Username already taken.' });
+      return res.status(422).json({ message: 'Username already taken.' });
     }
 
     const existingEmail = await User.findOne({ where: { email } });
     if (existingEmail) {
-      return res.status(422).json({ error: 'Email already registered.' });
+      return res.status(422).json({ message: 'Email already registered.' });
     }
 
     const newUser = await User.create({ username, email, password });
@@ -39,7 +39,7 @@ router.post('/signup', async (req, res) => {
 
     res.status(201).json({ message: 'User created', token });
   } catch (error) {
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 
@@ -48,18 +48,18 @@ router.post('/login', async (req, res) => {
 
   const errors = validateLoginInput(email, password);
   if (errors.length > 0) {
-    return res.status(422).json({ error: errors });
+    return res.status(422).json({ message: errors });
   }
 
   try {
     const user = await User.findOne({ where: { email } });
     if (!user) {
-      return res.status(422).json({ error: 'Invalid email or password' });
+      return res.status(422).json({ message: 'Invalid email or password' });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(422).json({ error: 'Invalid email or password' });
+      return res.status(422).json({ message: 'Invalid email or password' });
     }
 
     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
@@ -70,7 +70,7 @@ router.post('/login', async (req, res) => {
       token,
     });
   } catch (error) {
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 

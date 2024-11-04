@@ -3,15 +3,19 @@ import sequelize from './config/config.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js';
+import userRoutes from './routes/user.js';
 
 dotenv.config();
 
 const app = express();
-app.use(cors({
-  origin: '*',
-  methods: 'GET,POST,PATCH,DELETE',
-  allowedHeaders: 'Content-Type',
-}));
+app.use(
+  cors({
+    origin: '*',
+    methods: 'GET,POST,PATCH,DELETE',
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 sequelize
@@ -24,6 +28,7 @@ sequelize
   });
 
 app.use(authRoutes);
+app.use(userRoutes);
 
 app.listen(8080, () => {
   console.log('Server running on port 8080');

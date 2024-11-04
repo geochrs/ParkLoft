@@ -1,6 +1,10 @@
+import { useLoaderData } from 'react-router-dom';
 import ProfileSection from '../components/content/ProfileSection';
 import classes from '../components/content/ProfileSection.module.css';
+
 export default function ProfilePage() {
+  const data = useLoaderData();
+
   return (
     <ProfileSection>
       <div className={classes.card}>
@@ -8,18 +12,18 @@ export default function ProfilePage() {
           src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
           className={classes.profileImg}
         />
-        <p className={classes.textBold}>John Smith</p>
+        <p className={classes.textBold}>{data.username}</p>
         <div className={classes.row}>
           <div className={classes.textMuted}>Email:</div>
-          <div>gogos-chr@hotmail.com</div>
+          <div>{data.email}</div>
         </div>
         <div className={classes.row}>
           <div className={classes.textMuted}>Phone:</div>
-          <div>+306986487131</div>
+          <div></div>
         </div>
         <div className={classes.row}>
           <div className={classes.textMuted}>Date of Birth:</div>
-          <div>12-05-1995</div>
+          <div> </div>
         </div>
         <button className={classes.editButton}>Edit Profile</button>
       </div>

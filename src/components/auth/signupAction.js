@@ -21,7 +21,7 @@ export async function signupAction({ request }) {
 
   if (response.status === 422) {
     const errorData = await response.json();
-    return { errors: errorData.error };
+    return { errors: errorData.message };
   }
 
   if (!response.ok) {
