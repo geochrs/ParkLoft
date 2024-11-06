@@ -12,6 +12,8 @@ dotenv.config();
 
 const router = express.Router();
 
+let tokenStore = {};
+
 router.post('/signup', async (req, res) => {
   const { username, email, password } = req.body;
 
@@ -22,22 +24,31 @@ router.post('/signup', async (req, res) => {
 
   try {
     const existingUsername = await User.findOne({ where: { username } });
-    if (existingUsername) {
-      return res.status(422).json({ message: 'Username already taken.' });
-    }
-
     const existingEmail = await User.findOne({ where: { email } });
-    if (existingEmail) {
-      return res.status(422).json({ message: 'Email already registered.' });
+
+    if (existingUsername || existingEmail) {
+      return res
+        .status(422)
+        .json({ message: 'Username or Email already registered.' });
     }
 
     const newUser = await User.create({ username, email, password });
 
-    const token = jwt.sign({ id: newUser.id }, process.env.JWT_SECRET, {
-      expiresIn: '1h',
+    const token = jwt.sign(
+      { id: newUser.id, public_id: newUser.public_id, role: newUser.role },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
+    tokenStore[newUser.public_id] = token;
+
+    res.cookie('public_id', newUser.public_id, {
+      httpOnly: false,
+      maxAge: 3600 * 1000,
+      secure: false,
     });
 
-    res.status(201).json({ message: 'User created', token });
+    res.status(201).json({ message: 'User created' });
   } catch (error) {
     res.status(500).json({ message: 'Internal server error' });
   }
@@ -62,16 +73,39 @@ router.post('/login', async (req, res) => {
       return res.status(422).json({ message: 'Invalid email or password' });
     }
 
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-      expiresIn: '1h',
+    const token = jwt.sign(
+      { id: user.id, public_id: user.public_id, role: user.role },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
+    tokenStore[user.public_id] = token;
+
+    res.cookie('public_id', user.public_id, {
+      httpOnly: false,
+      maxAge: 3600 * 1000,
+      secure: false,
     });
 
     res.status(200).json({
-      token,
+      message: 'Login successful',
     });
   } catch (error) {
     res.status(500).json({ message: 'Internal server error' });
   }
+});
+
+router.post('/logout', (req, res) => {
+  const public_id = req.cookies['public_id'];
+
+  if (!public_id || !tokenStore[public_id]) {
+    return res.status(400).json({ message: 'No active session' });
+  }
+
+  delete tokenStore[public_id];
+
+  res.clearCookie('public_id');
+  res.status(200).json({ message: 'Logout successful' });
 });
 
 export default router;

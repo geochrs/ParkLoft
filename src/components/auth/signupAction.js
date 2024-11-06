@@ -17,23 +17,16 @@ export async function signupAction({ request }) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(signupData),
+    credentials: 'include',
   });
 
-  if (response.status === 422) {
-    const errorData = await response.json();
-    return { errors: errorData.message };
-  }
-
   if (!response.ok) {
+    const errorData = await response.json();
     throw json(
-      { message: 'Sign up failed, please try again.' },
-      { status: 500 }
+      { message: errorData.message || 'Sign up failed, please try again.' },
+      { status: response.status }
     );
   }
-
-  const resData = await response.json();
-  const token = resData.token;
-  localStorage.setItem('token', token);
 
   return redirect('/');
 }

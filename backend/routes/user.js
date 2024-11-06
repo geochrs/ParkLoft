@@ -13,12 +13,12 @@ router.get('/profile', authenticateToken, async (req, res) => {
     });
 
     if (!user) {
-      return res.status(404).json({ error: 'User not found' });
+      return res.status(404).json({ message: 'User not found' });
     }
 
     res.status(200).json(user);
   } catch (error) {
-    res.status(500).json({ error: 'Error retrieving profile' });
+    res.status(500).json({ message: 'Error retrieving profile' });
   }
 });
 

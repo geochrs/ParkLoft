@@ -1,9 +1,9 @@
 import { json } from 'react-router-dom';
-import { getAuthToken } from '../utils/auth';
+import { tokenLoader} from '../utils/auth';
 import { redirect } from 'react-router-dom';
 
 export async function profileLoader() {
-  const token = getAuthToken();
+  const token = tokenLoader();
 
   if (!token) {
     return redirect('/login');
@@ -16,6 +16,7 @@ export async function profileLoader() {
     headers: {
       Authorization: `Bearer ${token}`,
     },
+    credentials: 'include',
   });
 
   if (response.status === 401 || response.status === 403) {
@@ -24,8 +25,12 @@ export async function profileLoader() {
 
   if (!response.ok) {
     throw json(
-      { message: 'Failed to fetch profile data. Please try again.' },
-      { status: 500 }
+      {
+        message:
+          errorData.message ||
+          'Failed to fetch profile data. Please try again.',
+      },
+      { status: errorData.status || 500 }
     );
   }
 
