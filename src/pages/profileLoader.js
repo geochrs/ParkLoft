@@ -13,9 +13,6 @@ export async function profileLoader() {
 
   const response = await fetch(url, {
     method: 'GET',
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
     credentials: 'include',
   });
 
