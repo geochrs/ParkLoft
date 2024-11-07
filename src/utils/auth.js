@@ -5,7 +5,6 @@ export function getCookie(name) {
 }
 
 export function tokenLoader() {
-  const token = getCookie('public_id');
-  console.log(getCookie('public_id'));
+  const token = getCookie('auth_token');
   return token ? token : null;
 }

@@ -1,5 +1,5 @@
 import { json } from 'react-router-dom';
-import { tokenLoader} from '../utils/auth';
+import { tokenLoader } from '../utils/auth';
 import { redirect } from 'react-router-dom';
 
 export async function profileLoader() {
@@ -24,6 +24,7 @@ export async function profileLoader() {
   }
 
   if (!response.ok) {
+    const errorData = await response.json();
     throw json(
       {
         message:

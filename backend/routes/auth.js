@@ -12,8 +12,6 @@ dotenv.config();
 
 const router = express.Router();
 
-let tokenStore = {};
-
 router.post('/signup', async (req, res) => {
   const { username, email, password } = req.body;
 
@@ -35,14 +33,13 @@ router.post('/signup', async (req, res) => {
     const newUser = await User.create({ username, email, password });
 
     const token = jwt.sign(
-      { id: newUser.id, public_id: newUser.public_id, role: newUser.role },
+      { public_id: newUser.public_id },
       process.env.JWT_SECRET,
       { expiresIn: '1h' }
     );
 
-    tokenStore[newUser.public_id] = token;
 
-    res.cookie('public_id', newUser.public_id, {
+    res.cookie('public_id', token, {
       httpOnly: false,
       maxAge: 3600 * 1000,
       secure: false,
@@ -74,14 +71,12 @@ router.post('/login', async (req, res) => {
     }
 
     const token = jwt.sign(
-      { id: user.id, public_id: user.public_id, role: user.role },
+      { public_id: user.public_id },
       process.env.JWT_SECRET,
       { expiresIn: '1h' }
     );
 
-    tokenStore[user.public_id] = token;
-
-    res.cookie('public_id', user.public_id, {
+    res.cookie('auth_token', token, {
       httpOnly: false,
       maxAge: 3600 * 1000,
       secure: false,

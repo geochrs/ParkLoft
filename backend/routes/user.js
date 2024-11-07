@@ -5,12 +5,11 @@ import { authenticateToken } from '../middleware.js';
 const router = express.Router();
 
 router.get('/profile', authenticateToken, async (req, res) => {
-  const userId = req.user.id;
+  const userId = req.user.public_id;
 
   try {
-    const user = await User.findByPk(userId, {
-      attributes: ['username', 'email', 'createdAt'],
-    });
+    const user = await User.findOne({ where: { public_id: userId } });
+    console.log(user)
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
