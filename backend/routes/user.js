@@ -9,7 +9,7 @@ router.get('/profile', authenticateToken, async (req, res) => {
 
   try {
     const user = await User.findOne({ where: { public_id: userId } });
-    console.log(user)
+    console.log(user);
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
@@ -18,6 +18,28 @@ router.get('/profile', authenticateToken, async (req, res) => {
     res.status(200).json(user);
   } catch (error) {
     res.status(500).json({ message: 'Error retrieving profile' });
+  }
+});
+
+router.put('/profile', authenticateToken, async (req, res) => {
+  const userId = req.user.public_id;
+  const { username, phone, dateOfBirth } = req.body;
+
+  try {
+    const user = await User.findOne({ where: { public_id: userId } });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    user.username = username ?? user.username;
+    user.phone = phone ?? user.phone;
+    user.dateOfBirth = dateOfBirth ?? user.dateOfBirth;
+
+    await user.save();
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ message: 'Error updating profile' });
   }
 });
 
