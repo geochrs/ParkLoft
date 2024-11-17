@@ -38,7 +38,6 @@ router.post('/signup', async (req, res) => {
       { expiresIn: '1h' }
     );
 
-
     res.cookie('public_id', token, {
       httpOnly: false,
       maxAge: 3600 * 1000,
@@ -91,15 +90,13 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/logout', (req, res) => {
-  const public_id = req.cookies['public_id'];
+  const token = req.cookies['auth_token'];
 
-  if (!public_id || !tokenStore[public_id]) {
+  if (!token) {
     return res.status(400).json({ message: 'No active session' });
   }
 
-  delete tokenStore[public_id];
-
-  res.clearCookie('public_id');
+  res.clearCookie('auth_token', { httpOnly: false, secure: false });
   res.status(200).json({ message: 'Logout successful' });
 });
 

@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import classes from './Modal.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { modalActions } from '../../store/modal';
+import EditProfileForm from '../content/EditProfileForm';
 
 export default function Modal({ className }) {
   const { isOpen, contentKey } = useSelector((state) => state.modal);
@@ -13,7 +14,7 @@ export default function Modal({ className }) {
     switch (key) {
       case 'howItWorks':
         return (
-          <div>
+          <div className={classes.homeModal}>
             <h3>How It Works</h3>
             <ul>
               <li>
@@ -45,6 +46,8 @@ export default function Modal({ className }) {
             </ul>
           </div>
         );
+      case 'editProfile':
+        return <EditProfileForm />;
       default:
         return null;
     }

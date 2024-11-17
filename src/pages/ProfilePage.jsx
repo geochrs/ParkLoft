@@ -1,10 +1,21 @@
 import { useLoaderData } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { modalActions } from '../store/modal';
+
 import ProfileSection from '../components/content/ProfileSection';
 import classes from '../components/content/ProfileSection.module.css';
 
 export default function ProfilePage() {
   const data = useLoaderData();
+  const dispatch = useDispatch();
 
+  const handleEditClick = () => {
+    dispatch(
+      modalActions.openModal({
+        key: 'editProfile',
+      })
+    );
+  };
   return (
     <ProfileSection>
       <div className={classes.card}>
@@ -25,7 +36,9 @@ export default function ProfilePage() {
           <div className={classes.textMuted}>Date of Birth:</div>
           <div> </div>
         </div>
-        <button className={classes.editButton}>Edit Profile</button>
+        <button className={classes.editButton} onClick={handleEditClick}>
+          Edit Profile
+        </button>
       </div>
       <div className={classes.card}>
         <h3>Your Bookings</h3>

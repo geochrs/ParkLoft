@@ -10,7 +10,7 @@ import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ErrorPage from './pages/ErrorPage';
 import { action as logoutAction } from './pages/LogoutPage';
 import { tokenLoader } from './utils/auth';
-import { profileLoader } from './pages/ProfileLoader';
+import { profileLoader, profileAction } from './pages/profile';
 
 const router = createBrowserRouter([
   {
@@ -25,7 +25,13 @@ const router = createBrowserRouter([
       { path: 'signup', element: <SignUpPage />, action: signupAction },
       { path: 'forgot-password', element: <ForgotPasswordPage /> },
       { path: 'logout', action: logoutAction },
-      { path: 'profile', element: <ProfilePage />, loader: profileLoader },
+      {
+        path: 'profile',
+        id: 'profile',
+        element: <ProfilePage />,
+        loader: profileLoader,
+        action: profileAction,
+      },
     ],
   },
 ]);
