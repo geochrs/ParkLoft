@@ -22,7 +22,7 @@ export default function Navbar() {
 
   const handleOpenModal = (e) => {
     e.preventDefault();
-    dispatch(modalActions.openModal());
+    dispatch(modalActions.openModal('howItWorks'));
     dispatch(menuActions.closeMenu());
   };
 
