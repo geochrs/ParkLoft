@@ -42,9 +42,6 @@ const User = sequelize.define(
     phone: {
       type: DataTypes.STRING,
       allowNull: true,
-      validate: {
-        is: /^[0-9\-+()\s]*$/i,
-      },
     },
     dateOfBirth: {
       type: DataTypes.DATEONLY,

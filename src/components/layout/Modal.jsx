@@ -4,11 +4,18 @@ import classes from './Modal.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { modalActions } from '../../store/modal';
 import EditProfileForm from '../content/EditProfileForm';
+import { useNavigation } from 'react-router-dom';
 
 export default function Modal({ className }) {
   const { isOpen, contentKey } = useSelector((state) => state.modal);
+  const navigation = useNavigation();
   const dispatch = useDispatch();
   const dialog = useRef();
+
+  const isSubmitting = navigation.state === 'submitting';
+
+  console.log('Modal State:', isOpen, 'Is Submitting:', isSubmitting);  // Add this line to debug
+
 
   const getModalContent = (key) => {
     switch (key) {
@@ -55,14 +62,17 @@ export default function Modal({ className }) {
 
   useEffect(() => {
     const modal = dialog.current;
-    if (isOpen) {
+    if (isOpen && !isSubmitting) {
       modal.showModal();
     }
     return () => modal.close();
-  }, [isOpen]);
+  }, [isOpen, isSubmitting]);
 
   const handleClose = () => {
-    dispatch(modalActions.closeModal());
+    if (!isSubmitting) {
+      console.log("Closing modal");  // Check if modal is closing prematurely
+      dispatch(modalActions.closeModal());
+    }
   };
 
   return createPortal(
