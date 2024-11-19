@@ -9,7 +9,6 @@ router.get('/profile', authenticateToken, async (req, res) => {
 
   try {
     const user = await User.findOne({ where: { public_id: userId } });
-    console.log(user);
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });

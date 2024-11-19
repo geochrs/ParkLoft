@@ -67,7 +67,6 @@ export default function Modal({ className }) {
 
   const handleClose = () => {
     if (!isSubmitting) {
-      console.log("Closing modal");  // Check if modal is closing prematurely
       dispatch(modalActions.closeModal());
     }
   };
