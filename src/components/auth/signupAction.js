@@ -20,6 +20,11 @@ export async function signupAction({ request }) {
     credentials: 'include',
   });
 
+  if (response.status === 422) {
+    const errorData = await response.json();
+    return ({message: errorData.message})
+  }
+
   if (!response.ok) {
     const errorData = await response.json();
     throw json(

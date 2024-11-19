@@ -32,12 +32,12 @@ export default function LoginForm() {
       noValidate
     >
       <h2 className={classes.title}>Log in</h2>
-      {data?.errors && (
+      {data?.message && (
         <ul className={classes.errorList}>
-          {Array.isArray(data.errors) ? (
-            data.errors.map((error, index) => <li key={index}>{error}</li>)
+          {Array.isArray(data.message) ? (
+            data.message.map((error, index) => <li key={index}>{error}</li>)
           ) : (
-            <li>{data.errors}</li>
+            <li>{data.message}</li>
           )}
         </ul>
       )}

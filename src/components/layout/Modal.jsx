@@ -14,9 +14,6 @@ export default function Modal({ className }) {
 
   const isSubmitting = navigation.state === 'submitting';
 
-  console.log('Modal State:', isOpen, 'Is Submitting:', isSubmitting);  // Add this line to debug
-
-
   const getModalContent = (key) => {
     switch (key) {
       case 'howItWorks':
