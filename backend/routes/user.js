@@ -36,7 +36,7 @@ router.put('/profile', authenticateToken, async (req, res) => {
     user.dateOfBirth = dateOfBirth ?? user.dateOfBirth;
 
     await user.save();
-    res.status(200).json(user);
+    res.status(200).json({ message: 'Profile updated successfully' });
   } catch (error) {
     res.status(500).json({ message: 'Error updating profile' });
   }

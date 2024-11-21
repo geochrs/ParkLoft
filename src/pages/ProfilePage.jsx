@@ -30,11 +30,11 @@ export default function ProfilePage() {
         </div>
         <div className={classes.row}>
           <div className={classes.textMuted}>Phone:</div>
-          <div></div>
+          <div>{data.phone}</div>
         </div>
         <div className={classes.row}>
           <div className={classes.textMuted}>Date of Birth:</div>
-          <div> </div>
+          <div>{data.dateOfBirth}</div>
         </div>
         <button className={classes.editButton} onClick={handleEditClick}>
           Edit Profile
