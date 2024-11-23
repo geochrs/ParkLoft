@@ -3,12 +3,11 @@ import classes from './EditProfileForm.module.css';
 
 export default function EditProfileForm() {
   const data = useRouteLoaderData('profile');
-  console.log(data);
   const navigation = useNavigation();
   const isSubmitting = navigation.state === 'submitting';
 
   return (
-    <Form method="post" className={classes.form} noValidate>
+    <Form method="put" className={classes.form} noValidate>
       <h2 className={classes.title}>Edit Profile</h2>
       {data?.message && (
         <ul className={classes.errorList}>
