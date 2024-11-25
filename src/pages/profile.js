@@ -66,5 +66,6 @@ export async function profileAction({ request }) {
     );
   }
 
-  return redirect('/profile');
+  const resData = await response.json();
+  return resData;
 }
