@@ -1,43 +1,26 @@
-import { useRouteLoaderData, useSubmit } from 'react-router-dom';
+import { Form, useRouteLoaderData, useNavigation } from 'react-router-dom';
 import classes from './EditProfileForm.module.css';
-import { useState } from 'react';
 import { modalActions } from '../../store/modal';
 import { useDispatch } from 'react-redux';
 
 export default function EditProfileForm() {
   const data = useRouteLoaderData('profile');
-  const submit = useSubmit();
+  const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  const [formData, setFormData] = useState({
-    username: data.username,
-    phone: data.phone,
-    dateOfBirth: data.dateOfBirth,
-  });
+  const isSubmitting = navigation.state === 'submitting';
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevState) => ({ ...prevState, [name]: value }));
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setIsSubmitting(true);
-    const form = event.target;
-    const formData = new FormData(form);
-
-    submit(formData, {
-      method: 'put',
-      action: '/profile',
-    });
-
+  const handleAfterSubmit = () => {
     dispatch(modalActions.closeModal());
   };
 
   return (
-    <form onSubmit={handleSubmit} className={classes.form} noValidate>
+    <Form
+      method="put"
+      className={classes.form}
+      action="/profile"
+      onSubmit={handleAfterSubmit}
+    >
       <h2 className={classes.title}>Edit Profile</h2>
       <div className={classes.inputGroup}>
         <label htmlFor="username">Username</label>
@@ -45,20 +28,13 @@ export default function EditProfileForm() {
           id="username"
           type="text"
           name="username"
-          value={formData.username}
-          onChange={handleChange}
+          defaultValue={data.username}
         />
       </div>
 
       <div className={classes.inputGroup}>
         <label htmlFor="phone">Phone</label>
-        <input
-          id="phone"
-          type="tel"
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-        />
+        <input id="phone" type="tel" name="phone" defaultValue={data.phone} />
       </div>
 
       <div className={classes.inputGroup}>
@@ -67,8 +43,7 @@ export default function EditProfileForm() {
           id="dateOfBirth"
           type="date"
           name="dateOfBirth"
-          value={formData.dateOfBirth}
-          onChange={handleChange}
+          defaultValue={data.dateOfBirth}
         />
       </div>
 
@@ -77,6 +52,6 @@ export default function EditProfileForm() {
           {isSubmitting ? 'Saving...' : 'Save Changes'}
         </button>
       </div>
-    </form>
+    </Form>
   );
 }
