@@ -30,6 +30,7 @@ export default function LoginForm() {
       className={classes.form}
       onSubmit={handleClientValidation}
       noValidate
+      action='/login'
     >
       <h2 className={classes.title}>Log in</h2>
       {data?.message && (

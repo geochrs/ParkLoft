@@ -33,6 +33,7 @@ export default function SignUpForm() {
       className={classes.form}
       onSubmit={handleClientValidation}
       noValidate
+      action='/signup'
     >
       <h2 className={classes.title}>Create an Account</h2>
       {data?.message && (

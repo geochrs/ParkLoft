@@ -38,7 +38,7 @@ router.post('/signup', async (req, res) => {
       { expiresIn: '1h' }
     );
 
-    res.cookie('public_id', token, {
+    res.cookie('auth_token', token, {
       httpOnly: false,
       maxAge: 3600 * 1000,
       secure: false,
