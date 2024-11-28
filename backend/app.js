@@ -4,6 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js';
 import userRoutes from './routes/user.js';
+import bookingRoutes from './routes/booking.js';
 import cookieParser from 'cookie-parser';
 
 dotenv.config();
@@ -31,6 +32,7 @@ sequelize
 
 app.use(authRoutes);
 app.use(userRoutes);
+app.use(bookingRoutes);
 
 app.listen(8080, () => {
   console.log('Server running on port 8080');
