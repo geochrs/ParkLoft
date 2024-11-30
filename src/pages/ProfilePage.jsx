@@ -49,6 +49,9 @@ export default function ProfilePage() {
           <div>ENTRY TIME</div>
           <div>EXIT TIME</div>
         </div>
+        <div className={classes.bookNowContainer}>
+          <button className={classes.bookNowButton}>Book Now</button>
+        </div>
       </div>
     </ProfileSection>
   );

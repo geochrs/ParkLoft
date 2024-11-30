@@ -18,6 +18,10 @@ const Booking = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    place: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     entryTime: {
       type: DataTypes.DATE,
       allowNull: false,
