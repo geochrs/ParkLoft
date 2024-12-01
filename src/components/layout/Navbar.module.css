@@ -14,7 +14,7 @@
 }
 
 .innerContainer {
-  max-width: 1300px;
+  max-width: 1400px;
   margin: auto;
   display: flex;
   justify-content: space-between;
@@ -56,31 +56,38 @@
 .navList {
   display: flex;
   gap: 1.2rem;
-  flex-grow: 1;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  justify-content: space-between;
+}
+
+.leftLinks,
+.rightLinks {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+.leftLinks {
   justify-content: center;
+  flex-grow: 1;
 }
 
-.navList li {
-  flex: 0 0 auto;
-}
-
-.navList li:nth-child(1) {
-  margin-left: auto;
-}
-
-.navList li:nth-child(3) {
-  margin-left: auto;
-}
-
-.navList li:not(:nth-last-child(-n + 2)) a {
+.leftLinks a {
   text-decoration: none;
   color: var(--color-primary);
 }
 
-.navList li:not(:nth-last-child(-n + 2)) a:hover,
-.navList li:not(:nth-last-child(-n + 2)) a.active {
+.leftLinks a:hover {
   color: var(--color-primary-2);
   transition: color 0.3s ease;
+}
+
+.rightLinks {
+  justify-content: flex-end;
 }
 
 .loginLink,
@@ -123,6 +130,7 @@
 
 .logoutButton:hover {
   color: var(--color-hover);
+  transition: color 0.3s ease;
   cursor: pointer;
 }
 
@@ -154,7 +162,7 @@
   transform: translateY(-8px) rotate(-45deg);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .navList {
     display: none;
     flex-direction: column;
@@ -171,19 +179,22 @@
     height: calc(100vh - 120px);
   }
 
-  .navList li:nth-child(1) {
-    margin-left: 0;
-  }
-  .navList li:nth-child(3) {
-    margin-left: 0;
-  }
-
-  .navList li {
-    margin-bottom: 15px;
+  .leftLinks,
+  .rightLinks {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.3rem;
+    flex-grow: 0;
   }
 
-  .navList li:nth-child(4) {
-    margin-top: 5px;
+  .leftLinks {
+    margin-top: 1rem;
+  }
+
+  .rightLinks {
+    margin-top: 1rem;
+    gap: 1.5rem;
   }
 
   .hamburger {

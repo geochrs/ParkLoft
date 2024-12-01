@@ -1,6 +1,10 @@
 .errorContainer {
   text-align: center;
-  margin-top: 15rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
 .errorH1 {
@@ -9,9 +13,27 @@
     text-shadow: 
       8px -3px 0 #f7f8ff99, 
       9px 7px 0 #5469e799;
+    margin: 0;
 }
 
 .errorMessage {
   font-size: 1.5rem;
-  margin-bottom: 20px;
+}
+
+.errorHomeButton {
+  padding: 15px 25px;
+  font-size: 1rem;
+  background-color: var(--color-primary-2);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.errorHomeButton:hover {
+  background-color: var(--color-hover);
 }

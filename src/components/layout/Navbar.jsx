@@ -79,50 +79,73 @@ export default function Navbar() {
               <div></div>
             </div>
             <ul className={classes.navList}>
-              <li>
-                <NavLink
-                  to="/"
-                  className={({ isActive }) =>
-                    isActive ? classes.active : undefined
-                  }
-                  end
-                >
-                  Home
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/" onClick={handleOpenModal}>
-                  How it works
-                </NavLink>
-              </li>
-              {!token && (
+              <div className={classes.leftLinks}>
                 <li>
-                  <Link to="/login" className={classes.loginLink}>
-                    Log in
-                  </Link>
+                  <NavLink
+                    to="/"
+                    className={({ isActive }) =>
+                      isActive ? classes.active : undefined
+                    }
+                    end
+                  >
+                    Home
+                  </NavLink>
                 </li>
-              )}
-              {!token && (
+                {token && (
+                  <li>
+                    <NavLink
+                      to="/booking"
+                      className={({ isActive }) =>
+                        isActive ? classes.active : undefined
+                      }
+                    >
+                      Bookings
+                    </NavLink>
+                  </li>
+                )}
                 <li>
-                  <Link to="/signup" className={classes.signupLink}>
-                    Get Started
-                  </Link>
+                  <NavLink
+                    to="/"
+                    onClick={handleOpenModal}
+                    className={({ isActive }) =>
+                      isActive ? classes.active : undefined
+                    }
+                  >
+                    How it Works
+                  </NavLink>
                 </li>
-              )}
-              {token && (
-                <li>
-                  <Link to="/profile" className={classes.profileLink}>
-                    My Profile
-                  </Link>
-                </li>
-              )}
-              {token && (
-                <li>
-                  <Form action="/logout" method="post">
-                    <button className={classes.logoutButton}>Log out</button>
-                  </Form>
-                </li>
-              )}
+              </div>
+
+              <div className={classes.rightLinks}>
+                {!token && (
+                  <li>
+                    <Link to="/login" className={classes.loginLink}>
+                      Log in
+                    </Link>
+                  </li>
+                )}
+                {!token && (
+                  <li>
+                    <Link to="/signup" className={classes.signupLink}>
+                      Get Started
+                    </Link>
+                  </li>
+                )}
+                {token && (
+                  <li>
+                    <Link to="/profile" className={classes.profileLink}>
+                      My Profile
+                    </Link>
+                  </li>
+                )}
+                {token && (
+                  <li>
+                    <Form action="/logout" method="post">
+                      <button className={classes.logoutButton}>Log out</button>
+                    </Form>
+                  </li>
+                )}
+              </div>
             </ul>
           </nav>
         )}
