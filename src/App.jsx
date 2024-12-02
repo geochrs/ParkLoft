@@ -11,6 +11,7 @@ import ErrorPage from './pages/ErrorPage';
 import { action as logoutAction } from './pages/LogoutPage';
 import { tokenLoader } from './utils/auth';
 import { profileLoader, profileAction } from './pages/profile';
+import BookingPage from './pages/BookingPage';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
         element: <ProfilePage />,
         loader: profileLoader,
         action: profileAction,
+      },
+      {
+        path: 'booking',
+        element: <BookingPage />,
       },
     ],
   },
