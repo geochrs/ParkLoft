@@ -2,6 +2,7 @@ import parkImg from '../assets/parkloft.jpg';
 import aboutStyles from '../components/content/AboutSection.module.css';
 import HeroSection from '../components/content/HeroSection';
 import AboutSection from '../components/content/AboutSection';
+import FooterSection from '../components/content/FooterSection';
 
 export default function HomePage() {
   return (
@@ -71,6 +72,7 @@ export default function HomePage() {
           </ul>
         </div>
       </AboutSection>
+      <FooterSection />
     </>
   );
 }
