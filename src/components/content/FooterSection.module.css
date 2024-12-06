@@ -13,6 +13,24 @@
   height: 60px;
 }
 
+h5 {
+  text-transform: uppercase;
+}
+
 .content {
-    padding-left: 1rem;
+  padding-left: 1rem;
+  font-size: 0.785rem;
+}
+
+.links {
+  display: flex;
+  gap: 0.8rem;
+  font-size: 0.785rem;
+  flex-direction: column;
+}
+
+.flexbox {
+  display: flex;
+  gap: 8rem;
+  flex-direction: row;
 }
