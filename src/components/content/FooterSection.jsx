@@ -1,5 +1,6 @@
 import classes from './FooterSection.module.css';
 import logo from '../../assets/parkloftLogo.png';
+import { Link } from 'react-router-dom';
 
 export default function FooterSection() {
   return (
@@ -18,7 +19,7 @@ export default function FooterSection() {
               <h5>Links</h5>
             </div>
             <div className={classes.links}>
-              <a>Login</a>
+              <Link to='/home'>Login</Link>
               <a>Support</a>
               <a>Documentation</a>
             </div>
