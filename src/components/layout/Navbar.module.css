@@ -110,7 +110,7 @@
 .profileLink {
   color: var(--color-primary-3);
   background-color: var(--color-primary-2);
-  border-radius: 50px;
+  border-radius: 0.5rem;
   padding: 15px 25px;
   transition: background-color 0.3s ease;
 }
