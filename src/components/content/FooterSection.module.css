@@ -41,6 +41,14 @@ h5 {
 
 .flexbox {
   display: flex;
-  gap: 8rem;
+  gap: 0;
   flex-direction: row;
+}
+
+.flexbox > div:first-child + div {
+  margin-left: 8rem;
+}
+
+.flexbox > div:nth-child(2) + div {
+  margin-left: 4rem;
 }

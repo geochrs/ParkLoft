@@ -19,9 +19,18 @@ export default function FooterSection() {
               <h5>Links</h5>
             </div>
             <div className={classes.links}>
-              <Link to='/home'>Login</Link>
-              <a>Support</a>
+              <Link to="/home">Login</Link>
+              <a href="mailto:support@example.com">Support</a>
               <a>Documentation</a>
+            </div>
+          </div>
+          <div>
+            <div>
+              <h5>Legal</h5>
+            </div>
+            <div className={classes.links}>
+            <Link to="/tos">Terms of services</Link>
+            <Link to='/privacy-policy'>Privacy policy</Link>
             </div>
           </div>
         </div>
