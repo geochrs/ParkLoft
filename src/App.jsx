@@ -12,6 +12,7 @@ import { action as logoutAction } from './pages/LogoutPage';
 import { tokenLoader } from './utils/auth';
 import { profileLoader, profileAction } from './pages/profile';
 import BookingPage from './pages/BookingPage';
+import TosPage from './pages/TosPage';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
         element: <BookingPage />,
       },
     ],
+  },
+  {
+    path: 'tos',
+    element: <TosPage />,
   },
 ]);
 
