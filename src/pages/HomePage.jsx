@@ -7,15 +7,7 @@ import FooterSection from '../components/content/FooterSection';
 export default function HomePage() {
   return (
     <>
-      <HeroSection
-        title="Discover Your Perfect Parking Space with ParkLoft"
-        imageSrc={parkImg}
-      >
-        <p>
-          ParkLoft helps you find the best parking spots in the city, with ease
-          and efficiency.
-        </p>
-      </HeroSection>
+      <HeroSection />
       <AboutSection title="About Parkloft">
         <div className={aboutStyles.card}>
           <h3>Our Mission</h3>
