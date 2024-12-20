@@ -46,11 +46,3 @@ h5 {
   flex-wrap: wrap;
   justify-content: space-around;
 }
-
-/* .flexbox > div:first-child + div {
-  margin-left: 8rem;
-}
-
-.flexbox > div:nth-child(2) + div {
-  margin-left: 4rem;
-} */
