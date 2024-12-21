@@ -1,6 +1,6 @@
 import classes from './HeroSection.module.css';
 
-export default function HeroSection({ title, imageSrc, children }) {
+export default function HeroSection() {
   return (
     <section className={classes.section}>
       <div className={classes.container}>
@@ -8,10 +8,31 @@ export default function HeroSection({ title, imageSrc, children }) {
           <h1 className={classes.h1}>
             Discover Your Perfect Parking Space with ParkLoft
           </h1>
-          <p className={classes.content}>
-            ParkLoft helps you find the best parking spots in the city, with
-            ease and efficiency.
-          </p>
+          <div className={classes.cardContainer}>
+            <div className={classes.card}>
+              <p className={classes.cardTitle}>Locations</p>
+              <p className={classes.cardContent}>
+                Plenty of locations available
+              </p>
+            </div>
+            <div className={classes.card}>
+              <p className={classes.cardTitle}>Dates</p>
+              <p className={classes.cardContent}>
+                Choose your desired parking time
+              </p>
+            </div>
+            <div className={classes.card}>
+              <p className={classes.cardTitle}>Budget Friendly</p>
+              <p className={classes.cardContent}>
+                Looking for affordable parking options?
+              </p>
+            </div>
+            <div className={classes.card}>
+              <button type="submit" className={classes.bookNow}>
+                Book Now
+              </button>
+            </div>
+          </div>
         </div>
       </div>
       <div className={classes.decorBottom}></div>
