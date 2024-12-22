@@ -2,6 +2,7 @@ import classes from './HeroSection.module.css';
 import locations from '../../assets/locations.svg';
 import dates from '../../assets/dates.svg';
 import money from '../../assets/money.svg';
+import line from '../../assets/line.svg';
 
 export default function HeroSection() {
   return (
@@ -24,6 +25,9 @@ export default function HeroSection() {
               </p>
             </div>
             <div className={classes.card}>
+              <img src={line} className={classes.lineSVG} />
+            </div>
+            <div className={classes.card}>
               <p className={classes.cardTitle}>
                 <span>
                   <img src={dates} className={classes.datesSVG} />
@@ -33,6 +37,9 @@ export default function HeroSection() {
               <p className={classes.cardContent}>
                 Choose your desired parking time
               </p>
+            </div>
+            <div className={classes.card}>
+              <img src={line} className={classes.lineSVG} />
             </div>
             <div className={classes.card}>
               <p className={classes.cardTitle}>
