@@ -1,4 +1,7 @@
 import classes from './HeroSection.module.css';
+import locations from '../../assets/locations.svg';
+import dates from '../../assets/dates.svg';
+import money from '../../assets/money.svg';
 
 export default function HeroSection() {
   return (
@@ -10,19 +13,34 @@ export default function HeroSection() {
           </h1>
           <div className={classes.cardContainer}>
             <div className={classes.card}>
-              <p className={classes.cardTitle}>Locations</p>
+              <p className={classes.cardTitle}>
+                <span>
+                  <img src={locations} className={classes.locationsSVG} />
+                </span>
+                Locations
+              </p>
               <p className={classes.cardContent}>
                 Plenty of locations available
               </p>
             </div>
             <div className={classes.card}>
-              <p className={classes.cardTitle}>Dates</p>
+              <p className={classes.cardTitle}>
+                <span>
+                  <img src={dates} className={classes.datesSVG} />
+                </span>
+                Dates
+              </p>
               <p className={classes.cardContent}>
                 Choose your desired parking time
               </p>
             </div>
             <div className={classes.card}>
-              <p className={classes.cardTitle}>Budget Friendly</p>
+              <p className={classes.cardTitle}>
+                <span>
+                  <img src={money} className={classes.moneySVG} />
+                </span>
+                Budget Friendly
+              </p>
               <p className={classes.cardContent}>
                 Looking for affordable parking options?
               </p>
