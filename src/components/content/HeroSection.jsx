@@ -8,7 +8,7 @@ export default function HeroSection() {
   return (
     <section className={classes.section}>
       <div className={classes.container}>
-        <div className={classes['left-content']}>
+        <div>
           <h1 className={classes.h1}>
             Discover Your Perfect Parking Space with ParkLoft
           </h1>
