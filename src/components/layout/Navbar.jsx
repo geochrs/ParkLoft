@@ -119,22 +119,15 @@ export default function Navbar() {
               <div className={classes.rightLinks}>
                 {!token && (
                   <li>
-                    <Link to="/login" className={classes.loginLink}>
+                    <Link to="/login" className={classes.loginButton}>
                       Log in
                     </Link>
                   </li>
                 )}
                 {!token && (
                   <li>
-                    <Link to="/signup" className={classes.signupLink}>
+                    <Link to="/signup" className={classes.signupButton}>
                       Get Started
-                    </Link>
-                  </li>
-                )}
-                {token && (
-                  <li>
-                    <Link to="/profile" className={classes.profileLink}>
-                      My Profile
                     </Link>
                   </li>
                 )}
@@ -143,6 +136,13 @@ export default function Navbar() {
                     <Form action="/logout" method="post">
                       <button className={classes.logoutButton}>Log out</button>
                     </Form>
+                  </li>
+                )}
+                {token && (
+                  <li>
+                    <Link to="/profile" className={classes.profileButton}>
+                      My Profile
+                    </Link>
                   </li>
                 )}
               </div>

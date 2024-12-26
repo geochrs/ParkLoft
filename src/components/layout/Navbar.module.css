@@ -64,10 +64,15 @@
   justify-content: space-between;
 }
 
-.leftLinks,
-.rightLinks {
+.leftLinks {
   display: flex;
   gap: 1.2rem;
+  align-items: center;
+}
+
+.rightLinks {
+  display: flex;
+  gap: 0.5rem;
   align-items: center;
 }
 
@@ -90,48 +95,51 @@
   justify-content: flex-end;
 }
 
-.loginLink,
-.signupLink,
-.profileLink {
+.loginButton,
+.signupButton,
+.profileButton,
+.logoutButton {
   text-decoration: none;
   font-weight: 700;
+  cursor: pointer;
 }
 
-.loginLink {
+.loginButton,
+.logoutButton {
   color: var(--color-primary);
   transition: color 0.3s ease;
+  border: 1px solid var(--color-primary);
+  border-radius: 4rem 0 0 4rem;
+  padding: 10px 15px;
 }
 
-.loginLink:hover {
+.loginButton:hover {
   color: var(--color-hover);
-}
-
-.signupLink,
-.profileLink {
-  color: var(--color-primary-3);
-  background-color: var(--color-primary-2);
-  border-radius: 0.5rem;
-  padding: 15px 25px;
-  transition: background-color 0.3s ease;
-}
-
-.signupLink:hover,
-.profileLink:hover {
-  background-color: var(--color-hover);
+  border: 1px solid var(--color-hover);
 }
 
 .logoutButton {
-  border: none;
   font-size: inherit;
   background: none;
-  color: var(--color-primary);
-  font-weight: 700;
 }
 
 .logoutButton:hover {
   color: var(--color-hover);
-  transition: color 0.3s ease;
-  cursor: pointer;
+  border: 1px solid var(--color-hover);
+}
+
+.signupButton,
+.profileButton {
+  color: var(--color-primary-3);
+  background-color: var(--color-primary-2);
+  border-radius: 0 4rem 4rem 0;
+  padding: 11px 14px;
+  transition: background-color 0.3s ease;
+}
+
+.signupButton:hover,
+.profileButton:hover {
+  background-color: var(--color-hover);
 }
 
 .hamburger {
