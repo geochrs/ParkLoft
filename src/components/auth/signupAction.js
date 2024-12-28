@@ -1,4 +1,5 @@
 import { json, redirect } from 'react-router-dom';
+import getApiUrl from '../../utils/getApiUrl';
 
 export async function signupAction({ request }) {
   const data = await request.formData();
@@ -9,7 +10,8 @@ export async function signupAction({ request }) {
     password: data.get('password'),
   };
 
-  const url = 'http://localhost:8080/signup';
+  const apiUrl = getApiUrl();
+  const url = `${apiUrl}/signup`;
 
   const response = await fetch(url, {
     method: 'POST',
@@ -22,7 +24,7 @@ export async function signupAction({ request }) {
 
   if (response.status === 422) {
     const errorData = await response.json();
-    return ({message: errorData.message})
+    return { message: errorData.message };
   }
 
   if (!response.ok) {

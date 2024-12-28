@@ -1,5 +1,6 @@
 import { json, redirect } from 'react-router-dom';
 import { tokenLoader } from '../utils/auth';
+import getApiUrl from '../utils/getApiUrl';
 
 export async function profileLoader() {
   const token = tokenLoader();
@@ -8,7 +9,8 @@ export async function profileLoader() {
     return redirect('/login');
   }
 
-  const url = 'http://localhost:8080/profile';
+  const apiUrl = getApiUrl();
+  const url = `${apiUrl}/profile`;
 
   const response = await fetch(url, {
     method: 'GET',
@@ -48,7 +50,10 @@ export async function profileAction({ request }) {
     return redirect('/login');
   }
 
-  const response = await fetch('http://localhost:8080/profile', {
+  const apiUrl = getApiUrl();
+  const url = `${apiUrl}/profile`;
+
+  const response = await fetch(url, {
     method: 'PUT',
     credentials: 'include',
     headers: {

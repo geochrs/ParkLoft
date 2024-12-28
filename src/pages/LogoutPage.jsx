@@ -1,7 +1,11 @@
 import { redirect } from 'react-router-dom';
+import getApiUrl from '../utils/getApiUrl';
 
 export async function action() {
-  await fetch('http://localhost:8080/logout', {
+  const apiUrl = getApiUrl();
+  const url = `${apiUrl}/logout`;
+
+  await fetch(url, {
     method: 'POST',
     credentials: 'include',
   });
