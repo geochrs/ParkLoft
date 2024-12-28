@@ -1,5 +1,6 @@
 export default function getApiUrl() {
-  return process.env.NODE_ENV === 'production'
-    ? process.env.PRODUCTION_API_URL
-    : process.env.DEVELOPMENT_API_URL;
+  const productionUrl = process.env.REACT_APP_PRODUCTION_API_URL;
+  const developmentUrl = process.env.REACT_APP_DEVELOPMENT_API_URL;
+
+  return process.env.NODE_ENV === 'production' ? productionUrl : developmentUrl;
 }
