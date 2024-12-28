@@ -9,10 +9,14 @@ import cookieParser from 'cookie-parser';
 
 dotenv.config();
 
+const frontEndUrl = process.env.NODE_ENV === 'production'
+  ? process.env.PRODUCTION_FRONTEND_URL 
+  : process.env.DEVELOPMENT_FRONTEND_URL;
+
 const app = express();
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+    origin: frontEndUrl,
     methods: 'GET,POST,PUT,DELETE',
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
