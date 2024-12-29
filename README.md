@@ -43,7 +43,7 @@
     Navigate to the frontend directory and install dependencies:
 
     ```bash
-    cd ..
+    cd frontend
     npm install
     ```
 
@@ -63,7 +63,7 @@
     Open another terminal, navigate to the frontend directory, and start the development server:
 
     ```bash
-    cd ..
+    cd frontend
     npm run dev
     ```
 
