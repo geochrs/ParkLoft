@@ -38,6 +38,10 @@ app.use(authRoutes);
 app.use(userRoutes);
 app.use(bookingRoutes);
 
+app.get('/health', (req, res) => {
+  res.status(200).json({ message: 'Server is up and running!' });
+});
+
 app.listen(8080, () => {
   console.log('Server running on port 8080');
 });
