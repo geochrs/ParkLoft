@@ -27,4 +27,3 @@ Thumbs.db      # Windows specific
 .vscode/
 .idea/
 *.sublime-w
-vercel.json
