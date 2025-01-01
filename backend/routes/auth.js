@@ -11,6 +11,7 @@ import {
 dotenv.config();
 
 const router = express.Router();
+const isProduction = process.env.NODE_ENV === 'production';
 
 router.post('/signup', async (req, res) => {
   const { username, email, password } = req.body;
@@ -39,9 +40,9 @@ router.post('/signup', async (req, res) => {
     );
 
     res.cookie('auth_token', token, {
-      httpOnly: false,
+      httpOnly: isProduction,
       maxAge: 3600 * 1000,
-      secure: false,
+      secure: isProduction,
     });
 
     res.status(201).json({ message: 'User created' });
@@ -76,9 +77,9 @@ router.post('/login', async (req, res) => {
     );
 
     res.cookie('auth_token', token, {
-      httpOnly: false,
+      httpOnly: isProduction,
       maxAge: 3600 * 1000,
-      secure: false,
+      secure: isProduction,
     });
 
     res.status(200).json({
