@@ -55,6 +55,10 @@ export default function Navbar() {
     dispatch(menuActions.toggleMenu());
   };
 
+  const handleLogout = () => {
+    setToken(null);
+  };
+
   return (
     <header
       className={`${classes.header} ${
@@ -136,7 +140,7 @@ export default function Navbar() {
                 )}
                 {token && (
                   <li>
-                    <Form action="/logout" method="post">
+                    <Form action="/logout" method="post" onSubmit={handleLogout}>
                       <button className={classes.logoutButton}>Log out</button>
                     </Form>
                   </li>
