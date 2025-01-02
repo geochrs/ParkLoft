@@ -44,6 +44,7 @@ router.post('/signup', async (req, res) => {
       httpOnly: isProduction,
       maxAge: 3600 * 1000,
       secure: isProduction,
+      sameSite: 'None',
     });
 
     res.status(201).json({ message: 'User created' });
@@ -81,6 +82,7 @@ router.post('/login', async (req, res) => {
       httpOnly: isProduction,
       maxAge: 3600 * 1000,
       secure: isProduction,
+      sameSite: 'None',
     });
 
     res.status(200).json({
