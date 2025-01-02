@@ -1,3 +1,5 @@
+import BookingForm from '../components/content/BookingForm';
+
 export default function BookingPage() {
-    return <h1>hello</h1>
+  return <BookingForm />;
 }

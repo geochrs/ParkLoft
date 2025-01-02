@@ -1,0 +1,17 @@
+.section {
+  position: relative;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 180px 20px 100px;
+  max-width: 1380px;
+}
+
+.form {
+    display: flex;
+    
+}
