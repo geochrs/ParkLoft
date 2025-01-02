@@ -7,7 +7,8 @@ export const authenticateToken = (req, res, next) => {
   const token = req.cookies['auth_token'];
 
   if (!token) {
-    return res.status(401).json({ message: 'No token found in the request.' });
+    req.user = null;
+    return next(); 
   }
 
   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {

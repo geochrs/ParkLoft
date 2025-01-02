@@ -1,10 +1,23 @@
-export function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
-}
+import getApiUrl from '../utils/getApiUrl';
 
-export function tokenLoader() {
-  const token = getCookie('auth_token');
-  return token ? token : null;
+export async function tokenLoader() {
+  const apiUrl = getApiUrl();
+  const url = `${apiUrl}/auth-check`;
+
+  const response = await fetch(url, {
+    method: 'GET',
+    credentials: 'include',
+  });
+
+  if (!response.ok) {
+    return null;
+  }
+
+  const resData = await response.json();
+
+  if (resData.guest) {
+    return null;
+  }
+
+  return resData;
 }

@@ -1,23 +1,17 @@
-import {
-  NavLink,
-  Link,
-  useLocation,
-  Form,
-  useRouteLoaderData,
-} from 'react-router-dom';
+import { NavLink, Link, useLocation, Form } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import classes from './Navbar.module.css';
 import logo from '../../assets/parkloftLogo.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { modalActions } from '../../store/modal';
 import { menuActions } from '../../store/menu';
+import { tokenLoader } from '../../utils/auth';
 
 export default function Navbar() {
-  const token = useRouteLoaderData('root');
   const dispatch = useDispatch();
   const location = useLocation();
   const isMenuOpen = useSelector((state) => state.menu.isOpen);
-
+  const [token, setToken] = useState(null);
   const [isSticky, setIsSticky] = useState(false);
 
   const handleOpenModal = (e) => {
@@ -30,6 +24,15 @@ export default function Navbar() {
     location.pathname === '/login' ||
     location.pathname === '/signup' ||
     location.pathname === '/forgot-password';
+
+  useEffect(() => {
+    const fetchToken = async () => {
+      const authData = await tokenLoader();
+      setToken(authData);
+    };
+
+    fetchToken();
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleScroll = () => {

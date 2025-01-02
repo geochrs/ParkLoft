@@ -7,6 +7,7 @@ import {
   validateSignupInput,
   validateLoginInput,
 } from '../utils/validation.js';
+import { authenticateToken } from '../middleware.js';
 
 dotenv.config();
 
@@ -91,14 +92,23 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/logout', (req, res) => {
-  const token = req.cookies['auth_token'];
+  res.clearCookie('auth_token');
+  res.status(200).json({ message: 'Logout successful' });
+});
 
-  if (!token) {
-    return res.status(400).json({ message: 'No active session' });
+router.get('/auth-check', authenticateToken, async (req, res) => {
+  if (!req.user) {
+    return res.status(200).json({ guest: true });
   }
 
-  res.clearCookie('auth_token', { httpOnly: false, secure: false });
-  res.status(200).json({ message: 'Logout successful' });
+  const user = await User.findOne({ where: { public_id: req.user.public_id } });
+
+  if (!user) {
+    return res.status(404).json({ message: 'User not found.' });
+  }
+
+  const { password, ...userDetails } = user.toJSON();
+  res.status(200).json(userDetails);
 });
 
 export default router;

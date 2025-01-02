@@ -9,7 +9,6 @@ import { signupAction } from './components/auth/signupAction';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ErrorPage from './pages/ErrorPage';
 import { action as logoutAction } from './pages/LogoutPage';
-import { tokenLoader } from './utils/auth';
 import { profileLoader, profileAction } from './pages/profile';
 import BookingPage from './pages/BookingPage';
 import TosPage from './pages/TosPage';
@@ -20,7 +19,6 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
     id: 'root',
-    loader: tokenLoader,
     children: [
       { index: true, element: <HomePage /> },
       { path: 'login', element: <LoginPage />, action: loginAction },
