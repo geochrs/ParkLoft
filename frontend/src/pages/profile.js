@@ -3,7 +3,7 @@ import { tokenLoader } from '../utils/auth';
 import getApiUrl from '../utils/getApiUrl';
 
 export async function profileLoader() {
-  const token = tokenLoader();
+  const token = await tokenLoader();
 
   if (!token) {
     return redirect('/login');

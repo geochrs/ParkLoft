@@ -12,6 +12,19 @@
 }
 
 .form {
-    display: flex;
-    
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px 50px;
+  background-color: #ffffff;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.actions {
+  display: flex;
+  align-items: flex-end;
 }
