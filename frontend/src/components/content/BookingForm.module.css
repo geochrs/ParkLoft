@@ -1,5 +1,21 @@
 .section {
   position: relative;
+  height: 80vh;
+}
+
+.section::after {
+  content: '';
+  background-image: url('../../assets/1.png');
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  z-index: -2;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  pointer-events: none;
 }
 
 .container {
@@ -8,14 +24,22 @@
   justify-content: center;
   flex-direction: column;
   padding: 180px 20px 100px;
-  max-width: 1380px;
+  margin: 0 auto;
+  max-width: 1500px;
+}
+
+.container h2 {
+  font-size: 2.5rem;
+  align-self: flex-start;
+
 }
 
 .form {
   display: flex;
   flex-wrap: wrap;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  padding: 20px 50px;
+  padding: 25px 50px;
+  gap: 0.5rem;
   background-color: #ffffff;
 }
 
@@ -27,4 +51,31 @@
 .actions {
   display: flex;
   align-items: flex-end;
+}
+
+.actions button {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border: none;
+  background-color: var(--color-primary-2);
+  color: var(--color-primary-3);
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.actions button:hover {
+  background-color: var(--color-hover);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.actions button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.inputGroup input {
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
 }

@@ -3,6 +3,7 @@ import locations from '../../assets/locations.svg';
 import dates from '../../assets/dates.svg';
 import money from '../../assets/money.svg';
 import line from '../../assets/line.svg';
+import { NavLink } from 'react-router-dom';
 
 export default function HeroSection() {
   return (
@@ -53,9 +54,9 @@ export default function HeroSection() {
               </p>
             </div>
             <div className={classes.card}>
-              <button type="submit" className={classes.bookNow}>
+              <NavLink to="/booking" className={classes.bookNow}>
                 Book Now
-              </button>
+              </NavLink>
             </div>
           </div>
         </div>

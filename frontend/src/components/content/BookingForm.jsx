@@ -29,7 +29,7 @@ export default function BookingForm() {
   return (
     <section className={classes.section}>
       <div className={classes.container}>
-        <h2>Secure Your Spot Today, Budget-Friendly Rates!</h2>
+        <h2>Secure Your Spot Today!</h2>
         <Form className={classes.form}>
           <div className={classes.inputGroup}>
             <label>Entry Time</label>
@@ -58,7 +58,7 @@ export default function BookingForm() {
             />
           </div>
           <div className={classes.actions}>
-            <button>Search</button>
+            <button type="submit">Search</button>
           </div>
         </Form>
       </div>
