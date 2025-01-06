@@ -1,10 +1,10 @@
-import classes from './BookingForm.module.css';
+import classes from './SlotFinderForm.module.css';
 import { Form } from 'react-router-dom';
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-export default function BookingForm() {
+export default function SlotFinderForm() {
   const [entryTime, setEntryTime] = useState(() => {
     const now = new Date();
     now.setMinutes(0, 0, 0);
@@ -29,7 +29,6 @@ export default function BookingForm() {
   return (
     <section className={classes.section}>
       <div className={classes.container}>
-        <h2>Secure Your Spot Today!</h2>
         <Form className={classes.form}>
           <div className={classes.inputGroup}>
             <label>Entry Time</label>
@@ -61,6 +60,7 @@ export default function BookingForm() {
             <button type="submit">Search</button>
           </div>
         </Form>
+        <h2 className={classes.h2}>Secure Your Spot Today!</h2>
       </div>
     </section>
   );

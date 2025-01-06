@@ -10,7 +10,7 @@ import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ErrorPage from './pages/ErrorPage';
 import { action as logoutAction } from './pages/LogoutPage';
 import { profileLoader, profileAction } from './pages/profile';
-import BookingPage from './pages/BookingPage';
+import SlotFinderPage from './pages/SlotFinderPage';
 import TosPage from './pages/TosPage';
 
 const router = createBrowserRouter([
@@ -33,8 +33,8 @@ const router = createBrowserRouter([
         action: profileAction,
       },
       {
-        path: 'booking',
-        element: <BookingPage />,
+        path: 'slot-availabity',
+        element: <SlotFinderPage />,
       },
     ],
   },
