@@ -98,17 +98,17 @@
   font-size: 14px;
 }
 
-.bookNow {
+.findSlot {
   border: none;
   font-weight: bold;
   color: var(--color-primary-3);
   background-color: var(--color-primary-2); 
   border-radius: 0 4rem 4rem 0;
-  padding: 15px 25px;
+  padding: 15px 15px;
   transition: background-color 0.3s ease;
 }
 
-.bookNow:hover {
+.findSlot:hover {
   background-color: var(--color-hover);
   cursor: pointer;
 }

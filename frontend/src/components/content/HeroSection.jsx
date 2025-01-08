@@ -54,8 +54,8 @@ export default function HeroSection() {
               </p>
             </div>
             <div className={classes.card}>
-              <NavLink to="/booking" className={classes.bookNow}>
-                Book Now
+              <NavLink to="/slots-available" className={classes.findSlot}>
+                Find Your Slot
               </NavLink>
             </div>
           </div>

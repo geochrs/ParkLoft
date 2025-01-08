@@ -101,12 +101,12 @@ export default function Navbar() {
                 {token && (
                   <li>
                     <NavLink
-                      to="/booking"
+                      to="/slots-available"
                       className={({ isActive }) =>
                         isActive ? classes.active : undefined
                       }
                     >
-                      Bookings
+                      Available Slots
                     </NavLink>
                   </li>
                 )}

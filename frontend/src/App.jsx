@@ -33,7 +33,7 @@ const router = createBrowserRouter([
         action: profileAction,
       },
       {
-        path: 'slot-availabity',
+        path: 'slots-available',
         element: <SlotFinderPage />,
       },
     ],
