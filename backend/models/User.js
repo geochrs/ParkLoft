@@ -11,7 +11,7 @@ const User = sequelize.define(
       primaryKey: true,
     },
     public_id: {
-      type: DataTypes.UUID,
+      type: DataTypes.CHAR(36),
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       unique: true,
@@ -43,7 +43,7 @@ const User = sequelize.define(
       allowNull: true,
     },
     dateOfBirth: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: true,
     },
   },

@@ -29,6 +29,15 @@ const Booking = sequelize.define(
       },
       onDelete: 'CASCADE',
     },
+    userPublicId: {
+      type: DataTypes.CHAR(36),
+      allowNull: false,
+      references: {
+        model: User,
+        key: 'public_id',
+      },
+      onDelete: 'CASCADE',
+    },
     entryTime: {
       type: DataTypes.DATE,
       allowNull: false,
@@ -50,7 +59,7 @@ Booking.belongsTo(User, {
   onDelete: 'CASCADE',
 });
 
-User.hasMany(Booking, { foreignKey: 'userPublicId' });
+User.hasMany(Booking, { foreignKey: 'userPublicId', sourceKey: 'public_id' });
 
 Booking.belongsTo(Slot, {
   foreignKey: 'slot_id',
