@@ -1,7 +1,7 @@
 import { json, redirect } from 'react-router-dom';
 import getApiUrl from '../../utils/getApiUrl';
 
-export async function slotFinderActions({ request }) {
+export async function slotFinderAction({ request }) {
   const data = await request.formData();
 
   const slotData = {
