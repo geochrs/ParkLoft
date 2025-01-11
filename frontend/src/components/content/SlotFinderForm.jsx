@@ -18,6 +18,8 @@ export default function SlotFinderForm() {
     return tomorrow;
   });
 
+  const [searchResults, setSearchResults] = useState(null);
+
   const handleDateChange = (type, date) => {
     if (type === 'entry') {
       setEntryTime(date);

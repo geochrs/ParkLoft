@@ -10,6 +10,7 @@ import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ErrorPage from './pages/ErrorPage';
 import { action as logoutAction } from './pages/LogoutPage';
 import { profileLoader, profileAction } from './pages/profile';
+import { slotFinderAction } from './components/content/slotfinderAction';
 import SlotFinderPage from './pages/SlotFinderPage';
 import TosPage from './pages/TosPage';
 
@@ -35,6 +36,7 @@ const router = createBrowserRouter([
       {
         path: 'slots-available',
         element: <SlotFinderPage />,
+        loader: slotFinderAction,
       },
     ],
   },
