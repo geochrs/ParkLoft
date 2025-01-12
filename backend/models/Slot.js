@@ -30,6 +30,7 @@ const Slot = sequelize.define(
   },
   {
     tableName: 'slots',
+    timestamps: false,
   }
 );
 

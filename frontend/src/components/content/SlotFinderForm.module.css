@@ -17,6 +17,10 @@
   pointer-events: none;
 }
 
+.sectionWithResults {
+  background-color: #f7f8ff;
+}
+
 .container {
   display: flex;
   align-items: center;
@@ -31,7 +35,6 @@
 .h2 {
   font-size: 2.5rem;
   align-self: flex-end;
-
 }
 
 .form {
@@ -79,4 +82,20 @@
 .inputGroup input {
   padding: 0.5rem 0.75rem;
   cursor: pointer;
+}
+
+.results {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.locationCard {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  flex: 1 1 22%;
 }

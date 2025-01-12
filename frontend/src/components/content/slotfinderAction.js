@@ -10,7 +10,7 @@ export async function slotFinderAction({ request }) {
   };
 
   const apiUrl = getApiUrl();
-  const url = `${apiUrl}/slot-available`;
+  const url = `${apiUrl}/slots-available`;
 
   const response = await fetch(url, {
     method: 'POST',
@@ -18,6 +18,7 @@ export async function slotFinderAction({ request }) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(slotData),
+    credentials: 'include',
   });
 
   if (!response.ok) {
