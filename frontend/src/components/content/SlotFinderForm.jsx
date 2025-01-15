@@ -1,4 +1,5 @@
 import classes from './SlotFinderForm.module.css';
+import cardImg from '../../assets/parkloft.jpg';
 import { Form, useActionData } from 'react-router-dom';
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
@@ -83,13 +84,14 @@ export default function SlotFinderForm() {
                   key={location.location_id}
                   className={classes.locationCard}
                 >
-                  <h3>{location.name}</h3>
-                  <p>{location.address}</p>
-                  <ul>
-                    {location.Slots.map((slot) => (
-                      <li key={slot.slot_id}>Slot #{slot.slot_number}</li>
-                    ))}
-                  </ul>
+                  <img src={cardImg} className={classes.cardImg} />
+                  <div className={classes.cardContent}>
+                    <h3>{location.name}</h3>
+                    <p>{location.address}</p>
+                    <p className={classes.availableSlots}>
+                      {location.Slots.length} available slots
+                    </p>
+                  </div>
                 </div>
               ))
             )}

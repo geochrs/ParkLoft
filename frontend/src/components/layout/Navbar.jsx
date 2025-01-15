@@ -98,18 +98,16 @@ export default function Navbar() {
                     Home
                   </NavLink>
                 </li>
-                {token && (
-                  <li>
-                    <NavLink
-                      to="/slots-available"
-                      className={({ isActive }) =>
-                        isActive ? classes.active : undefined
-                      }
-                    >
-                      Available Slots
-                    </NavLink>
-                  </li>
-                )}
+                <li>
+                  <NavLink
+                    to="/slots-available"
+                    className={({ isActive }) =>
+                      isActive ? classes.active : undefined
+                    }
+                  >
+                    Available Slots
+                  </NavLink>
+                </li>
                 <li>
                   <NavLink
                     to="/"
@@ -140,7 +138,11 @@ export default function Navbar() {
                 )}
                 {token && (
                   <li>
-                    <Form action="/logout" method="post" onSubmit={handleLogout}>
+                    <Form
+                      action="/logout"
+                      method="post"
+                      onSubmit={handleLogout}
+                    >
                       <button className={classes.logoutButton}>Log out</button>
                     </Form>
                   </li>

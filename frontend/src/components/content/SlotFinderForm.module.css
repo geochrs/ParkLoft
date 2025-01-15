@@ -92,10 +92,31 @@
 }
 
 .locationCard {
-  background-color: #ffffff;
-  padding: 1.5rem;
+  background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
   flex: 1 1 22%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.cardContent {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cardImg {
+  height: auto;
+  width: 100%;
+  object-fit: cover;
+  aspect-ratio: 4/3;
+}
+
+.availableSlots {
+  color: #28a745;
+  font-weight: 700;
 }
