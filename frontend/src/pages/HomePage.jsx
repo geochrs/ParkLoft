@@ -1,7 +1,7 @@
-import parkImg from '../assets/parkloft.jpg';
 import aboutStyles from '../components/content/AboutSection.module.css';
 import HeroSection from '../components/content/HeroSection';
 import AboutSection from '../components/content/AboutSection';
+import TestimonialSection from '../components/content/TestimonialSection';
 import FooterSection from '../components/content/FooterSection';
 
 export default function HomePage() {
@@ -64,6 +64,7 @@ export default function HomePage() {
           </ul>
         </div>
       </AboutSection>
+      <TestimonialSection />
       <FooterSection />
     </>
   );
