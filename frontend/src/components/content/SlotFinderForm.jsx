@@ -1,9 +1,10 @@
 import classes from './SlotFinderForm.module.css';
 import cardImg from '../../assets/parkloft.jpg';
 import { Form, useActionData } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import LoadingIndicator from '../layout/LoadingIndicator';
 
 export default function SlotFinderForm() {
   const data = useActionData();
@@ -20,12 +21,24 @@ export default function SlotFinderForm() {
     return tomorrow;
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (data) {
+      setIsLoading(false); // Stop loading when data is received
+    }
+  }, [data]);
+
   const handleDateChange = (type, date) => {
     if (type === 'entry') {
       setEntryTime(date);
     } else if (type === 'exit') {
       setExitTime(date);
     }
+  };
+
+  const handleSubmit = () => {
+    setIsLoading(true);
   };
 
   return (
@@ -39,6 +52,7 @@ export default function SlotFinderForm() {
               className={classes.form}
               method="POST"
               action="/slots-available"
+              onSubmit={handleSubmit}
             >
               <div className={classes.inputGroup}>
                 <label>Entry Time</label>
@@ -73,8 +87,8 @@ export default function SlotFinderForm() {
             <h2 className={classes.h2}>Secure Your Spot Today!</h2>
           </>
         )}
-
-        {data && (
+        {isLoading && <LoadingIndicator />}
+        {data && !isLoading && (
           <div className={classes.results}>
             {data.length === 0 ? (
               <p>No slots available for the selected times.</p>
