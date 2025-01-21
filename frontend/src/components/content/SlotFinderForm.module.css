@@ -128,6 +128,28 @@
   }
 }
 
+@media (max-width: 630px) {
+
+  .container {
+    gap: 4rem;
+  }
+
+  .section::after {
+    top: 125px;
+  }
+
+  .h2 {
+    font-size: 2rem;
+    align-self: center;
+    text-align: center;
+  }
+
+  .form {
+    flex-direction: column;
+    align-self: center;
+  }
+}
+
 @media (max-width: 480px) {
   .results {
     grid-template-columns: 1fr;
