@@ -25,7 +25,7 @@ export default function SlotFinderForm() {
 
   useEffect(() => {
     if (data) {
-      setIsLoading(false); // Stop loading when data is received
+      setIsLoading(false);
     }
   }, [data]);
 
@@ -43,10 +43,12 @@ export default function SlotFinderForm() {
 
   return (
     <section
-      className={`${classes.section} ${data ? classes.sectionWithResults : ''}`}
+      className={`${classes.section} ${isLoading || data ? classes.sectionWithResults : ''}`}
     >
       <div className={classes.container}>
-        {!data && (
+        {isLoading && <LoadingIndicator />}
+
+        {!isLoading && !data && (
           <>
             <Form
               className={classes.form}
@@ -87,8 +89,7 @@ export default function SlotFinderForm() {
             <h2 className={classes.h2}>Secure Your Spot Today!</h2>
           </>
         )}
-        {isLoading && <LoadingIndicator />}
-        {data && !isLoading && (
+        {!isLoading && data && (
           <div className={classes.results}>
             {data.length === 0 ? (
               <p>No slots available for the selected times.</p>
