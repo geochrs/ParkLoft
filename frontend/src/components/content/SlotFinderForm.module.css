@@ -85,10 +85,9 @@
 }
 
 .results {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
-  justify-content: center;
 }
 
 .locationCard {
@@ -96,10 +95,6 @@
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
-  flex: 1 1 22%;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
 }
 
 .cardContent {
@@ -119,4 +114,22 @@
 .availableSlots {
   color: #28a745;
   font-weight: 700;
+}
+
+@media (max-width: 1024px) {
+  .results {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .results {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .results {
+    grid-template-columns: 1fr;
+  }
 }
