@@ -12,7 +12,7 @@
   position: absolute;
   z-index: -2;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: 60%;
   background-position: center;
   pointer-events: none;
 }
@@ -29,7 +29,8 @@
   padding: 180px 20px 100px;
   margin: 0 auto;
   max-width: 1280px;
-  gap: 6rem;
+  height: 100vh;
+  gap: 8rem;
 }
 
 .h2 {
@@ -71,7 +72,6 @@
 
 .actions button:hover {
   background-color: var(--color-hover);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .actions button:disabled {
@@ -130,12 +130,9 @@
 
 @media (max-width: 630px) {
 
-  .container {
-    gap: 4rem;
-  }
-
   .section::after {
     top: 125px;
+    background-size: contain;
   }
 
   .h2 {
