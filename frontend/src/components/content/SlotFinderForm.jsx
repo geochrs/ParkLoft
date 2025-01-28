@@ -1,52 +1,57 @@
 import classes from './SlotFinderForm.module.css';
 import cardImg from '../../assets/parkloft.jpg';
-import { Form, useActionData } from 'react-router-dom';
+import { Form, useActionData, useLoaderData } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import LoadingIndicator from '../layout/LoadingIndicator';
 
 export default function SlotFinderForm() {
-  const data = useActionData();
-  const [entryTime, setEntryTime] = useState(() => {
-    const now = new Date();
-    now.setMinutes(0, 0, 0);
-    return now;
-  });
+  const data = useLoaderData();
+  const [selectedLocation, setSelectedLocation] = useState(null);
 
-  const [exitTime, setExitTime] = useState(() => {
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    tomorrow.setMinutes(0, 0, 0);
-    return tomorrow;
-  });
-
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    if (data) {
-      setIsLoading(false);
-    }
-  }, [data]);
-
-  const handleDateChange = (type, date) => {
-    if (type === 'entry') {
-      setEntryTime(date);
-    } else if (type === 'exit') {
-      setExitTime(date);
-    }
+  const handleBookNow = (location) => {
+    setSelectedLocation(location);
   };
 
-  const handleSubmit = () => {
-    setIsLoading(true);
-  };
+  // const data = useActionData();
+  // const [entryTime, setEntryTime] = useState(() => {
+  //   const now = new Date();
+  //   now.setMinutes(0, 0, 0);
+  //   return now;
+  // });
+
+  // const [exitTime, setExitTime] = useState(() => {
+  //   const tomorrow = new Date();
+  //   tomorrow.setDate(tomorrow.getDate() + 1);
+  //   tomorrow.setMinutes(0, 0, 0);
+  //   return tomorrow;
+  // });
+
+  // const [isLoading, setIsLoading] = useState(false);
+
+  // useEffect(() => {
+  //   if (data) {
+  //     setIsLoading(false);
+  //   }
+  // }, [data]);
+
+  // const handleDateChange = (type, date) => {
+  //   if (type === 'entry') {
+  //     setEntryTime(date);
+  //   } else if (type === 'exit') {
+  //     setExitTime(date);
+  //   }
+  // };
+
+  // const handleSubmit = () => {
+  //   setIsLoading(true);
+  // };
 
   return (
-    <section
-      className={`${classes.section} ${isLoading || data ? classes.sectionWithResults : ''}`}
-    >
+    <section className={classes.section}>
       <div className={classes.container}>
-        {isLoading && <LoadingIndicator />}
+        {/* {isLoading && <LoadingIndicator />}
 
         {!isLoading && !data && (
           <>
@@ -88,29 +93,52 @@ export default function SlotFinderForm() {
             </Form>
             <h2 className={classes.h2}>Secure Your Spot Today!</h2>
           </>
-        )}
-        {!isLoading && data && (
-          <div className={classes.results}>
-            {data.length === 0 ? (
-              <p>No slots available for the selected times.</p>
-            ) : (
-              data.map((location) => (
-                <div
-                  key={location.location_id}
-                  className={classes.locationCard}
-                >
-                  <img src={cardImg} className={classes.cardImg} />
-                  <div className={classes.cardContent}>
-                    <h3>{location.name}</h3>
-                    <p>{location.address}</p>
-                    <p className={classes.availableSlots}>
-                      {location.Slots.length} available slots
-                    </p>
-                  </div>
+        )} */}
+        <div className={classes.results}>
+          {data.length === 0 ? (
+            <p>No slots available for the selected times.</p>
+          ) : (
+            data.map((location) => (
+              <div key={location.location_id} className={classes.locationCard}>
+                <img src={cardImg} className={classes.cardImg} />
+                <div className={classes.cardContent}>
+                  <h3>{location.name}</h3>
+                  <p>{location.address}</p>
+                  <p className={classes.availableSlots}>
+                    {location.Slots.length} available slots
+                  </p>
+                  <button
+                    type="submit"
+                    className={classes.bookButton}
+                    onClick={() => handleBookNow(location)}
+                  >
+                    Book Now
+                  </button>
                 </div>
-              ))
-            )}
-          </div>
+              </div>
+            ))
+          )}
+        </div>
+
+        {/* Show the booking form only for the selected location */}
+        {selectedLocation && (
+          <Form className={classes.form}>
+            <h4>Book a Slot for {location.name}</h4>
+            <div className={classes.inputGroup}>
+              <label>Name</label>
+              <input type="text" required />
+            </div>
+            <div className={classes.inputGroup}>
+              <label>Car Plate Number</label>
+              <input type="text" required />
+            </div>
+            <div className={classes.actions}>
+              <button type="submit">Confirm Booking</button>
+              <button type="button" onClick={() => setSelectedLocation(null)}>
+                Cancel
+              </button>
+            </div>
+          </Form>
         )}
       </div>
     </section>

@@ -2,7 +2,7 @@
   position: relative;
 }
 
-.section::after {
+/* .section::after {
   content: '';
   background-image: url('../../assets/1.png');
   top: 0;
@@ -15,11 +15,11 @@
   background-size: 60%;
   background-position: center;
   pointer-events: none;
-}
+} */
 
-.sectionWithResults {
+/* .sectionWithResults {
   background-color: #f7f8ff;
-}
+} */
 
 .container {
   display: flex;
@@ -53,12 +53,12 @@
   flex-direction: column;
 }
 
-.actions {
+/* .actions {
   display: flex;
   align-items: flex-end;
-}
+} */
 
-.actions button {
+.bookButton {
   width: 100%;
   padding: 0.5rem 0.75rem;
   font-size: 1rem;
@@ -70,11 +70,11 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.actions button:hover {
+.bookButton:hover {
   background-color: var(--color-hover);
 }
 
-.actions button:disabled {
+.bookButton:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
 }
@@ -95,6 +95,8 @@
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .cardContent {
@@ -117,6 +119,11 @@
 }
 
 @media (max-width: 1024px) {
+
+  .container {
+    height: auto;
+  }
+
   .results {
     grid-template-columns: repeat(3, 1fr);
   }
