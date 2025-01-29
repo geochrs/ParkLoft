@@ -10,23 +10,23 @@ export default function SlotFinderForm() {
   const data = useLoaderData();
   const [selectedLocation, setSelectedLocation] = useState(null);
 
-  const handleBookNow = (location) => {
+  const handleBook = (location) => () => {
     setSelectedLocation(location);
   };
 
   // const data = useActionData();
-  // const [entryTime, setEntryTime] = useState(() => {
-  //   const now = new Date();
-  //   now.setMinutes(0, 0, 0);
-  //   return now;
-  // });
+  const [entryTime, setEntryTime] = useState(() => {
+    const now = new Date();
+    now.setMinutes(0, 0, 0);
+    return now;
+  });
 
-  // const [exitTime, setExitTime] = useState(() => {
-  //   const tomorrow = new Date();
-  //   tomorrow.setDate(tomorrow.getDate() + 1);
-  //   tomorrow.setMinutes(0, 0, 0);
-  //   return tomorrow;
-  // });
+  const [exitTime, setExitTime] = useState(() => {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setMinutes(0, 0, 0);
+    return tomorrow;
+  });
 
   // const [isLoading, setIsLoading] = useState(false);
 
@@ -36,13 +36,13 @@ export default function SlotFinderForm() {
   //   }
   // }, [data]);
 
-  // const handleDateChange = (type, date) => {
-  //   if (type === 'entry') {
-  //     setEntryTime(date);
-  //   } else if (type === 'exit') {
-  //     setExitTime(date);
-  //   }
-  // };
+  const handleDateChange = (type) => (date) => {
+    if (type === 'entry') {
+      setEntryTime(date);
+    } else if (type === 'exit') {
+      setExitTime(date);
+    }
+  };
 
   // const handleSubmit = () => {
   //   setIsLoading(true);
@@ -94,48 +94,85 @@ export default function SlotFinderForm() {
             <h2 className={classes.h2}>Secure Your Spot Today!</h2>
           </>
         )} */}
-        <div className={classes.results}>
-          {data.length === 0 ? (
-            <p>No slots available for the selected times.</p>
-          ) : (
-            data.map((location) => (
-              <div key={location.location_id} className={classes.locationCard}>
-                <img src={cardImg} className={classes.cardImg} />
-                <div className={classes.cardContent}>
-                  <h3>{location.name}</h3>
-                  <p>{location.address}</p>
-                  <p className={classes.availableSlots}>
-                    {location.Slots.length} available slots
-                  </p>
-                  <button
-                    type="submit"
-                    className={classes.bookButton}
-                    onClick={() => handleBookNow(location)}
-                  >
-                    Book Now
-                  </button>
+        {!selectedLocation && (
+          <div className={classes.results}>
+            {data.length === 0 ? (
+              <p>No slots available for the selected times.</p>
+            ) : (
+              data.map((location) => (
+                <div
+                  key={location.location_id}
+                  className={classes.locationCard}
+                >
+                  <img src={cardImg} className={classes.cardImg} />
+                  <div className={classes.cardContent}>
+                    <h3>{location.name}</h3>
+                    <p>{location.address}</p>
+                    <p className={classes.availableSlots}>
+                      {location.Slots.length} available slots
+                    </p>
+                    <button
+                      type="submit"
+                      className={classes.bookButton}
+                      onClick={handleBook(location)}
+                    >
+                      Book Now
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))
-          )}
-        </div>
+              ))
+            )}
+          </div>
+        )}
 
         {/* Show the booking form only for the selected location */}
         {selectedLocation && (
-          <Form className={classes.form}>
-            <h4>Book a Slot for {location.name}</h4>
+          <Form className={classes.form} method="POST" action="/booking">
             <div className={classes.inputGroup}>
-              <label>Name</label>
-              <input type="text" required />
+              <label>Full Name</label>
+              <input type="text" />
+            </div>
+            <div className={classes.row}>
+              <div className={classes.inputGroup}>
+                <label>Phone</label>
+                <input type="tel" required />
+              </div>
+              <div className={classes.inputGroup}>
+                <label>License Plate</label>
+                <input type="text" required />
+              </div>
+            </div>
+            <div className={classes.row}>
+              <div className={classes.inputGroup}>
+                <label>Entry Time</label>
+                <DatePicker
+                  selected={entryTime}
+                  onChange={handleDateChange('entry')}
+                  name="entryTime"
+                  showTimeSelect
+                  dateFormat="dd-MM-yyyy HH:00"
+                  timeIntervals={60}
+                  timeFormat="HH:00"
+                  calendarStartDay={1}
+                />
+              </div>
+              <div className={classes.inputGroup}>
+                <label>Exit Time</label>
+                <DatePicker
+                  selected={exitTime}
+                  onChange={handleDateChange('exit')}
+                  name="exitTime"
+                  showTimeSelect
+                  dateFormat="dd-MM-yyyy HH:00"
+                  timeIntervals={60}
+                  timeFormat="HH:00"
+                  calendarStartDay={1}
+                />
+              </div>
             </div>
             <div className={classes.inputGroup}>
-              <label>Car Plate Number</label>
-              <input type="text" required />
-            </div>
-            <div className={classes.actions}>
-              <button type="submit">Confirm Booking</button>
-              <button type="button" onClick={() => setSelectedLocation(null)}>
-                Cancel
+              <button type="submit" className={classes.confirmButton}>
+                Confirm
               </button>
             </div>
           </Form>

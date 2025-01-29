@@ -29,8 +29,6 @@
   padding: 180px 20px 100px;
   margin: 0 auto;
   max-width: 1280px;
-  height: 100vh;
-  gap: 8rem;
 }
 
 .h2 {
@@ -40,12 +38,17 @@
 
 .form {
   display: flex;
-  align-self: flex-start;
   flex-wrap: wrap;
+  flex-direction: column;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   padding: 25px 50px;
   gap: 0.5rem;
   background-color: #ffffff;
+}
+
+.row {
+  display: flex;
+  gap: 0.5rem;
 }
 
 .inputGroup {
@@ -58,7 +61,8 @@
   align-items: flex-end;
 } */
 
-.bookButton {
+.bookButton,
+.confirmButton {
   width: 100%;
   padding: 0.5rem 0.75rem;
   font-size: 1rem;
@@ -70,11 +74,13 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.bookButton:hover {
+.bookButton:hover,
+.confirmButton:hover {
   background-color: var(--color-hover);
 }
 
-.bookButton:disabled {
+.bookButton:disabled,
+.confirmButton:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
 }
@@ -119,7 +125,6 @@
 }
 
 @media (max-width: 1024px) {
-
   .container {
     height: auto;
   }
@@ -136,7 +141,6 @@
 }
 
 @media (max-width: 630px) {
-
   .section::after {
     top: 125px;
     background-size: contain;
