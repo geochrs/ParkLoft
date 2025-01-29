@@ -7,7 +7,9 @@ import 'react-datepicker/dist/react-datepicker.css';
 import LoadingIndicator from '../layout/LoadingIndicator';
 
 export default function SlotFinderForm() {
-  const data = useLoaderData();
+  // const data = useLoaderData();
+  const { slots, user } = useLoaderData();
+
   const [selectedLocation, setSelectedLocation] = useState(null);
 
   const handleBook = (location) => () => {
@@ -96,10 +98,10 @@ export default function SlotFinderForm() {
         )} */}
         {!selectedLocation && (
           <div className={classes.results}>
-            {data.length === 0 ? (
+            {slots.length === 0 ? (
               <p>No slots available for the selected times.</p>
             ) : (
-              data.map((location) => (
+              slots.map((location) => (
                 <div
                   key={location.location_id}
                   className={classes.locationCard}
