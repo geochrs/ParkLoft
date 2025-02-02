@@ -19,6 +19,7 @@
 h3 {
   font-size: 1.2rem;
   color: var(--color-h3);
+  margin-top: 0;
 }
 
 .cards {
@@ -29,6 +30,7 @@ h3 {
 }
 
 .card {
+  text-align: center;
   line-height: 1.5;
   background-color: #f7f8ff;
   padding: 30px 20px;
