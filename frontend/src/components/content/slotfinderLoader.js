@@ -26,14 +26,14 @@ export async function slotFinderLoader() {
 
   const [slotsResponse] = await Promise.all([slotsPromise, userPromise]);
 
-  if (!response.ok) {
-    const errorData = await response.json();
+  if (!slotsResponse.ok) {
+    const errorData = await slotsResponse.json();
     throw json(
       {
         message:
           errorData.message || 'Failed to fetch slots. Please try again.',
       },
-      { status: response.status }
+      { status: slotsResponse.status }
     );
   }
   const slotsData = await slotsResponse.json();
