@@ -16,9 +16,9 @@
   color: var(--color-primary);
 }
 
-h3 {
+.h3 {
   font-size: 1.2rem;
-  color: var(--color-h3);
+  color: var(--color-primary);
   margin-top: 0;
 }
 
