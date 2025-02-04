@@ -1,6 +1,12 @@
 import classes from './TosPage.module.css';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+
 export default function TosPage() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <section className={classes.section}>
       <div className={classes.container}>

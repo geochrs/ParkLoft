@@ -11,7 +11,6 @@ import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ErrorPage from './pages/ErrorPage';
 import { action as logoutAction } from './pages/LogoutPage';
 import { profileLoader, profileAction } from './pages/profile';
-// import AvailableSlots from './pages/AvailableSlotsPage';
 import TosPage from './pages/TosPage';
 import { availableslotsLoader } from './components/content/availableslotsLoader';
 
