@@ -1,22 +1,26 @@
-import classes from './SlotFinderForm.module.css';
+import classes from './AvailableSlots.module.css';
 import cardImg from '../../assets/parkloft.jpg';
-import { Form, useActionData, useLoaderData } from 'react-router-dom';
+import { Form, useLoaderData } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import LoadingIndicator from '../layout/LoadingIndicator';
+import Skeleton from '../layout/Skeleton.jsx';
 
-export default function SlotFinderForm() {
-  // const data = useLoaderData();
+export default function AvailableSlots() {
   const { slots, user } = useLoaderData();
+  const [isLoading, setIsLoading] = useState(true);
 
   const [selectedLocation, setSelectedLocation] = useState(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 1500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleBook = (location) => () => {
     setSelectedLocation(location);
   };
 
-  // const data = useActionData();
   const [entryTime, setEntryTime] = useState(() => {
     const now = new Date();
     now.setMinutes(0, 0, 0);
@@ -30,14 +34,6 @@ export default function SlotFinderForm() {
     return tomorrow;
   });
 
-  // const [isLoading, setIsLoading] = useState(false);
-
-  // useEffect(() => {
-  //   if (data) {
-  //     setIsLoading(false);
-  //   }
-  // }, [data]);
-
   const handleDateChange = (type) => (date) => {
     if (type === 'entry') {
       setEntryTime(date);
@@ -46,87 +42,65 @@ export default function SlotFinderForm() {
     }
   };
 
-  // const handleSubmit = () => {
-  //   setIsLoading(true);
-  // };
-
   return (
     <section className={classes.section}>
       <div className={classes.container}>
-        {/* {isLoading && <LoadingIndicator />}
-
-        {!isLoading && !data && (
-          <>
-            <Form
-              className={classes.form}
-              method="POST"
-              action="/slots-available"
-              onSubmit={handleSubmit}
-            >
-              <div className={classes.inputGroup}>
-                <label>Entry Time</label>
-                <DatePicker
-                  selected={entryTime}
-                  onChange={(date) => handleDateChange('entry', date)}
-                  name="entryTime"
-                  showTimeSelect
-                  dateFormat="dd-MM-yyyy HH:00"
-                  timeIntervals={60}
-                  timeFormat="HH:00"
-                  calendarStartDay={1}
-                />
-              </div>
-              <div className={classes.inputGroup}>
-                <label>Exit Time</label>
-                <DatePicker
-                  selected={exitTime}
-                  onChange={(date) => handleDateChange('exit', date)}
-                  name="exitTime"
-                  showTimeSelect
-                  dateFormat="dd-MM-yyyy HH:00"
-                  timeIntervals={60}
-                  timeFormat="HH:00"
-                  calendarStartDay={1}
-                />
-              </div>
-              <div className={classes.actions}>
-                <button type="submit">Search</button>
-              </div>
-            </Form>
-            <h2 className={classes.h2}>Secure Your Spot Today!</h2>
-          </>
-        )} */}
-        {!selectedLocation && (
+        {isLoading ? (
           <div className={classes.results}>
-            {slots.length === 0 ? (
-              <p>No slots available for the selected times.</p>
-            ) : (
-              slots.map((location) => (
-                <div
-                  key={location.location_id}
-                  className={classes.locationCard}
-                >
-                  <img src={cardImg} className={classes.cardImg} />
+            {Array(8)
+              .fill(0)
+              .map((_, i) => (
+                <div key={i} className={classes.locationCard}>
+                  <Skeleton
+                    className={classes.cardImg}
+                    width="100%"
+                    height="220px"
+                  />
                   <div className={classes.cardContent}>
-                    <h3>{location.name}</h3>
-                    <p>{location.address}</p>
-                    <p className={classes.availableSlots}>
-                      {location.Slots.length} available slots
-                    </p>
-                    <button
-                      type="submit"
+                    <Skeleton width="60%" height="50px" />
+                    <Skeleton width="80%" height="45px" />
+                    <Skeleton width="50%" height="45px" />
+                    <Skeleton
+                      width="100%"
+                      height="50px"
                       className={classes.bookButton}
-                      onClick={handleBook(location)}
-                    >
-                      Book Now
-                    </button>
+                    />
                   </div>
                 </div>
-              ))
-            )}
+              ))}
           </div>
+        ) : (
+          !selectedLocation && (
+            <div className={classes.results}>
+              {slots.length === 0 ? (
+                <p>No slots available for the selected times.</p>
+              ) : (
+                slots.map((location) => (
+                  <div
+                    key={location.location_id}
+                    className={classes.locationCard}
+                  >
+                    <img src={cardImg} className={classes.cardImg} />
+                    <div className={classes.cardContent}>
+                      <h3>{location.name}</h3>
+                      <p>{location.address}</p>
+                      <p className={classes.availableSlots}>
+                        {location.Slots.length} available slots
+                      </p>
+                      <button
+                        type="submit"
+                        className={classes.bookButton}
+                        onClick={handleBook(location)}
+                      >
+                        Book Now
+                      </button>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          )
         )}
-
         {/* Show the booking form only for the selected location */}
         {selectedLocation && (
           <Form className={classes.form} method="POST" action="/booking">

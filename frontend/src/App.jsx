@@ -1,3 +1,4 @@
+import { Suspense, lazy } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Root from './pages/Root';
 import HomePage from './pages/HomePage';
@@ -10,9 +11,11 @@ import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ErrorPage from './pages/ErrorPage';
 import { action as logoutAction } from './pages/LogoutPage';
 import { profileLoader, profileAction } from './pages/profile';
-import SlotFinderPage from './pages/SlotFinderPage';
+// import AvailableSlots from './pages/AvailableSlotsPage';
 import TosPage from './pages/TosPage';
-import { slotFinderLoader } from './components/content/slotfinderLoader';
+import { availableslotsLoader } from './components/content/availableslotsLoader';
+
+const AvailableSlots = lazy(() => import('./pages/AvailableSlotsPage'));
 
 const router = createBrowserRouter([
   {
@@ -35,8 +38,12 @@ const router = createBrowserRouter([
       },
       {
         path: 'slots-available',
-        element: <SlotFinderPage />,
-        loader: slotFinderLoader
+        element: (
+          <Suspense fallback={<p>Loading available slots...</p>}>
+            <AvailableSlots />
+          </Suspense>
+        ),
+        loader: availableslotsLoader,
       },
     ],
   },

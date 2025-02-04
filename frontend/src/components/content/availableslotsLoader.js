@@ -1,8 +1,8 @@
-import { json } from 'react-router-dom';
+import { defer, json } from 'react-router-dom';
 import getApiUrl from '../../utils/getApiUrl';
 import { tokenLoader } from '../../utils/auth';
 
-export async function slotFinderLoader() {
+export async function availableslotsLoader() {
   const token = await tokenLoader();
 
   const apiUrl = getApiUrl();
@@ -37,5 +37,5 @@ export async function slotFinderLoader() {
     );
   }
   const slotsData = await slotsResponse.json();
-  return { slots: slotsData, user: userData };
+  return defer({ slots: slotsData, user: userData });
 }

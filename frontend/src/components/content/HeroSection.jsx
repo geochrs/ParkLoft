@@ -9,7 +9,7 @@ export default function HeroSection() {
   return (
     <section className={classes.section}>
       <div className={classes.container}>
-        <div>
+        <div className={classes.innerContainer}>
           <h1 className={classes.h1}>
             Discover Your Perfect Parking Space with ParkLoft
           </h1>

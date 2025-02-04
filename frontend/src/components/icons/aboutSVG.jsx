@@ -9,7 +9,6 @@ export const SVG1 = () => {
       fill="none"
       viewBox="0 0 24 24"
     >
-      <path fill="#fff" d="M0 0h24v24H0z" />
       <circle cx="12" cy="12" r="9" stroke="#5469e7" strokeLinejoin="round" />
       <path
         stroke="#5469e7"
