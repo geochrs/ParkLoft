@@ -57,12 +57,13 @@ export default function AvailableSlots() {
                     height="220px"
                   />
                   <div className={classes.cardContent}>
-                    <Skeleton width="60%" height="50px" />
-                    <Skeleton width="80%" height="45px" />
-                    <Skeleton width="50%" height="45px" />
+                    <Skeleton width="60%" height="40px" margin="0.5rem auto 0" />
+                    <Skeleton width="80%" height="45px" margin="0.5rem auto 0" />
+                    <Skeleton width="50%" height="45px" margin="0.5rem auto 0" />
                     <Skeleton
                       width="100%"
                       height="50px"
+                      margin="0.5rem auto 0"
                       className={classes.bookButton}
                     />
                   </div>
