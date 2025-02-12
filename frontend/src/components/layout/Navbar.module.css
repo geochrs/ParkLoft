@@ -48,7 +48,7 @@
 
 .navbarMobile .hamburger {
   position: absolute;
-  top: 50px;
+  top: 40px;
   right: 0px;
   z-index: 1001;
 }
@@ -202,7 +202,7 @@
 
   .rightLinks {
     margin-top: 1rem;
-    gap: 1.5rem;
+    gap: 1.8rem;
   }
 
   .hamburger {
@@ -211,9 +211,14 @@
 
   .navActive .navList {
     display: flex;
-    margin: 0 1rem;
+    margin: 0 auto;
   }
   .navBar {
     flex: 0;
+  }
+
+  .loginButton,
+  .signupButton {
+    border-radius: 4rem;
   }
 }

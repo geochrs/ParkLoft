@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/config.js';
-import User from './User.js';
 import Slot from './Slot.js';
+import Location from './Location.js';
 
 const Booking = sequelize.define(
   'Booking',
@@ -29,14 +29,18 @@ const Booking = sequelize.define(
       },
       onDelete: 'CASCADE',
     },
-    userPublicId: {
-      type: DataTypes.CHAR(36),
+    location_id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: User,
-        key: 'public_id',
+        model: Location,
+        key: 'location_id',
       },
       onDelete: 'CASCADE',
+    },
+    userPublicId: {
+      type: DataTypes.CHAR(36),
+      allowNull: true,
     },
     entryTime: {
       type: DataTypes.DATE,
@@ -44,6 +48,14 @@ const Booking = sequelize.define(
     },
     exitTime: {
       type: DataTypes.DATE,
+      allowNull: false,
+    },
+    fullName: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    phone: {
+      type: DataTypes.STRING,
       allowNull: true,
     },
   },
@@ -54,13 +66,6 @@ const Booking = sequelize.define(
 );
 
 //Relationships
-Booking.belongsTo(User, {
-  foreignKey: 'userPublicId',
-  targetKey: 'public_id',
-  onDelete: 'CASCADE',
-});
-
-User.hasMany(Booking, { foreignKey: 'userPublicId', sourceKey: 'public_id' });
 
 Booking.belongsTo(Slot, {
   foreignKey: 'slot_id',

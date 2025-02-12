@@ -57,9 +57,21 @@ export default function AvailableSlots() {
                     height="220px"
                   />
                   <div className={classes.cardContent}>
-                    <Skeleton width="60%" height="40px" margin="0.5rem auto 0" />
-                    <Skeleton width="80%" height="45px" margin="0.5rem auto 0" />
-                    <Skeleton width="50%" height="45px" margin="0.5rem auto 0" />
+                    <Skeleton
+                      width="60%"
+                      height="40px"
+                      margin="0.5rem auto 0"
+                    />
+                    <Skeleton
+                      width="80%"
+                      height="45px"
+                      margin="0.5rem auto 0"
+                    />
+                    <Skeleton
+                      width="50%"
+                      height="40px"
+                      margin="0.5rem auto 0"
+                    />
                     <Skeleton
                       width="100%"
                       height="50px"
@@ -104,19 +116,38 @@ export default function AvailableSlots() {
         )}
         {/* Show the booking form only for the selected location */}
         {selectedLocation && (
-          <Form className={classes.form} method="POST" action="/booking">
+          <Form
+            className={classes.form}
+            method="POST"
+            action="/slots-available"
+          >
+            <input
+              type="hidden"
+              name="location_id"
+              value={selectedLocation.location_id}
+            />
+            <input
+              type="hidden"
+              name="entryTime"
+              value={entryTime}
+            />
+            <input
+              type="hidden"
+              name="exitTime"
+              value={exitTime}
+            />
             <div className={classes.inputGroup}>
               <label>Full Name</label>
-              <input type="text" />
+              <input type="text" name="fullName" />
             </div>
             <div className={classes.row}>
               <div className={classes.inputGroup}>
                 <label>Phone</label>
-                <input type="tel" required />
+                <input type="tel" name="phone" required />
               </div>
               <div className={classes.inputGroup}>
                 <label>License Plate</label>
-                <input type="text" required />
+                <input type="text" name="licensePlate" required />
               </div>
             </div>
             <div className={classes.row}>
@@ -125,7 +156,6 @@ export default function AvailableSlots() {
                 <DatePicker
                   selected={entryTime}
                   onChange={handleDateChange('entry')}
-                  name="entryTime"
                   showTimeSelect
                   dateFormat="dd-MM-yyyy HH:00"
                   timeIntervals={60}
@@ -138,7 +168,6 @@ export default function AvailableSlots() {
                 <DatePicker
                   selected={exitTime}
                   onChange={handleDateChange('exit')}
-                  name="exitTime"
                   showTimeSelect
                   dateFormat="dd-MM-yyyy HH:00"
                   timeIntervals={60}

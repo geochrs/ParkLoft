@@ -8,7 +8,7 @@
   padding: 180px 20px 50px;
   max-width: 1380px;
   margin: 0 auto;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .innerContainer {
@@ -38,10 +38,10 @@
   top: 100px;
   left: 0;
   bottom: 20px;
-  max-width: 1700px;
+  /* max-width: 1700px; */
   margin: 0 auto;
   right: 0;
-  border-radius: 0.5rem;
+  /* border-radius: 0.5rem; */
   position: absolute;
   z-index: -2;
   background-repeat: no-repeat;
@@ -138,6 +138,16 @@
   animation-delay: 1.2s;
 }
 
+@media (max-width: 1036px) {
+  .findSlot{
+    border-radius: 4rem;
+  }
+
+  .cardContainer {
+    justify-content: center;
+  }
+}
+
 @media (max-width: 1024px) {
   .h1 {
     font-size: 2.5rem;
@@ -146,12 +156,12 @@
 
 @media (max-width: 550px) {
 
-  .innerContainer {
-    gap: 1rem;
+  .container {
+    padding: 130px 20px 50px;
   }
 
-  .cardContainer {
-    justify-content: center;
+  .innerContainer {
+    gap: 1rem;
   }
 
   .cardContainer .card:nth-child(6) {
