@@ -124,6 +124,72 @@
   font-weight: 700;
 }
 
+/* Confirmation section */
+.confirmation {
+  background-color: #f9f9f9ff;
+  border-bottom: 5px solid var(--color-primary-2);
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 20px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.confirmation h2 {
+  color: var(--color-primary-2);
+  font-size: 2rem;
+  margin-top: 0.5rem;
+  margin-bottom: 15px;
+}
+
+.confirmation .thanks {
+  margin-bottom: 15px;
+}
+
+.confirmation p {
+  font-size: 16px;
+  color: #333;
+  margin: 10px 0;
+}
+
+.confirmation p strong {
+  font-weight: bold;
+}
+
+.confirmation .confirmation-button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.confirmation .confirmation-button:hover {
+  background-color: #45a049;
+}
+
+.confirmation .confirmation-button:focus {
+  outline: none;
+}
+
+.confirmation .details {
+  margin-top: 15px;
+}
+
+.details p {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #444;
+}
+
+.confirmation .help {
+  margin-top: 20px;
+}
+
+
 @media (max-width: 1024px) {
   .container {
     height: auto;

@@ -1,6 +1,7 @@
 import express from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import moment from 'moment-timezone';
+import { generateTicketId } from '../utils/generateTicketId.js';
 
 import Booking from '../models/Booking.js';
 import Slot from '../models/Slot.js';
@@ -32,7 +33,6 @@ router.post('/bookings', authenticateToken, async (req, res) => {
   }
 
   try {
-    
     const entryTimeInUTC = moment(entryTime).tz('UTC', true).toDate();
     const exitTimeInUTC = moment(exitTime).tz('UTC', true).toDate();
 
@@ -49,7 +49,7 @@ router.post('/bookings', authenticateToken, async (req, res) => {
     const selectedSlot = availableSlots[0];
 
     const newBooking = await Booking.create({
-      ticketId: uuidv4(),
+      ticketId: generateTicketId(),
       userPublicId,
       licensePlate,
       slot_id: selectedSlot.slot_id,
@@ -62,7 +62,15 @@ router.post('/bookings', authenticateToken, async (req, res) => {
 
     await selectedSlot.update({ is_reserved: true });
 
-    res.status(201).json({ message: 'Booking created' });
+    res.status(201).json({
+      message: 'Booking created successfully!',
+      booking: {
+        ticketId: newBooking.ticketId,
+        fullName,
+        entryTime: entryTimeInUTC,
+        exitTime: exitTimeInUTC,
+      },
+    });
   } catch (error) {
     console.error('Booking creation failed:', error);
     res.status(500).json({ message: 'Internal server error' });

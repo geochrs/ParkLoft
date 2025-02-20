@@ -1,7 +1,6 @@
 import { json, redirect } from 'react-router-dom';
 import getApiUrl from '../../utils/getApiUrl';
 
-
 export async function bookingAction({ request }) {
   const data = await request.formData();
 
@@ -36,5 +35,8 @@ export async function bookingAction({ request }) {
     );
   }
   const resData = await response.json();
-  return redirect('/');
+  return json({
+    bookingDetails: resData.booking,
+    success: true,
+  });
 }
