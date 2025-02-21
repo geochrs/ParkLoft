@@ -125,9 +125,8 @@
 }
 
 /* Confirmation section */
-.confirmation {
-  background-color: #f9f9f9ff;
-  border-bottom: 5px solid var(--color-primary-2);
+.bookConfirm {
+  background-color: var(--color-primary-2);
   border-radius: 5px;
   padding: 20px;
   margin-top: 20px;
@@ -135,25 +134,49 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.confirmation h2 {
-  color: var(--color-primary-2);
+.bookConfirm h2 {
+  font-size: 2rem;
+  color: var(--color-primary-3);
+}
+
+.bookConfirm p {
+  color: var(--color-primary-3);
+}
+
+.bookDetails {
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 20px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.bookDetails h2 {
+  color: var(--color-primary);
   font-size: 2rem;
   margin-top: 0.5rem;
-  margin-bottom: 15px;
 }
 
-.confirmation .thanks {
-  margin-bottom: 15px;
-}
-
-.confirmation p {
-  font-size: 16px;
-  color: #333;
+.bookDetails p {
+  color: var(--color-primary);
   margin: 10px 0;
 }
 
-.confirmation p strong {
-  font-weight: bold;
+.bookDetails .arrival,
+.bookDetails .depart {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.bookDetails .location {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.innerDetails {
+  display: flex;
+  gap: 2rem;
 }
 
 .confirmation .confirmation-button {
@@ -174,21 +197,6 @@
 .confirmation .confirmation-button:focus {
   outline: none;
 }
-
-.confirmation .details {
-  margin-top: 15px;
-}
-
-.details p {
-  margin-bottom: 8px;
-  font-size: 14px;
-  color: #444;
-}
-
-.confirmation .help {
-  margin-top: 20px;
-}
-
 
 @media (max-width: 1024px) {
   .container {

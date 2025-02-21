@@ -198,25 +198,35 @@ export default function AvailableSlots() {
         )}
 
         {bookingConfirmed && bookingDetails && (
-          <div className={classes.confirmation}>
-            <h2>Booking Confirmed!</h2>
-            <p className={classes.thanks}>Thank you for your booking, {bookingDetails.fullName}!</p>
-            <p>
-              <strong>Ticket Id:</strong> {bookingDetails.ticketId}
-            </p>
-            <p>
-              <strong>Location:</strong> {selectedLocation.name}
-            </p>
-            <p>
-              <strong>Entry Time:</strong>{' '}
-              {new Date(bookingDetails.entryTime).toLocaleString()}
-            </p>
-            <p>
-              <strong>Exit Time:</strong>{' '}
-              {new Date(bookingDetails.exitTime).toLocaleString()}
-            </p>
-            <p className={classes.help}>Need help? Contact our customer support for assistance.</p>
-          </div>
+          <>
+            <div className={classes.bookConfirm}>
+              <h2>Hello {bookingDetails.fullName}!</h2>
+              <p className={classes.thanks}>
+                We're delighted to confirm your recent booking. We appreciate
+                your trust and hope <br /> you have a seamless and enjoyable
+                parking experience.
+              </p>
+              <p>Here are the complete details of your reservation</p>
+            </div>
+            <div className={classes.bookDetails}>
+              <h2>Your Ticket ID {bookingDetails.ticketId}</h2>
+              <div className={classes.innerDetails}>
+                <div>
+                  <p>Arrival to the Parking</p>
+                  <p className={classes.arrival}>
+                    {new Date(bookingDetails.entryTime).toLocaleString()}
+                  </p>
+                </div>
+                <div>
+                  <p>Departure from car park</p>
+                  <p className={classes.depart}>
+                    {new Date(bookingDetails.exitTime).toLocaleString()}
+                  </p>
+                </div>
+              </div>
+              <p className={classes.location}>{selectedLocation.name}</p>
+            </div>
+          </>
         )}
       </div>
     </section>
