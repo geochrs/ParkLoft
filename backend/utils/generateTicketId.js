@@ -1,6 +1,6 @@
 export const generateTicketId = () => {
-    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'; // Letters for the first character
-    const digits = '0123456789'; // Digits for the remaining characters
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const digits = '0123456789';
     let result = '';
     
     // First character is a letter

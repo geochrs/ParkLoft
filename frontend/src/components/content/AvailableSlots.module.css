@@ -2,25 +2,6 @@
   position: relative;
 }
 
-/* .section::after {
-  content: '';
-  background-image: url('../../assets/1.png');
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -2;
-  background-repeat: no-repeat;
-  background-size: 60%;
-  background-position: center;
-  pointer-events: none;
-} */
-
-/* .sectionWithResults {
-  background-color: #f7f8ff;
-} */
-
 .container {
   display: flex;
   align-items: center;
@@ -49,17 +30,79 @@
 .row {
   display: flex;
   gap: 0.5rem;
+  width: 100%;
 }
 
 .inputGroup {
   display: flex;
   flex-direction: column;
+  margin-bottom: 1.5rem;
+  flex: 1;
+  min-width: 0;
+  position: relative;
 }
 
-/* .actions {
+.inputGroup input {
+  width: 100%;
+  padding: 0.5rem 0.5rem 0.5rem 0;
+  font-size: 1rem;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  border-radius: 0;
+  transition: border-color 0.2s;
+}
+
+.inputGroup label {
+  position: absolute;
+  left: 0;
+  bottom: 50%;
+  transform: translateY(50%);
+  color: #aaa;
+  transition: 0.2s ease all;
+  pointer-events: none;
+}
+
+.inputGroup input:focus {
+  outline: none;
+  border-bottom: 2px solid var(--color-primary-2);
+}
+
+.inputGroup input:focus + label,
+.inputGroup input:not(:placeholder-shown) + label {
+  bottom: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 0.75rem;
+  color: var(--color-primary-2);
+}
+
+.datePickerWrapper {
   display: flex;
-  align-items: flex-end;
-} */
+  flex-direction: column;
+  flex: 1;
+  margin-bottom: 1.5rem;
+}
+
+.datePickerWrapper label {
+  margin-bottom: 5px;
+}
+
+.dateInput {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  cursor: pointer;
+}
+
+.dateInput:focus {
+  outline: none;
+  border-color: var(--color-primary-2);
+}
+.datePickerWrapper:focus-within label {
+  color: var(--color-primary-2);
+}
 
 .bookButton,
 .confirmButton {
@@ -87,7 +130,6 @@
 
 .inputGroup input {
   padding: 0.5rem 0.75rem;
-  /* cursor: pointer; */
 }
 
 .results {
@@ -125,77 +167,135 @@
 }
 
 /* Confirmation section */
+
+.bookingTitle {
+  display: flex;
+  gap: 0.3rem;
+  width: 100%;
+}
+
+.bookingTitle h1 {
+  color: var(--color-primary);
+}
+
 .bookConfirm {
-  background-color: var(--color-primary-2);
-  border-radius: 5px;
-  padding: 20px;
-  margin-top: 20px;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.bookConfirm h2 {
-  font-size: 2rem;
-  color: var(--color-primary-3);
-}
-
-.bookConfirm p {
-  color: var(--color-primary-3);
-}
-
-.bookDetails {
   background-color: #f9f9f9;
   border-radius: 5px;
-  padding: 20px;
-  margin-top: 20px;
   text-align: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
 }
 
-.bookDetails h2 {
+.bookLogo {
+  width: 200px;
+  height: 60px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #eceef7;
+  flex-wrap: wrap;
+}
+
+.cardBody {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.innerData {
+  text-align: left;
+  padding: 0 10px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.name p:first-child,
+.number p:first-child {
   color: var(--color-primary);
-  font-size: 2rem;
-  margin-top: 0.5rem;
-}
-
-.bookDetails p {
-  color: var(--color-primary);
-  margin: 10px 0;
-}
-
-.bookDetails .arrival,
-.bookDetails .depart {
   font-weight: 700;
-  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  margin-bottom: 0.2rem;
 }
 
-.bookDetails .location {
+.number:last-child {
+  margin-bottom: 0.5rem;
+}
+
+.ticket {
+  background-color: #eceef7;
+  padding: 0px 30px;
+}
+
+.ticket p:first-child {
+  margin-bottom: 0;
+}
+
+.ticket p:last-child {
+  color: var(--color-primary-2);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 0;
+}
+
+.personalData {
+  border: 2px solid #eceef7;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.bookingDetails {
+  border: 2px solid #eceef7;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.personalData h3,
+.bookingDetails h3 {
+  background: #eceef7;
+  color: var(--color-primary);
+  margin: 0;
+  padding: 5px 40px;
+}
+
+.location {
+  background: #eceef7;
+  color: var(--color-primary);
+  margin: 0;
+  padding: 15px 0;
   font-size: 1.3rem;
   font-weight: 700;
 }
 
 .innerDetails {
   display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
+  justify-content: space-around;
+  padding: 0 10px;
 }
 
-.confirmation .confirmation-button {
-  background-color: #4caf50;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-top: 20px;
+.arrival p:first-child,
+.depart p:first-child {
+  margin-bottom: 0.2rem;
+  text-transform: uppercase;
+  font-size: 0.8rem;
 }
 
-.confirmation .confirmation-button:hover {
-  background-color: #45a049;
-}
-
-.confirmation .confirmation-button:focus {
-  outline: none;
+.arrival p:last-child,
+.depart p:last-child {
+  margin: 0;
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
 @media (max-width: 1024px) {
@@ -209,26 +309,41 @@
 }
 
 @media (max-width: 768px) {
+  .ticket {
+    width: 100%;
+    padding: 0;
+  }
+
+  .cardHeader {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .cardBody {
+    flex-direction: column;
+  }
+
+  .innerData {
+    text-align: center;
+  }
+
+  .innerDetails {
+    gap: 1rem;
+  }   
+
+  .arrival,
+  .depart {
+    flex: 1 1 100%;
+  }
+
   .results {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 630px) {
-  .section::after {
-    top: 125px;
-    background-size: contain;
-  }
-
-  .h2 {
-    font-size: 2rem;
-    align-self: center;
-    text-align: center;
-  }
-
-  .form {
+  .row {
     flex-direction: column;
-    align-self: center;
   }
 }
 

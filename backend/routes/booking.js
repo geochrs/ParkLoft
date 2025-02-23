@@ -67,6 +67,7 @@ router.post('/bookings', authenticateToken, async (req, res) => {
       booking: {
         ticketId: newBooking.ticketId,
         fullName,
+        phone,
         entryTime: entryTimeInUTC,
         exitTime: exitTimeInUTC,
       },

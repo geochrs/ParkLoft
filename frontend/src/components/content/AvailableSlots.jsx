@@ -1,5 +1,9 @@
 import classes from './AvailableSlots.module.css';
 import cardImg from '../../assets/parkloft.jpg';
+import logo from '../../assets/parkloftLogo.png';
+import arrow from '../../assets/arrow.svg';
+import confirm from '../../assets/confirm.svg';
+
 import {
   Form,
   useLoaderData,
@@ -57,6 +61,18 @@ export default function AvailableSlots() {
       setExitTime(date);
     }
   };
+
+  const formattedDateEntry = entryTime.toLocaleDateString('en-GB'); // "22/01/2025"
+  const formattedTimeEntry = entryTime.toLocaleTimeString('en-GB', {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+
+  const formattedDateExit = exitTime.toLocaleDateString('en-GB'); // "22/01/2025"
+  const formattedTimeExit = exitTime.toLocaleTimeString('en-GB', {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
 
   return (
     <section className={classes.section}>
@@ -150,23 +166,41 @@ export default function AvailableSlots() {
             <input type="hidden" name="entryTime" value={entryTime} />
             <input type="hidden" name="exitTime" value={exitTime} />
             <div className={classes.inputGroup}>
-              <label>Full Name</label>
-              <input type="text" name="fullName" />
+              <input
+                id="fullName"
+                type="text"
+                name="fullName"
+                placeholder=" "
+              />
+              <label htmlFor="fullName">Full Name</label>
             </div>
             <div className={classes.row}>
               <div className={classes.inputGroup}>
-                <label>Phone</label>
-                <input type="tel" name="phone" required />
+                <input
+                  id="phone"
+                  type="tel"
+                  name="phone"
+                  placeholder=" "
+                  required
+                />
+                <label htmlFor="phone">Phone</label>
               </div>
               <div className={classes.inputGroup}>
-                <label>License Plate</label>
-                <input type="text" name="licensePlate" required />
+                <input
+                  id="licensePlate"
+                  type="text"
+                  name="licensePlate"
+                  placeholder=" "
+                  required
+                />
+                <label htmlFor="licensePlate">License Plate</label>
               </div>
             </div>
             <div className={classes.row}>
-              <div className={classes.inputGroup}>
-                <label>Entry Time</label>
+              <div className={classes.datePickerWrapper}>
+                <label htmlFor="entryTime">Entry Time</label>
                 <DatePicker
+                  id="entryTime"
                   selected={entryTime}
                   onChange={handleDateChange('entry')}
                   showTimeSelect
@@ -174,11 +208,13 @@ export default function AvailableSlots() {
                   timeIntervals={60}
                   timeFormat="HH:00"
                   calendarStartDay={1}
+                  className={classes.dateInput}
                 />
               </div>
-              <div className={classes.inputGroup}>
-                <label>Exit Time</label>
+              <div className={classes.datePickerWrapper}>
+                <label htmlFor="exitTime">Exit Time</label>
                 <DatePicker
+                  id="exitTime"
                   selected={exitTime}
                   onChange={handleDateChange('exit')}
                   showTimeSelect
@@ -186,6 +222,7 @@ export default function AvailableSlots() {
                   timeIntervals={60}
                   timeFormat="HH:00"
                   calendarStartDay={1}
+                  className={classes.dateInput}
                 />
               </div>
             </div>
@@ -199,29 +236,49 @@ export default function AvailableSlots() {
 
         {bookingConfirmed && bookingDetails && (
           <>
-            <div className={classes.bookConfirm}>
-              <h2>Hello {bookingDetails.fullName}!</h2>
-              <p className={classes.thanks}>
-                We're delighted to confirm your recent booking. We appreciate
-                your trust and hope <br /> you have a seamless and enjoyable
-                parking experience.
-              </p>
-              <p>Here are the complete details of your reservation</p>
+            <div className={classes.bookingTitle}>
+              <h1>Booking Confirmed</h1>
+              <img src={confirm} alt="booking confirm" />
             </div>
-            <div className={classes.bookDetails}>
-              <h2>Your Ticket ID {bookingDetails.ticketId}</h2>
-              <div className={classes.innerDetails}>
-                <div>
-                  <p>Arrival to the Parking</p>
-                  <p className={classes.arrival}>
-                    {new Date(bookingDetails.entryTime).toLocaleString()}
-                  </p>
+            <div className={classes.bookConfirm}>
+              <div className={classes.cardHeader}>
+                <img src={logo} className={classes.bookLogo} />
+                <div className={classes.ticket}>
+                  <p>Booking locator</p>
+                  <p>{bookingDetails.ticketId}</p>
                 </div>
-                <div>
-                  <p>Departure from car park</p>
-                  <p className={classes.depart}>
-                    {new Date(bookingDetails.exitTime).toLocaleString()}
-                  </p>
+              </div>
+              <div className={classes.cardBody}>
+                <div className={classes.personalData}>
+                  <h3>Personal Data</h3>
+                  <div className={classes.innerData}>
+                    <div className={classes.name}>
+                      <p>Name</p>
+                      {bookingDetails.fullName}
+                    </div>
+                    <div className={classes.number}>
+                      <p>Number</p>
+                      {bookingDetails.phone}
+                    </div>
+                  </div>
+                </div>
+                <div className={classes.bookingDetails}>
+                  <h3>Booking Details</h3>
+                  <div className={classes.innerDetails}>
+                    <div className={classes.arrival}>
+                      <p>Arrival to the Parking</p>
+                      <p>
+                        {formattedDateEntry} <br /> {formattedTimeEntry}
+                      </p>
+                    </div>
+                    <img src={arrow} alt="arrow" />
+                    <div className={classes.depart}>
+                      <p>Departure from car park</p>
+                      <p>
+                        {formattedDateExit} <br /> {formattedTimeExit}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
               <p className={classes.location}>{selectedLocation.name}</p>
