@@ -3,6 +3,7 @@ import cardImg from '../../assets/parkloft.jpg';
 import logo from '../../assets/parkloftLogo.png';
 import arrow from '../../assets/arrow.svg';
 import confirm from '../../assets/confirm.svg';
+import LoadingIndicator from '../layout/LoadingIndicator.jsx';
 
 import {
   Form,
@@ -18,12 +19,23 @@ import Skeleton from '../layout/Skeleton.jsx';
 export default function AvailableSlots() {
   const { slots, user } = useLoaderData();
   const actionData = useActionData();
+  const navigation = useNavigation();
   const [isLoading, setIsLoading] = useState(true);
+  const [isConfirming, setIsConfirming] = useState(false);
+  const isSubmitting = navigation.state === 'submitting';
 
   const [selectedLocation, setSelectedLocation] = useState(null);
 
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
   const [bookingDetails, setBookingDetails] = useState(null);
+
+  useEffect(() => {
+    if (isSubmitting) {
+      setIsConfirming(true);
+    } else {
+      setIsConfirming(false);
+    }
+  }, [isSubmitting]);
 
   useEffect(() => {
     if (actionData?.success) {
@@ -152,7 +164,7 @@ export default function AvailableSlots() {
           )
         )}
         {/* Show the booking form only for the selected location */}
-        {selectedLocation && !bookingConfirmed && (
+        {selectedLocation && !bookingConfirmed && !isConfirming && (
           <Form
             className={classes.form}
             method="POST"
@@ -233,7 +245,7 @@ export default function AvailableSlots() {
             </div>
           </Form>
         )}
-
+        {isConfirming && <LoadingIndicator />}
         {bookingConfirmed && bookingDetails && (
           <>
             <div className={classes.bookingTitle}>
