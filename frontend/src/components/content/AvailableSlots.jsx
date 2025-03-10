@@ -183,6 +183,7 @@ export default function AvailableSlots() {
                 type="text"
                 name="fullName"
                 placeholder=" "
+                defaultValue={user?.username || ''}
               />
               <label htmlFor="fullName">Full Name</label>
             </div>
@@ -193,6 +194,7 @@ export default function AvailableSlots() {
                   type="tel"
                   name="phone"
                   placeholder=" "
+                  defaultValue={user?.phone || ''}
                   required
                 />
                 <label htmlFor="phone">Phone</label>
