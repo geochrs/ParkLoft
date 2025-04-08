@@ -6,7 +6,7 @@ import ProfileSection from '../components/content/ProfileSection';
 import classes from '../components/content/ProfileSection.module.css';
 
 export default function ProfilePage() {
-  const data = useLoaderData();
+  const { profile, bookings } = useLoaderData();
   const dispatch = useDispatch();
 
   const handleEditClick = () => {
@@ -16,6 +16,7 @@ export default function ProfilePage() {
       })
     );
   };
+
   return (
     <div data-aos="fade">
       <ProfileSection>
@@ -24,18 +25,18 @@ export default function ProfilePage() {
             src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
             className={classes.profileImg}
           />
-          <p className={classes.textBold}>{data.username}</p>
+          <p className={classes.textBold}>{profile.username}</p>
           <div className={classes.row}>
             <div className={classes.textMuted}>Email:</div>
-            <div>{data.email}</div>
+            <div>{profile.email}</div>
           </div>
           <div className={classes.row}>
             <div className={classes.textMuted}>Phone:</div>
-            <div>{data.phone}</div>
+            <div>{profile.phone}</div>
           </div>
           <div className={classes.row}>
             <div className={classes.textMuted}>Date of Birth:</div>
-            <div>{data.dateOfBirth}</div>
+            <div>{profile.dateOfBirth}</div>
           </div>
           <button className={classes.editButton} onClick={handleEditClick}>
             Edit Profile
@@ -50,6 +51,38 @@ export default function ProfilePage() {
             <div>ENTRY TIME</div>
             <div>EXIT TIME</div>
           </div>
+          {bookings.length === 0 ? (
+            <p>No bookings found.</p>
+          ) : (
+            bookings.map((booking) => {
+              const entry = new Date(booking.entryTime);
+              const exit = new Date(booking.exitTime);
+            
+              const formattedDateEntry = entry.toLocaleDateString('en-GB', { timeZone: 'UTC' });
+              const formattedTimeEntry = entry.toLocaleTimeString('en-GB', {
+                hour: '2-digit',
+                minute: '2-digit',
+                timeZone  : 'UTC',
+              });
+            
+              const formattedDateExit = exit.toLocaleDateString('en-GB', { timeZone: 'UTC' });
+              const formattedTimeExit = exit.toLocaleTimeString('en-GB', {
+                hour: '2-digit',
+                minute: '2-digit',
+                timeZone  : 'UTC',
+              });
+            
+              return (
+                <div key={booking.id} className={classes.bookingRow}>
+                  <div>{booking.ticketId}</div>
+                  <div>{booking.licensePlate}</div>
+                  <div>{booking.Location?.name}</div>
+                  <div>{formattedDateEntry} {formattedTimeEntry}</div>
+                  <div>{formattedDateExit} {formattedTimeExit}</div>
+                </div>
+              );
+            })
+          )}
           <div className={classes.bookNowContainer}>
             <button className={classes.bookNowButton}>Book Now</button>
           </div>

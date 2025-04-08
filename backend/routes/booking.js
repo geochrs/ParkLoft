@@ -5,6 +5,7 @@ import { generateTicketId } from '../utils/generateTicketId.js';
 
 import Booking from '../models/Booking.js';
 import Slot from '../models/Slot.js';
+import Location from '../models/Location.js';
 import { authenticateToken } from '../middleware.js';
 
 const router = express.Router();
@@ -13,6 +14,10 @@ router.get('/bookings', authenticateToken, async (req, res) => {
   try {
     const bookings = await Booking.findAll({
       where: { userPublicId: req.user.public_id },
+      include: {
+        model: Location,
+        attributes: ['name'],
+      },
     });
 
     res.status(200).json(bookings);

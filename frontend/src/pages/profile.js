@@ -10,31 +10,48 @@ export async function profileLoader() {
   }
 
   const apiUrl = getApiUrl();
-  const url = `${apiUrl}/profile`;
+  const profileUrl = `${apiUrl}/profile`;
+  const bookingsUrl = `${apiUrl}/bookings`;
 
-  const response = await fetch(url, {
+  const profilePromise = await fetch(profileUrl, {
     method: 'GET',
     credentials: 'include',
   });
 
-  if (response.status === 401 || response.status === 403) {
-    return redirect('/login');
-  }
+  const bookingsPromise = fetch(bookingsUrl, {
+    method: 'GET',
+    credentials: 'include',
+  });
 
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw json(
-      {
-        message:
-          errorData.message ||
-          'Failed to fetch profile data. Please try again.',
-      },
-      { status: errorData.status || 500 }
-    );
-  }
+  const [profileResponse, bookingsResponse] = await Promise.all([
+    profilePromise,
+    bookingsPromise,
+  ]);
 
-  const resData = await response.json();
-  return resData;
+  const handleResponse = async (response, type) => {
+    if (response.status === 401 || response.status === 403) {
+      return redirect('/login');
+    }
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw json(
+        {
+          message:
+            errorData.message ||
+            `Failed to fetch ${type} data. Please try again.`,
+        },
+        { status: response.status }
+      );
+    }
+
+    return response.json();
+  };
+
+  const profileData = await handleResponse(profileResponse, 'profile');
+  const bookingsData = await handleResponse(bookingsResponse, 'bookings');
+
+  return { profile: profileData, bookings: bookingsData };
 }
 
 export async function profileAction({ request }) {

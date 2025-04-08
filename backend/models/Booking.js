@@ -66,7 +66,7 @@ const Booking = sequelize.define(
 );
 
 //Relationships
-
+Booking.belongsTo(Location, { foreignKey: 'location_id' });
 Booking.belongsTo(Slot, {
   foreignKey: 'slot_id',
   onDelete: 'CASCADE',
