@@ -4,7 +4,7 @@ import { SVG1, SVG2, SVG3, SVG4, SVG5 } from '../icons/aboutSVG.jsx';
 export default function AboutSection() {
   return (
     <section className={classes.section}>
-      <div className={classes.container}>
+      <div className={classes.container} data-aos="fade">
         <h2 className={classes.h2}>About Parkloft</h2>
         <div className={classes.cards}>
           <div className={classes.card}>

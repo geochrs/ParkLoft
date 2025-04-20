@@ -7,9 +7,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <div data-aos="fade">
-        <AboutSection />
-      </div>
+      <AboutSection />
       <TestimonialSection />
       <FooterSection />
     </>

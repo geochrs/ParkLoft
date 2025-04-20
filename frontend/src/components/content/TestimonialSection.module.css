@@ -1,23 +1,133 @@
 .section {
+  display: grid;
+  place-items: start;
+  min-height: 100vh;
+  color: var(--color-primary);
   background-color: #fff;
+  padding-block: min(20vh, 3rem);
+}
+
+@media screen and (min-width: 980px) {
+  .section {
+    place-items: center;
+  }
 }
 
 .container {
+  display: grid;
   max-width: 1380px;
+  grid-template-columns: repeat(12, 1fr);
+  width: calc(min(90rem, 85%));
   margin: 0 auto;
-  padding: 120px 20px;
-  text-align: left;
+  column-gap: 2rem;
+
 }
 
 .h2 {
+  grid-column: span 12;
   font-size: 2rem;
-  margin-bottom: 1rem;
-  text-align: left;
-  color: var(--color-primary);
+  margin-bottom: 2rem;
 }
 
-@media (max-width: 768px) {
-  .container {
-    padding: 90px 10px;
+.cards {
+  grid-column: span 12;
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media screen and (min-width: 980px) {
+  .cards {
+    grid-column: span 5;
+  }
+}
+
+.card {
+  cursor: pointer;
+  padding: 2em;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 2.188rem;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+  position: relative;
+  background-color: transparent;
+}
+
+.card img {
+  display: block;
+  width: 3.35rem;
+  height: 3.35rem;
+  border-radius: 50%;
+  filter: grayscale(1);
+  transition: 0.5s;
+}
+
+.card h3 {
+  text-transform: capitalize;
+  font-size: 1.025rem;
+}
+
+.card p {
+  text-transform: capitalize;
+  font-size: 0.9rem;
+}
+
+.active {
+  background: #f7f8ff;
+  border-bottom: 5px solid var(--color-primary-2);
+}
+
+.active img {
+  filter: grayscale(0);
+}
+
+.content {
+  grid-column: span 12;
+  position: relative;
+  margin-top: 2rem;
+}
+
+@media screen and (min-width: 980px) {
+  .content {
+    grid-column: span 7;
+    margin-top: 0;
+  }
+}
+
+.contentBox {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.contentBox.activeContent {
+  opacity: 1;
+}
+
+.contentBox h2,
+.contentBox p {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.contentBox.activeContent h2,
+.contentBox.activeContent p {
+  opacity: 1;
+}
+
+.text {
+  padding-bottom: 2rem;
+  max-width: 700px;
+}
+
+@media screen and (min-width: 980px) {
+  .text {
+    padding-bottom: 0;
   }
 }

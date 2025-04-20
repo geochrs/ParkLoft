@@ -9,6 +9,7 @@ export default function EditProfileForm() {
   const data = useRouteLoaderData('profile');
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  console.log(data);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -35,7 +36,7 @@ export default function EditProfileForm() {
               id="username"
               type="text"
               name="username"
-              defaultValue={data.username}
+              defaultValue={data.profile.username}
             />
           </div>
 
@@ -45,7 +46,7 @@ export default function EditProfileForm() {
               id="phone"
               type="tel"
               name="phone"
-              defaultValue={data.phone}
+              defaultValue={data.profile.phone}
             />
           </div>
 
@@ -55,7 +56,7 @@ export default function EditProfileForm() {
               id="dateOfBirth"
               type="date"
               name="dateOfBirth"
-              defaultValue={data.dateOfBirth}
+              defaultValue={data.profile.dateOfBirth}
             />
           </div>
         </>
