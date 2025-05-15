@@ -42,6 +42,11 @@
   position: relative;
 }
 
+.inputGroupButtons {
+  display: flex;
+  gap: 1rem;
+}
+
 .inputGroup input {
   width: 100%;
   padding: 0.5rem 0.5rem 0.2rem 0;

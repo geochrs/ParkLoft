@@ -53,6 +53,10 @@ export default function AvailableSlots() {
     setSelectedLocation(location);
   };
 
+  const handleBackClick = () => {
+    setSelectedLocation(null);
+  };
+
   const [entryTime, setEntryTime] = useState(() => {
     const now = new Date();
     now.setMinutes(0, 0, 0);
@@ -240,7 +244,14 @@ export default function AvailableSlots() {
                 />
               </div>
             </div>
-            <div className={classes.inputGroup}>
+            <div className={classes.inputGroupButtons}>
+              <button
+                type="button"
+                className={classes.confirmButton}
+                onClick={handleBackClick}
+              >
+                Back
+              </button>
               <button type="submit" className={classes.confirmButton}>
                 Confirm
               </button>
