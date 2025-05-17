@@ -25,6 +25,7 @@
   padding: 25px 50px;
   gap: 0.5rem;
   background-color: #ffffff;
+  border-radius: 8px;
 }
 
 .row {
@@ -105,12 +106,38 @@
   color: var(--color-primary-2);
 }
 
-.bookButton,
+.bookButton {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 0px 0px 8px 8px;
+  border: none;
+  background-color: var(--color-primary-2);
+  color: var(--color-primary-3);
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.backButton {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--color-primary-3);
+  color: #656979;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
 .confirmButton {
   width: 100%;
   padding: 0.5rem 0.75rem;
   font-size: 1rem;
   border: none;
+  border-radius: 8px;
   background-color: var(--color-primary-2);
   color: var(--color-primary-3);
   cursor: pointer;
@@ -121,6 +148,10 @@
 .bookButton:hover,
 .confirmButton:hover {
   background-color: var(--color-hover);
+}
+
+.backButton:hover {
+  background-color: #eef0ff  ;
 }
 
 .bookButton:disabled,
@@ -156,6 +187,7 @@
   width: 100%;
   object-fit: cover;
   aspect-ratio: 4/3;
+  border-radius: 8px 8px 0 0;
 }
 
 .availableSlots {
@@ -181,6 +213,7 @@
   text-align: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   width: 100%;
+  border-radius: 8px;
 }
 
 .bookLogo {
@@ -326,7 +359,7 @@
 
   .innerDetails {
     gap: 1rem;
-  }   
+  }
 
   .arrival,
   .depart {

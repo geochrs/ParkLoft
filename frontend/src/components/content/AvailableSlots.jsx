@@ -247,7 +247,7 @@ export default function AvailableSlots() {
             <div className={classes.inputGroupButtons}>
               <button
                 type="button"
-                className={classes.confirmButton}
+                className={classes.backButton}
                 onClick={handleBackClick}
               >
                 Back
