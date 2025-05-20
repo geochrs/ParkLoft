@@ -15,6 +15,32 @@
   width: 100%;
 }
 
+.table {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.tableHeader {
+  font-weight: bold;
+  display: contents;
+}
+
+.tableRow {
+  display: contents;
+}
+
+.tableRow > div,
+.tableHeader > div {
+  padding: 10px 0;
+  text-align: center;
+  word-break: break-word;
+  white-space: normal;
+}
+
+.tableRow:not(:last-child) > div {
+  border-bottom: 1px solid #ddd;
+}
+
 .card {
   line-height: 1.5;
   background-color: #f7f8ff;
@@ -88,17 +114,6 @@
 .editButton:hover {
   background-color: var(--color-hover);
   cursor: pointer;
-}
-
-.bookingRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.bookingRow > div {
-  flex-grow: 1;
-  text-align: center;
 }
 
 .bookNowContainer {

@@ -44,45 +44,55 @@ export default function ProfilePage() {
         </div>
         <div className={classes.card}>
           <h3>Your Bookings</h3>
-          <div className={classes.bookingRow}>
-            <div>TICKET ID</div>
-            <div>LICENSE PLATE</div>
-            <div>PLACE</div>
-            <div>ENTRY TIME</div>
-            <div>EXIT TIME</div>
+          <div className={classes.table}>
+            <div className={`${classes.tableRow} ${classes.tableHeader}`}>
+              <div>TICKET ID</div>
+              <div>LICENSE PLATE</div>
+              <div>PLACE</div>
+              <div>ENTRY TIME</div>
+              <div>EXIT TIME</div>
+            </div>
+            {bookings.length === 0 ? (
+              <p>No bookings found.</p>
+            ) : (
+              bookings.map((booking) => {
+                const entry = new Date(booking.entryTime);
+                const exit = new Date(booking.exitTime);
+
+                const formattedDateEntry = entry.toLocaleDateString('en-GB', {
+                  timeZone: 'UTC',
+                });
+                const formattedTimeEntry = entry.toLocaleTimeString('en-GB', {
+                  hour: '2-digit',
+                  minute: '2-digit',
+                  timeZone: 'UTC',
+                });
+
+                const formattedDateExit = exit.toLocaleDateString('en-GB', {
+                  timeZone: 'UTC',
+                });
+                const formattedTimeExit = exit.toLocaleTimeString('en-GB', {
+                  hour: '2-digit',
+                  minute: '2-digit',
+                  timeZone: 'UTC',
+                });
+
+                return (
+                  <div key={booking.id} className={classes.tableRow}>
+                    <div>{booking.ticketId}</div>
+                    <div>{booking.licensePlate}</div>
+                    <div>{booking.Location?.name}</div>
+                    <div>
+                      {formattedDateEntry} {formattedTimeEntry}
+                    </div>
+                    <div>
+                      {formattedDateExit} {formattedTimeExit}
+                    </div>
+                  </div>
+                );
+              })
+            )}
           </div>
-          {bookings.length === 0 ? (
-            <p>No bookings found.</p>
-          ) : (
-            bookings.map((booking) => {
-              const entry = new Date(booking.entryTime);
-              const exit = new Date(booking.exitTime);
-            
-              const formattedDateEntry = entry.toLocaleDateString('en-GB', { timeZone: 'UTC' });
-              const formattedTimeEntry = entry.toLocaleTimeString('en-GB', {
-                hour: '2-digit',
-                minute: '2-digit',
-                timeZone  : 'UTC',
-              });
-            
-              const formattedDateExit = exit.toLocaleDateString('en-GB', { timeZone: 'UTC' });
-              const formattedTimeExit = exit.toLocaleTimeString('en-GB', {
-                hour: '2-digit',
-                minute: '2-digit',
-                timeZone  : 'UTC',
-              });
-            
-              return (
-                <div key={booking.id} className={classes.bookingRow}>
-                  <div>{booking.ticketId}</div>
-                  <div>{booking.licensePlate}</div>
-                  <div>{booking.Location?.name}</div>
-                  <div>{formattedDateEntry} {formattedTimeEntry}</div>
-                  <div>{formattedDateExit} {formattedTimeExit}</div>
-                </div>
-              );
-            })
-          )}
           <div className={classes.bookNowContainer}>
             <button className={classes.bookNowButton}>Book Now</button>
           </div>
