@@ -83,10 +83,10 @@ export default function ProfilePage() {
                     <div>{booking.licensePlate}</div>
                     <div>{booking.Location?.name}</div>
                     <div>
-                      {formattedDateEntry} {formattedTimeEntry}
+                      {formattedDateEntry} <br></br> {formattedTimeEntry}
                     </div>
                     <div>
-                      {formattedDateExit} {formattedTimeExit}
+                      {formattedDateExit} <br></br> {formattedTimeExit}
                     </div>
                   </div>
                 );
