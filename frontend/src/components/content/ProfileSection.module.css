@@ -1,7 +1,6 @@
 .container {
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
   padding: 180px 20px 100px;
   max-width: 1280px;
   margin: 0 auto 2rem;
@@ -17,7 +16,8 @@
 
 .table {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(5, minmax(150px, 1fr));
+  white-space: nowrap;
 }
 
 .tableHeader {
@@ -41,7 +41,8 @@
   border-bottom: 1px solid #ddd;
 }
 
-.card {
+.card,
+.bookingCard {
   line-height: 1.5;
   background-color: #f7f8ff;
   padding: 30px 20px;
@@ -54,7 +55,11 @@
   justify-content: space-between;
 }
 
-.card h3 {
+.bookingCard {
+  overflow-x: auto;
+}
+
+.bookingCard h3 {
   margin-top: 0;
 }
 
@@ -66,7 +71,7 @@
   flex: 1 1 30%;
 }
 
-.cards .card:nth-child(2) {
+.cards .bookingCard {
   flex: 1 1 60%;
 }
 
@@ -96,7 +101,7 @@
 }
 
 .row:first-of-type {
-  padding-top: 1rem;
+  margin-top: auto;
 }
 
 .editButton {
@@ -106,9 +111,8 @@
   border-radius: 5px;
   padding: 10px 25px;
   transition: background-color 0.3s ease;
-  margin-top: 1rem;
+  margin-top: auto;
   font-size: 1rem;
-  width: 100%;
 }
 
 .editButton:hover {
@@ -131,18 +135,18 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  width: 100%;
 }
 
 .bookNowButton:hover {
   background-color: var(--color-hover);
 }
 
-/* @media (max-width: 768px) {
-    .cards .card:nth-child(1) {
-      flex: 1 1 100%;
-    }
-    .cards .card:nth-child(2) {
-        flex: 1 1 100%;
-      }
-  } */
+@media (max-width: 604px) {
+  .row:first-of-type {
+    margin-top: 1rem;
+  }
+
+  .editButton {
+    margin-top: 1rem;
+  }
+}

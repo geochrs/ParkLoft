@@ -42,7 +42,7 @@ export default function ProfilePage() {
             Edit Profile
           </button>
         </div>
-        <div className={classes.card}>
+        <div className={classes.bookingCard}>
           <h3>Your Bookings</h3>
           <div className={classes.table}>
             <div className={`${classes.tableRow} ${classes.tableHeader}`}>
