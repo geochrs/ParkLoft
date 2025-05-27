@@ -1,6 +1,6 @@
 import { Form, useActionData, useNavigation, Link } from 'react-router-dom';
 import classes from './LoginForm.module.css';
-import { validateInputs } from './validateForm';
+import { validateInputs } from '../../utils/validateForm';
 import { useState } from 'react';
 
 export default function LoginForm() {

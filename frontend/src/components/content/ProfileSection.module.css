@@ -44,7 +44,7 @@
 .card,
 .bookingCard {
   line-height: 1.5;
-  background-color: #f7f8ff;
+  background-color: #fff;
   padding: 30px 20px;
   border-radius: 5px;
   border-bottom: 5px solid var(--color-primary-2);

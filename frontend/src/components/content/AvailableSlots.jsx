@@ -15,6 +15,7 @@ import { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Skeleton from '../layout/Skeleton.jsx';
+import { validateBookInputs } from '../../utils/validateForm.js';
 
 export default function AvailableSlots() {
   const { slots, user } = useLoaderData();
@@ -28,6 +29,28 @@ export default function AvailableSlots() {
 
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
   const [bookingDetails, setBookingDetails] = useState(null);
+
+  const [formErrors, setFormErrors] = useState({});
+
+  const handleClientValidation = (event) => {
+    const formData = new FormData(event.currentTarget);
+    const fullName = formData.get('fullName');
+    const phone = formData.get('phone');
+    const licensePlate = formData.get('licensePlate');
+
+    const errors = validateBookInputs(fullName, phone, licensePlate);
+
+    if (Object.keys(errors).length > 0) {
+      event.preventDefault();
+      setFormErrors(errors);
+    } else {
+      setFormErrors({});
+    }
+  };
+
+  const handlePhoneInput = (e) => {
+    e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10);
+  };
 
   useEffect(() => {
     if (isSubmitting) {
@@ -172,6 +195,8 @@ export default function AvailableSlots() {
           <Form
             className={classes.form}
             method="POST"
+            onSubmit={handleClientValidation}
+            noValidate
             action="/slots-available"
           >
             <input
@@ -190,6 +215,11 @@ export default function AvailableSlots() {
                 defaultValue={user?.username || ''}
               />
               <label htmlFor="fullName">Full Name</label>
+              {formErrors.fullName && (
+                <span className={classes.errorValidation}>
+                  {formErrors.fullName}
+                </span>
+              )}
             </div>
             <div className={classes.row}>
               <div className={classes.inputGroup}>
@@ -200,8 +230,15 @@ export default function AvailableSlots() {
                   placeholder=" "
                   defaultValue={user?.phone || ''}
                   required
+                  maxLength={10}
+                  onInput={handlePhoneInput}
                 />
                 <label htmlFor="phone">Phone</label>
+                {formErrors.phone && (
+                  <span className={classes.errorValidation}>
+                    {formErrors.phone}
+                  </span>
+                )}
               </div>
               <div className={classes.inputGroup}>
                 <input
@@ -209,9 +246,15 @@ export default function AvailableSlots() {
                   type="text"
                   name="licensePlate"
                   placeholder=" "
+                  maxLength={7}
                   required
                 />
                 <label htmlFor="licensePlate">License Plate</label>
+                {formErrors.licensePlate && (
+                  <span className={classes.errorValidation}>
+                    {formErrors.licensePlate}
+                  </span>
+                )}
               </div>
             </div>
             <div className={classes.row}>

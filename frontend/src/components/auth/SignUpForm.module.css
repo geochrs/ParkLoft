@@ -49,7 +49,7 @@
 .inputGroup label {
   position: absolute;
   left: 0;
-  bottom: 40%;
+  /* bottom: 40%; */
   transform: translateY(50%);
   color: #aaa;
   transition: 0.2s ease all;
@@ -63,7 +63,7 @@
 
 .inputGroup input:focus + label,
 .inputGroup input:not(:placeholder-shown) + label {
-  bottom: 55%;
+  /* bottom: 55%; */
   left: 0;
   transform: translateY(-50%);
   font-size: 0.75rem;
@@ -112,8 +112,8 @@
 }
 
 .errorValidation {
-  position: absolute;
-  bottom: -25px;
+  position: relative;
+  bottom: -8px;
   left: 0;
   color: #c1121f; 
   font-size: 0.875rem;

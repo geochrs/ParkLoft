@@ -12,7 +12,6 @@ export async function bookingAction({ request }) {
     exitTime: new Date(data.get('exitTime')).toISOString(),
     location_id: data.get('location_id'),
   };
-  console.log(bookingData);
   const apiUrl = getApiUrl();
   const url = `${apiUrl}/bookings`;
 
