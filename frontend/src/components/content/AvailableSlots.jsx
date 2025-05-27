@@ -206,6 +206,17 @@ export default function AvailableSlots() {
             />
             <input type="hidden" name="entryTime" value={entryTime} />
             <input type="hidden" name="exitTime" value={exitTime} />
+            {actionData?.message && (
+              <ul className={classes.errorList}>
+                {Array.isArray(actionData.message) ? (
+                  actionData.message.map((error, index) => (
+                    <li key={index}>{error}</li>
+                  ))
+                ) : (
+                  <li>{actionData.message}</li>
+                )}
+              </ul>
+            )}
             <div className={classes.inputGroup}>
               <input
                 id="fullName"

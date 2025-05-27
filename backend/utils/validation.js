@@ -35,3 +35,25 @@ export const validateLoginInput = (email, password) => {
 
   return errors;
 };
+
+export const validateBookingInput = (fullName, phone, licensePlate) => {
+  const errors = [];
+
+  if (!fullName) errors.push('Full name is required.');
+
+  const phoneRegex = /^\d{10}$/;
+  if (!phone) {
+    errors.push('Phone is required.');
+  } else if (!phoneRegex.test(phone.trim())) {
+    errors.push('Phone must contain exactly 10 digits.');
+  }
+
+  const licensePlateRegex = /^[A-Za-z0-9]{7}$/;
+  if (!licensePlate) {
+    errors.push('License plate is required.');
+  } else if (!licensePlateRegex.test(licensePlate.trim())) {
+    errors.push('License plate must be exactly 7 characters.');
+  }
+
+  return errors;
+};

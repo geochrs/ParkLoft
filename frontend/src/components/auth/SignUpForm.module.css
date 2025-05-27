@@ -107,10 +107,6 @@
   font-size: 0.875rem;
 }
 
-.errorList li {
-  margin-bottom: 0.5rem;
-}
-
 .errorValidation {
   position: relative;
   bottom: -8px;

@@ -49,10 +49,6 @@
   font-size: 0.875rem;
 }
 
-.errorList li {
-  margin-bottom: 0.5rem;
-}
-
 .actions {
   display: flex;
   justify-content: center;

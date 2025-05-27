@@ -7,6 +7,7 @@ import Booking from '../models/Booking.js';
 import Slot from '../models/Slot.js';
 import Location from '../models/Location.js';
 import { authenticateToken } from '../middleware.js';
+import { validateBookingInput } from '../utils/validation.js';
 
 const router = express.Router();
 
@@ -29,6 +30,11 @@ router.get('/bookings', authenticateToken, async (req, res) => {
 router.post('/bookings', authenticateToken, async (req, res) => {
   const { fullName, phone, licensePlate, entryTime, exitTime, location_id } =
     req.body;
+
+  const errors = validateBookingInput(fullName, phone, licensePlate);
+  if (errors.length > 0) {
+    return res.status(422).json({ message: errors });
+  }
 
   let userPublicId;
   if (req.user) {
