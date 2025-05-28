@@ -5,12 +5,7 @@ import arrow from '../../assets/arrow.svg';
 import confirm from '../../assets/confirm.svg';
 import LoadingIndicator from '../layout/LoadingIndicator.jsx';
 
-import {
-  Form,
-  useLoaderData,
-  useNavigation,
-  useActionData,
-} from 'react-router-dom';
+import { Form, useLoaderData, useActionData } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -19,11 +14,8 @@ import { validateBookInputs } from '../../utils/validateForm.js';
 
 export default function AvailableSlots() {
   const { slots, user } = useLoaderData();
-  const actionData = useActionData();
-  const navigation = useNavigation();
+  const data = useActionData();
   const [isLoading, setIsLoading] = useState(true);
-  const [isConfirming, setIsConfirming] = useState(false);
-  const isSubmitting = navigation.state === 'submitting';
 
   const [selectedLocation, setSelectedLocation] = useState(null);
 
@@ -31,6 +23,7 @@ export default function AvailableSlots() {
   const [bookingDetails, setBookingDetails] = useState(null);
 
   const [formErrors, setFormErrors] = useState({});
+  const [formServerError, setFormServerError] = useState(false);
 
   const handleClientValidation = (event) => {
     const formData = new FormData(event.currentTarget);
@@ -48,24 +41,36 @@ export default function AvailableSlots() {
     }
   };
 
+  const handleInputChange = () => {
+    if (formServerError) setFormServerError(false);
+    if (Object.keys(formErrors).length > 0) setFormErrors({});
+  };
+
+  useEffect(() => {
+    if (data?.message) {
+      setFormServerError(true);
+    } else {
+      setFormServerError(false);
+    }
+  }, [data]);
+
+  const showFormServerError =
+    !Object.keys(formErrors).length && data?.message && formServerError;
+
   const handlePhoneInput = (e) => {
     e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10);
   };
 
   useEffect(() => {
-    if (isSubmitting) {
-      setIsConfirming(true);
-    } else {
-      setIsConfirming(false);
-    }
-  }, [isSubmitting]);
-
-  useEffect(() => {
-    if (actionData?.success) {
-      setBookingDetails(actionData.bookingDetails);
+    if (data?.success) {
       setBookingConfirmed(true);
+      setBookingDetails(null);
+      const timer = setTimeout(() => {
+        setBookingDetails(data.bookingDetails);
+      }, 500);
+      return () => clearTimeout(timer);
     }
-  }, [actionData]);
+  }, [data]);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 1500);
@@ -191,7 +196,7 @@ export default function AvailableSlots() {
           )
         )}
         {/* Show the booking form only for the selected location */}
-        {selectedLocation && !bookingConfirmed && !isConfirming && (
+        {selectedLocation && !bookingConfirmed && (
           <Form
             className={classes.form}
             method="POST"
@@ -206,14 +211,14 @@ export default function AvailableSlots() {
             />
             <input type="hidden" name="entryTime" value={entryTime} />
             <input type="hidden" name="exitTime" value={exitTime} />
-            {actionData?.message && (
+            {showFormServerError && (
               <ul className={classes.errorList}>
-                {Array.isArray(actionData.message) ? (
-                  actionData.message.map((error, index) => (
+                {Array.isArray(data.message) ? (
+                  data.message.map((error, index) => (
                     <li key={index}>{error}</li>
                   ))
                 ) : (
-                  <li>{actionData.message}</li>
+                  <li>{data.message}</li>
                 )}
               </ul>
             )}
@@ -224,6 +229,7 @@ export default function AvailableSlots() {
                 name="fullName"
                 placeholder=" "
                 defaultValue={user?.username || ''}
+                onChange={handleInputChange}
               />
               <label htmlFor="fullName">Full Name</label>
               {formErrors.fullName && (
@@ -243,6 +249,7 @@ export default function AvailableSlots() {
                   required
                   maxLength={10}
                   onInput={handlePhoneInput}
+                  onChange={handleInputChange}
                 />
                 <label htmlFor="phone">Phone</label>
                 {formErrors.phone && (
@@ -259,6 +266,7 @@ export default function AvailableSlots() {
                   placeholder=" "
                   maxLength={7}
                   required
+                  onChange={handleInputChange}
                 />
                 <label htmlFor="licensePlate">License Plate</label>
                 {formErrors.licensePlate && (
@@ -312,7 +320,7 @@ export default function AvailableSlots() {
             </div>
           </Form>
         )}
-        {isConfirming && <LoadingIndicator />}
+        {bookingConfirmed && !bookingDetails && <LoadingIndicator />}
         {bookingConfirmed && bookingDetails && (
           <>
             <div className={classes.bookingTitle}>

@@ -107,6 +107,10 @@
   font-size: 0.875rem;
 }
 
+.errorList li:not(:last-child) {
+  margin-bottom: 0.3rem;
+}
+
 .errorValidation {
   position: relative;
   bottom: -8px;

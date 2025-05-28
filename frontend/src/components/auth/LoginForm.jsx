@@ -1,12 +1,13 @@
 import { Form, useActionData, useNavigation, Link } from 'react-router-dom';
 import classes from './LoginForm.module.css';
 import { validateInputs } from '../../utils/validateForm';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function LoginForm() {
   const data = useActionData();
   const navigation = useNavigation();
   const [formErrors, setFormErrors] = useState({});
+  const [formServerError, setFormServerError] = useState(false);
   const isSubmitting = navigation.state === 'submitting';
 
   const handleClientValidation = (event) => {
@@ -24,16 +25,32 @@ export default function LoginForm() {
     }
   };
 
+  const handleInputChange = () => {
+    if (formServerError) setFormServerError(false);
+    if (Object.keys(formErrors).length > 0) setFormErrors({});
+  };
+
+  useEffect(() => {
+    if (data?.message) {
+      setFormServerError(true);
+    } else {
+      setFormServerError(false);
+    }
+  }, [data]);
+
+  const showFormServerError =
+    !Object.keys(formErrors).length && data?.message && formServerError;
+
   return (
     <Form
       method="post"
       className={classes.form}
       onSubmit={handleClientValidation}
       noValidate
-      action='/login'
+      action="/login"
     >
       <h2 className={classes.title}>Log in</h2>
-      {data?.message && (
+      {showFormServerError && (
         <ul className={classes.errorList}>
           {Array.isArray(data.message) ? (
             data.message.map((error, index) => <li key={index}>{error}</li>)
@@ -43,14 +60,26 @@ export default function LoginForm() {
         </ul>
       )}
       <div className={classes.inputGroup}>
-        <input id="email" type="email" name="email" placeholder=" " />
+        <input
+          id="email"
+          type="email"
+          name="email"
+          placeholder=" "
+          onChange={handleInputChange}
+        />
         <label htmlFor="email">Email</label>
         {formErrors.email && (
           <span className={classes.errorValidation}>{formErrors.email}</span>
         )}
       </div>
       <div className={classes.inputGroup}>
-        <input id="password" type="password" name="password" placeholder=" " />
+        <input
+          id="password"
+          type="password"
+          name="password"
+          placeholder=" "
+          onChange={handleInputChange}
+        />
         <label htmlFor="password">Password</label>
         {formErrors.password && (
           <span className={classes.errorValidation}>{formErrors.password}</span>

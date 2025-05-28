@@ -85,6 +85,10 @@
   font-size: 0.875rem;
 }
 
+.errorList li:not(:last-child) {
+  margin-bottom: 0.3rem;
+}
+
 .title {
   font-size: 1.5rem;
   text-align: center;
