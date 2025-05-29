@@ -20,13 +20,13 @@
   width: calc(min(90rem, 85%));
   margin: 0 auto;
   column-gap: 2rem;
-
 }
 
 .h2 {
   grid-column: span 12;
   font-size: 2rem;
   margin-bottom: 2rem;
+  text-align: center;
 }
 
 .cards {
@@ -52,6 +52,7 @@
   transition: 0.3s;
   position: relative;
   background-color: transparent;
+  border-bottom: 5px solid #ccc;
 }
 
 .card img {
