@@ -5,8 +5,8 @@ import arrow from '../../assets/arrow.svg';
 import confirm from '../../assets/confirm.svg';
 import LoadingIndicator from '../layout/LoadingIndicator.jsx';
 
-import { Form, useLoaderData, useActionData } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { Form, useLoaderData, useActionData, Await } from 'react-router-dom';
+import { useState, useEffect, Suspense } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Skeleton from '../layout/Skeleton.jsx';
@@ -73,7 +73,7 @@ export default function AvailableSlots() {
   }, [data]);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1500);
+    const timer = setTimeout(() => setIsLoading(false), 500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -223,14 +223,20 @@ export default function AvailableSlots() {
               </ul>
             )}
             <div className={classes.inputGroup}>
-              <input
-                id="fullName"
-                type="text"
-                name="fullName"
-                placeholder=" "
-                defaultValue={user?.username || ''}
-                onChange={handleInputChange}
-              />
+              <Suspense fallback={null}>
+                <Await resolve={user}>
+                  {(userResolved) => (
+                    <input
+                      id="fullName"
+                      type="text"
+                      name="fullName"
+                      placeholder=" "
+                      defaultValue={userResolved?.username || ''}
+                      onChange={handleInputChange}
+                    />
+                  )}
+                </Await>
+              </Suspense>
               <label htmlFor="fullName">Full Name</label>
               {formErrors.fullName && (
                 <span className={classes.errorValidation}>
@@ -240,17 +246,23 @@ export default function AvailableSlots() {
             </div>
             <div className={classes.row}>
               <div className={classes.inputGroup}>
-                <input
-                  id="phone"
-                  type="tel"
-                  name="phone"
-                  placeholder=" "
-                  defaultValue={user?.phone || ''}
-                  required
-                  maxLength={10}
-                  onInput={handlePhoneInput}
-                  onChange={handleInputChange}
-                />
+                <Suspense fallback={null}>
+                  <Await resolve={user}>
+                    {(userResolved) => (
+                      <input
+                        id="phone"
+                        type="tel"
+                        name="phone"
+                        placeholder=" "
+                        defaultValue={userResolved?.phone || ''}
+                        required
+                        maxLength={10}
+                        onInput={handlePhoneInput}
+                        onChange={handleInputChange}
+                      />
+                    )}
+                  </Await>
+                </Suspense>
                 <label htmlFor="phone">Phone</label>
                 {formErrors.phone && (
                   <span className={classes.errorValidation}>

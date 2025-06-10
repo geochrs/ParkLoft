@@ -9,22 +9,19 @@ export async function availableslotsLoader() {
 
   const slotsUrl = `${apiUrl}/slots-available`;
 
-  const slotsPromise = await fetch(slotsUrl, {
+  const slotsPromise = fetch(slotsUrl, {
     method: 'GET',
     credentials: 'include',
   });
 
-  let userData = null;
   const userPromise = token
     ? fetch(`${apiUrl}/profile`, {
         method: 'GET',
         credentials: 'include',
-      })
-        .then((res) => res.json())
-        .then((data) => (userData = data))
-    : Promise.resolve();
+      }).then((res) => res.json())
+    : Promise.resolve(null);
 
-  const [slotsResponse] = await Promise.all([slotsPromise, userPromise]);
+  const slotsResponse = await slotsPromise;
 
   if (!slotsResponse.ok) {
     const errorData = await slotsResponse.json();
@@ -37,5 +34,6 @@ export async function availableslotsLoader() {
     );
   }
   const slotsData = await slotsResponse.json();
-  return defer({ slots: slotsData, user: userData });
+
+  return defer({ slots: slotsData, user: userPromise });
 }
