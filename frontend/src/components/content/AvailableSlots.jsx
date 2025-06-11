@@ -15,7 +15,6 @@ import { validateBookInputs } from '../../utils/validateForm.js';
 export default function AvailableSlots() {
   const { slots, user } = useLoaderData();
   const data = useActionData();
-  const [isLoading, setIsLoading] = useState(true);
 
   const [selectedLocation, setSelectedLocation] = useState(null);
 
@@ -72,11 +71,6 @@ export default function AvailableSlots() {
     }
   }, [data]);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 500);
-    return () => clearTimeout(timer);
-  }, []);
-
   const handleBook = (location) => () => {
     setSelectedLocation(location);
   };
@@ -121,80 +115,83 @@ export default function AvailableSlots() {
   return (
     <section className={classes.section}>
       <div className={classes.container}>
-        {isLoading ? (
-          <div className={classes.results}>
-            {Array(8)
-              .fill(0)
-              .map((_, i) => (
-                <div key={i} className={classes.locationCard}>
-                  <Skeleton
-                    className={classes.cardImg}
-                    width="100%"
-                    height="220px"
-                  />
-                  <div className={classes.cardContent}>
+        <Suspense
+          fallback={
+            <div className={classes.results}>
+              {Array(8)
+                .fill(0)
+                .map((_, i) => (
+                  <div key={i} className={classes.locationCard}>
                     <Skeleton
-                      width="60%"
-                      height="40px"
-                      margin="0.5rem auto 0"
-                    />
-                    <Skeleton
-                      width="80%"
-                      height="45px"
-                      margin="0.5rem auto 0"
-                    />
-                    <Skeleton
-                      width="50%"
-                      height="40px"
-                      margin="0.5rem auto 0"
-                    />
-                    <Skeleton
+                      className={classes.cardImg}
                       width="100%"
-                      height="50px"
-                      margin="0.5rem auto 0"
-                      className={classes.bookButton}
+                      height="220px"
                     />
-                  </div>
-                </div>
-              ))}
-          </div>
-        ) : (
-          !bookingConfirmed &&
-          !selectedLocation && (
-            <>
-              {slots.length === 0 ? (
-                <p>
-                  No slots available because all locations are fully booked.
-                </p>
-              ) : (
-                <div className={classes.results}>
-                  {slots.map((location) => (
-                    <div
-                      key={location.location_id}
-                      className={classes.locationCard}
-                    >
-                      <img src={cardImg} className={classes.cardImg} />
-                      <div className={classes.cardContent}>
-                        <h3>{location.name}</h3>
-                        <p>{location.address}</p>
-                        <p className={classes.availableSlots}>
-                          {location.Slots.length} available slots
-                        </p>
-                        <button
-                          type="submit"
-                          className={classes.bookButton}
-                          onClick={handleBook(location)}
-                        >
-                          Book Now
-                        </button>
-                      </div>
+                    <div className={classes.cardContent}>
+                      <Skeleton
+                        width="60%"
+                        height="40px"
+                        margin="0.5rem auto 0"
+                      />
+                      <Skeleton
+                        width="80%"
+                        height="45px"
+                        margin="0.5rem auto 0"
+                      />
+                      <Skeleton
+                        width="50%"
+                        height="40px"
+                        margin="0.5rem auto 0"
+                      />
+                      <Skeleton
+                        width="100%"
+                        height="50px"
+                        margin="0.5rem auto 0"
+                        className={classes.bookButton}
+                      />
                     </div>
-                  ))}
-                </div>
-              )}
-            </>
-          )
-        )}
+                  </div>
+                ))}
+            </div>
+          }
+        >
+          <Await resolve={slots}>
+            {(slotsResolved) =>
+              !bookingConfirmed && !selectedLocation ? (
+                slotsResolved.length === 0 ? (
+                  <p>
+                    No slots available because all locations are fully booked.
+                  </p>
+                ) : (
+                  <div className={classes.results}>
+                    {slotsResolved.map((location) => (
+                      <div
+                        key={location.location_id}
+                        className={classes.locationCard}
+                      >
+                        <img src={cardImg} className={classes.cardImg} />
+                        <div className={classes.cardContent}>
+                          <h3>{location.name}</h3>
+                          <p>{location.address}</p>
+                          <p className={classes.availableSlots}>
+                            {location.Slots.length} available slots
+                          </p>
+                          <button
+                            type="submit"
+                            className={classes.bookButton}
+                            onClick={handleBook(location)}
+                          >
+                            Book Now
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )
+              ) : null
+            }
+          </Await>
+        </Suspense>
         {/* Show the booking form only for the selected location */}
         {selectedLocation && !bookingConfirmed && (
           <Form

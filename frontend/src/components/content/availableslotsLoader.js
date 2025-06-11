@@ -12,6 +12,16 @@ export async function availableslotsLoader() {
   const slotsPromise = fetch(slotsUrl, {
     method: 'GET',
     credentials: 'include',
+  }).then(async (res) => {
+    const slotsResponse = res;
+    if (!slotsResponse.ok) {
+      const errorData = await slotsResponse.json();
+      throw json(
+        { message: errorData.message || 'Failed to fetch slots. Please try again.' },
+        { status: slotsResponse.status }
+      );
+    }
+    return slotsResponse.json();
   });
 
   const userPromise = token
@@ -21,19 +31,5 @@ export async function availableslotsLoader() {
       }).then((res) => res.json())
     : Promise.resolve(null);
 
-  const slotsResponse = await slotsPromise;
-
-  if (!slotsResponse.ok) {
-    const errorData = await slotsResponse.json();
-    throw json(
-      {
-        message:
-          errorData.message || 'Failed to fetch slots. Please try again.',
-      },
-      { status: slotsResponse.status }
-    );
-  }
-  const slotsData = await slotsResponse.json();
-
-  return defer({ slots: slotsData, user: userPromise });
+  return defer({ slots: slotsPromise, user: userPromise });
 }
