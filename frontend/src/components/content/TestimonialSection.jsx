@@ -1,7 +1,7 @@
 import classes from './TestimonialSection.module.css';
 import { useState } from 'react';
 
-export default function TestimonialSection() {
+export function TestimonialSection() {
   const [activeId, setActiveId] = useState('content1');
 
   const testimonials = [

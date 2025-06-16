@@ -2,7 +2,7 @@ import { useLoaderData } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { modalActions } from '../store/modal';
 
-import ProfileSection from '../components/content/ProfileSection';
+import { ProfileSection } from '../components/content/ProfileSection';
 import classes from '../components/content/ProfileSection.module.css';
 
 export default function ProfilePage() {

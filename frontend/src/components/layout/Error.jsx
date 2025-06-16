@@ -1,7 +1,7 @@
 import { NavLink, useRouteError } from 'react-router-dom';
 import classes from './Error.module.css';
 
-export default function Error() {
+export function Error() {
   const error = useRouteError();
 
   const errorMessage = error?.message || 'An unknown error occurred';

@@ -3,7 +3,7 @@ import classes from './LoginForm.module.css';
 import { validateInputs } from '../../utils/validateForm';
 import { useState, useEffect } from 'react';
 
-export default function LoginForm() {
+export function LoginForm() {
   const data = useActionData();
   const navigation = useNavigation();
   const [formErrors, setFormErrors] = useState({});

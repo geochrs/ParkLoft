@@ -12,7 +12,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import Skeleton from '../layout/Skeleton.jsx';
 import { validateBookInputs } from '../../utils/validateForm.js';
 
-export default function AvailableSlots() {
+export function AvailableSlots() {
   const { slots, user } = useLoaderData();
   const data = useActionData();
 

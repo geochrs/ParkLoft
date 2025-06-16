@@ -1,7 +1,7 @@
 import classes from './AboutSection.module.css';
 import { SVG1, SVG2, SVG3, SVG4, SVG5 } from '../icons/aboutSVG.jsx';
 
-export default function AboutSection() {
+export function AboutSection() {
   return (
     <section className={classes.section}>
       <div className={classes.container} data-aos="fade">

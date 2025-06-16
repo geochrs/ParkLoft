@@ -4,15 +4,16 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import ProfilePage from './pages/ProfilePage';
-import { loginAction } from './components/auth/loginAction';
-import { signupAction } from './components/auth/signupAction';
+import TosPage from './pages/TosPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ErrorPage from './pages/ErrorPage';
+
+import { loginAction } from './components/auth/loginAction';
+import { signupAction } from './components/auth/signupAction';
 import { action as logoutAction } from './pages/LogoutPage';
 import { profileLoader, profileAction } from './pages/profile';
-import TosPage from './pages/TosPage';
 import { availableslotsLoader } from './components/content/availableslotsLoader';
-import AvailableSlots from './components/content/AvailableSlots';
+import { AvailableSlots } from './components/content/AvailableSlots';
 import { bookingAction } from './components/content/bookingAction';
 
 const router = createBrowserRouter([

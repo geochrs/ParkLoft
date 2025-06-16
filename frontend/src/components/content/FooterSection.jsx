@@ -2,7 +2,7 @@ import classes from './FooterSection.module.css';
 import logo from '../../assets/parkloftLogo.png';
 import { Link } from 'react-router-dom';
 
-export default function FooterSection() {
+export function FooterSection() {
   return (
     <section className={classes.section}>
       <div className={classes.container}>

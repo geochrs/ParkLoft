@@ -1,7 +1,7 @@
 import { Form, useActionData, useNavigation } from 'react-router-dom';
 import classes from './ForgotPassword.module.css';
 
-export default function ForgotPassword() {
+export function ForgotPassword() {
   const data = useActionData();
   const navigation = useNavigation();
 

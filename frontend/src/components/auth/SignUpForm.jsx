@@ -3,7 +3,7 @@ import classes from './SignUpForm.module.css';
 import { validateInputs } from '../../utils/validateForm';
 import { useState, useEffect } from 'react';
 
-export default function SignUpForm() {
+export function SignUpForm() {
   const data = useActionData();
   const navigation = useNavigation();
 

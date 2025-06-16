@@ -5,7 +5,7 @@ import money from '../../assets/money.svg';
 import line from '../../assets/line.svg';
 import { NavLink } from 'react-router-dom';
 
-export default function HeroSection() {
+export function HeroSection() {
   return (
     <section className={classes.section}>
       <div className={classes.container}>

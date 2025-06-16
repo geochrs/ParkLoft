@@ -1,6 +1,6 @@
 import classes from './ProfileSection.module.css';
 
-export default function ProfileSection({ children }) {
+export function ProfileSection({ children }) {
   return (
     <section className={classes.section}>
       <div className={classes.container}>
