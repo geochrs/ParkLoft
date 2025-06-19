@@ -1,15 +1,14 @@
 .section {
   display: grid;
-  place-items: start;
-  min-height: 100vh;
   color: var(--color-primary);
   background-color: #fff;
   padding-block: min(20vh, 3rem);
 }
 
-@media screen and (min-width: 980px) {
+@media screen and (max-width: 980px) {
   .section {
-    place-items: center;
+    min-height: 100vh;
+    place-items: start;
   }
 }
 
