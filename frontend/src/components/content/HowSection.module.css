@@ -5,14 +5,12 @@
 .container {
   max-width: 1380px;
   margin: 0 auto;
-  /* padding: 120px 20px 0; */
-  padding-block: min(20vh, 3rem);
-  /* text-align: left; */
+  padding: 120px 20px 0;
 }
 
 .h2 {
   font-size: 2rem;
-  text-align: left;
+  text-align: center;
   color: var(--color-primary);
 }
 
@@ -20,6 +18,12 @@
   font-size: 1.2rem;
   color: var(--color-primary);
   margin-top: 0;
+}
+
+img {
+    border-radius: 50%;
+    width: 128px;
+    height: 128px;
 }
 
 .cards {
@@ -32,33 +36,23 @@
 .card {
   text-align: center;
   line-height: 1.5;
-  /* background-color: #f7f8ff; */
   padding: 30px 20px;
-  border-radius: 5px;
-  border-bottom: 5px solid var(--color-primary-2);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
 }
 
-.cards .card:nth-child(-n + 3) {
+.cards .card:nth-child(-n+3) {
   flex: 1 1 30%;
   max-width: 30%;
 }
 
-.cards .card:nth-child(n + 4) {
+.cards .card:nth-child(n+4) {
   flex: 1 1 45%;
   max-width: 45%;
-}
-
-.card:hover {
-  border-bottom: 5px solid var(--color-hover);
 }
 
 .aboutList {
   list-style-type: none;
   padding: 0;
   margin: 0 0 1rem 0;
-  /* color: var(--color-primary-2); */
   font-size: 0.875rem;
 }
 
@@ -66,23 +60,9 @@
   margin-bottom: 0.5rem;
 }
 
-.aboutLink {
-  text-decoration: none;
-  color: var(--color-primary-2);
-}
-
-.aboutLink:hover {
-  text-decoration: underline;
-  color: var(--color-hover);
-}
-
 @media (max-width: 768px) {
   .container {
-    padding: 40px 10px 0;
-  }
-
-  .h2 {
-    text-align: center;
+    padding: 90px 10px 0;
   }
 
   .cards {
