@@ -62,33 +62,30 @@ export function TestimonialSection() {
           ))}
         </div>
         <div className={classes.content}>
-          {testimonials.map((item) => (
-            <div
-              key={item.id}
-              className={`${classes.contentBox} ${
-                activeId === item.id ? classes.activeContent : ''
-              }`}
-            >
-              <div className={classes.text}>
-                <h2>{item.heading}</h2>
-                {[...Array(5)].map((_, i) => (
-                  <svg
-                    key={i}
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    fill="#eca633"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 .587l3.668 7.568L24 9.75l-6 5.848L19.335 24 12 20.018 4.665 24 6 15.598 0 9.75l8.332-1.595z" />
-                  </svg>
-                ))}
-                {item.content.map((p, i) => (
-                  <p key={i}>{p}</p>
-                ))}
+          {testimonials
+            .filter((item) => item.id === activeId)
+            .map((item) => (
+              <div key={item.id} className={classes.contentBox}>
+                <div className={classes.text}>
+                  <h2>{item.heading}</h2>
+                  {[...Array(5)].map((_, i) => (
+                    <svg
+                      key={i}
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      fill="#eca633"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M12 .587l3.668 7.568L24 9.75l-6 5.848L19.335 24 12 20.018 4.665 24 6 15.598 0 9.75l8.332-1.595z" />
+                    </svg>
+                  ))}
+                  {item.content.map((p, i) => (
+                    <p key={i}>{p}</p>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </section>
