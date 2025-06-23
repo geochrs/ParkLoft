@@ -12,11 +12,16 @@
   }
 }
 
+@media (max-width: 768px) {
+  .section {
+    padding-inline: 10px;
+  }
+}
+
 .container {
   display: grid;
   max-width: 1380px;
   grid-template-columns: repeat(12, 1fr);
-  width: calc(min(90rem, 85%));
   margin: 0 auto;
   column-gap: 2rem;
 }

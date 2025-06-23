@@ -14,12 +14,6 @@ export default function Navbar() {
   const [token, setToken] = useState(null);
   const [isSticky, setIsSticky] = useState(false);
 
-  const handleOpenModal = (e) => {
-    e.preventDefault();
-    dispatch(modalActions.openModal({ key: 'howItWorks' }));
-    dispatch(menuActions.closeMenu());
-  };
-
   const isAuthPage =
     location.pathname === '/login' ||
     location.pathname === '/signup' ||
@@ -106,17 +100,6 @@ export default function Navbar() {
                     }
                   >
                     Available Slots
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/"
-                    onClick={handleOpenModal}
-                    className={({ isActive }) =>
-                      isActive ? classes.active : undefined
-                    }
-                  >
-                    How it Works
                   </NavLink>
                 </li>
               </div>

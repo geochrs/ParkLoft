@@ -218,7 +218,9 @@
   }
 
   .loginButton,
-  .signupButton {
+  .signupButton,
+  .logoutButton,
+  .profileButton {
     border-radius: 4rem;
   }
 }
