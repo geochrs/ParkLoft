@@ -5,7 +5,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
   padding: 1rem;
   width: 80%;
-  max-width: 40rem;
+  max-width: 480px;
   animation: fade-slide-up 0.3s ease-out forwards;
 }
 
@@ -26,19 +26,18 @@
 
 .homeModal h3 {
     color: var(--color-primary);
-    text-align: center;
-    font-size: 2rem;
-    text-transform: uppercase;
     border-bottom: 2px solid var(--color-primary-2);
 }
 
 .homeModal h4 {
     color: var(--color-primary);
+    font-size: 0.8rem;
     margin-bottom: 0;
 }
 
 .homeModal p {
     margin-top: 0.5rem;
+    font-size: 0.75rem;
     color: #656979;
 }
 

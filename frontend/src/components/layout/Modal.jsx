@@ -12,38 +12,16 @@ export default function Modal({ className }) {
 
   const getModalContent = (key) => {
     switch (key) {
-      case 'howItWorks':
+      case 'editCookies':
         return (
           <div className={classes.homeModal}>
-            <h3>How It Works</h3>
-            <ul>
-              <li>
-                <span>1</span>
-                <div>
-                  <h4>Find your car park!</h4>
-                  <p>
-                    Sign up and check our presence at hotels, restaurants,
-                    airports...
-                  </p>
-                </div>
-              </li>
-              <li>
-                <span>2</span>
-                <div>
-                  <h4>Book!</h4>
-                  <p>Select date and time, check availability, see prices...</p>
-                </div>
-              </li>
-              <li>
-                <span>3</span>
-                <div>
-                  <h4>And Park!</h4>
-                  <p>
-                    Upon arrival, just show your reservation in the car park
-                  </p>
-                </div>
-              </li>
-            </ul>
+            <h3>Preferences</h3>
+            <h4>Cookies usage</h4>
+            <p>
+              We use cookies to ensure the basic functionalities of the website
+              and to enhance your online experience. You can choose for each
+              category to opt-in or opt-out.
+            </p>
           </div>
         );
       case 'editProfile':
