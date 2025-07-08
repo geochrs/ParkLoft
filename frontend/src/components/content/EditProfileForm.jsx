@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import LoadingIndicator from '../layout/LoadingIndicator';
 import { useState, useEffect } from 'react';
 
-export default function EditProfileForm() {
+export function EditProfileForm() {
   const data = useRouteLoaderData('profile');
   const navigation = useNavigation();
   const dispatch = useDispatch();

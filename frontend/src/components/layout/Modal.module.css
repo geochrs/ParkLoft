@@ -23,31 +23,3 @@
     cursor: pointer;
     color: var(--color-primary);
   }
-
-.homeModal h3 {
-    color: var(--color-primary);
-    border-bottom: 2px solid var(--color-primary-2);
-}
-
-.homeModal h4 {
-    color: var(--color-primary);
-    font-size: 0.8rem;
-    margin-bottom: 0;
-}
-
-.homeModal p {
-    margin-top: 0.5rem;
-    font-size: 0.75rem;
-    color: #656979;
-}
-
-.homeModal span {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--color-primary-2);
-    position: absolute;
-}
-
-.homeModal div {
-    margin-left: 2rem;
-}
