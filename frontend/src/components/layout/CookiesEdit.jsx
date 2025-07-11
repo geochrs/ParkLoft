@@ -55,7 +55,7 @@ export function CookiesEdit() {
             >
               <svg
                 className={`${classes.icon} ${
-                  openSection === section.id ? classes.open : ''
+                  openSection === section.id ? classes.iconRotate : ''
                 }`}
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -79,11 +79,13 @@ export function CookiesEdit() {
               </label>
             </div>
           </div>
-          {openSection === section.id && (
-            <div className={classes.accordionContent}>
-              <p>{section.description}</p>
-            </div>
-          )}
+          <div
+            className={`${classes.accordionContent} ${
+              openSection === section.id ? classes.open : ''
+            }`}
+          >
+            <p>{section.description}</p>
+          </div>
         </div>
       ))}
     </div>
