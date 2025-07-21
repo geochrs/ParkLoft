@@ -1,4 +1,10 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import {
+  saveCookiePreferences,
+  applyCookiePreferences,
+} from '../../utils/cookieConsent';
+import { modalActions } from '../../store/modal';
 import classes from './CookiesEdit.module.css';
 
 const cookieSections = [
@@ -21,6 +27,7 @@ const cookieSections = [
 ];
 
 export function CookiesEdit() {
+  const dispatch = useDispatch();
   const [openSection, setOpenSection] = useState(null);
   const [cookieSettings, setCookieSettings] = useState(() =>
     cookieSections.reduce(
@@ -35,6 +42,19 @@ export function CookiesEdit() {
 
   const toggleCookie = (id) => {
     setCookieSettings((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  const savePrefs = () => {
+    saveCookiePreferences(cookieSettings);
+    applyCookiePreferences(cookieSettings);
+    dispatch(modalActions.closeModal());
+  };
+
+  const acceptAll = () => {
+    const allPrefs = { essential: true, analytics: true };
+    saveCookiePreferences(allPrefs);
+    applyCookiePreferences(allPrefs);
+    dispatch(modalActions.closeModal());
   };
 
   return (
@@ -88,6 +108,10 @@ export function CookiesEdit() {
           </div>
         </div>
       ))}
+      <div className={classes.actions}>
+        <button className={classes.editButton} onClick={savePrefs}>Save Preferences</button>
+        <button className={classes.acceptButton} onClick={acceptAll}>Accept All</button>
+      </div>
     </div>
   );
 }

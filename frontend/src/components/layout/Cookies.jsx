@@ -1,13 +1,45 @@
 import { modalActions } from '../../store/modal';
+import { useState, useEffect } from 'react';
 import classes from './Cookies.module.css';
 import { useDispatch } from 'react-redux';
+import {
+  getCookiePreferences,
+  saveCookiePreferences,
+  applyCookiePreferences,
+} from '../../utils/cookieConsent';
 
 export function Cookies() {
   const dispatch = useDispatch();
+  const [showBanner, setShowBanner] = useState(false);
 
-  const handleOpenModal = () => {
+  useEffect(() => {
+    const prefs = getCookiePreferences();
+    if (!prefs) {
+      setShowBanner(true);
+    } else {
+      applyCookiePreferences(prefs);
+    }
+  }, []);
+
+  const acceptAll = () => {
+    const prefs = { essential: true, analytics: true };
+    saveCookiePreferences(prefs);
+    applyCookiePreferences(prefs);
+    setShowBanner(false);
+  };
+
+  const rejectOptional = () => {
+    const prefs = { essential: true, analytics: false };
+    saveCookiePreferences(prefs);
+    applyCookiePreferences(prefs);
+    setShowBanner(false);
+  };
+
+  const openPreferences = () => {
     dispatch(modalActions.openModal({ key: 'editCookies' }));
   };
+
+  if (!showBanner) return null;
 
   return (
     <section className={classes.section}>
@@ -21,9 +53,15 @@ export function Cookies() {
           </p>
         </div>
         <div className={classes.actions}>
-          <button className={classes.acceptButton}>Accept All</button>
-          <button className={classes.editButton} onClick={handleOpenModal}>Manage Preferences</button>
-          <button className={classes.editButton}>Reject Optional</button>
+          <button className={classes.acceptButton} onClick={acceptAll}>
+            Accept All
+          </button>
+          <button className={classes.editButton} onClick={openPreferences}>
+            Manage Preferences
+          </button>
+          <button className={classes.editButton} onClick={rejectOptional}>
+            Reject Optional
+          </button>
         </div>
       </div>
     </section>
