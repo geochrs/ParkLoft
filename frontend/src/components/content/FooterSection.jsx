@@ -19,7 +19,7 @@ export function FooterSection() {
               <h5>Links</h5>
             </div>
             <div className={classes.links}>
-              <Link to="/home">Login</Link>
+              <Link to="/login">Login</Link>
               <a href="mailto:support@example.com">Support</a>
               <a>Documentation</a>
             </div>
