@@ -1,6 +1,7 @@
 import { useLoaderData } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { modalActions } from '../store/modal';
+import { Link } from 'react-router-dom';
 
 import { ProfileSection } from '../components/content/ProfileSection';
 import classes from '../components/content/ProfileSection.module.css';
@@ -94,7 +95,9 @@ export default function ProfilePage() {
             )}
           </div>
           <div className={classes.bookNowContainer}>
-            <button className={classes.bookNowButton}>Book Now</button>
+            <Link to="/slots-available" className={classes.bookNowButton}>
+              Book Now
+            </Link>
           </div>
         </div>
       </ProfileSection>
