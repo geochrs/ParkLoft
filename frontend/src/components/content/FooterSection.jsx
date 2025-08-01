@@ -30,7 +30,7 @@ export function FooterSection() {
             </div>
             <div className={classes.links}>
             <Link to="/tos">Terms of services</Link>
-            <Link to='/privacy-policy'>Privacy policy</Link>
+            <Link to='/privacy'>Privacy policy</Link>
             </div>
           </div>
         </div>

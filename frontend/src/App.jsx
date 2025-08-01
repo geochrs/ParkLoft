@@ -5,6 +5,7 @@ import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import ProfilePage from './pages/ProfilePage';
 import TosPage from './pages/TosPage';
+import PrivacyPage from './pages/PrivacyPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ErrorPage from './pages/ErrorPage';
 
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
   {
     path: 'tos',
     element: <TosPage />,
+  },
+  {
+    path: 'privacy',
+    element: <PrivacyPage />,
   },
 ]);
 
