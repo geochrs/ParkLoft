@@ -8,6 +8,7 @@ import authRoutes from './routes/auth.js';
 import userRoutes from './routes/user.js';
 import bookingRoutes from './routes/booking.js';
 import slotRoutes from './routes/slotsAvailable.js';
+import aiAssistant from './routes/aiChat.js';
 
 dotenv.config();
 
@@ -41,6 +42,7 @@ app.use(authRoutes);
 app.use(userRoutes);
 app.use(bookingRoutes);
 app.use(slotRoutes);
+app.use(aiAssistant);
 
 app.get('/health', (req, res) => {
   res.status(200).json({ message: 'Server is up and running!' });

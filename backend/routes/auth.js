@@ -1,15 +1,12 @@
 import express from 'express';
 import User from '../models/User.js';
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
 import {
   validateSignupInput,
   validateLoginInput,
 } from '../utils/validation.js';
 import { authenticateToken } from '../middleware.js';
-
-dotenv.config();
 
 const router = express.Router();
 const isProduction = process.env.NODE_ENV === 'production';

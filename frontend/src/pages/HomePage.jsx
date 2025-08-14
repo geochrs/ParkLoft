@@ -3,6 +3,7 @@ import { AboutSection } from '../components/content/AboutSection';
 import { TestimonialSection } from '../components/content/TestimonialSection';
 import { FooterSection } from '../components/content/FooterSection';
 import { HowSection } from '../components/content/HowSection';
+import { AiAssistant } from '../components/layout/AiAssistant';
 
 export default function HomePage() {
   return (
@@ -12,6 +13,7 @@ export default function HomePage() {
       <AboutSection />
       <TestimonialSection />
       <FooterSection />
+      <AiAssistant />
     </>
   );
 }
