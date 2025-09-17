@@ -11,7 +11,7 @@ const User = sequelize.define(
       primaryKey: true,
     },
     public_id: {
-      type: DataTypes.CHAR(36),
+      type: DataTypes.STRING(36),
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       unique: true,

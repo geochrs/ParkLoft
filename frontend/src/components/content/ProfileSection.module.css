@@ -105,19 +105,42 @@
   margin-top: 1rem;
 }
 
+.rowButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
 .editButton {
   border: none;
   color: var(--color-primary-3);
   background-color: var(--color-primary-2);
   border-radius: 5px;
   padding: 10px 25px;
-  transition: background-color 0.3s ease;
-  margin-top: 1rem;
+  transition: all 0.3s ease;
   font-size: 1rem;
 }
 
 .editButton:hover {
   background-color: var(--color-hover);
+  cursor: pointer;
+}
+
+.manageButton {
+  border: 1px solid var(--color-primary-2);
+  color: var(--color-primary-2);
+  background-color: transparent;
+  border-radius: 5px;
+  padding: 10px 25px;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.manageButton:hover {
+  background-color: var(--color-primary-2);
+  color: white;
   cursor: pointer;
 }
 

@@ -1,0 +1,201 @@
+.form {
+  margin: 2rem auto 0;
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.addForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.inputGroup {
+  position: relative;
+}
+
+.inputGroup input {
+  width: 100%;
+  padding: 0.5rem 0.5rem 0.2rem 0;
+  font-size: 1rem;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  transition: border-color 0.2s;
+}
+
+.inputGroup input:focus {
+  outline: none;
+  border-bottom: 2px solid var(--color-primary-2);
+}
+
+.inputGroup:focus-within label {
+  color: var(--color-primary-2);
+}
+
+.inputGroup label {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.errorValidation {
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  font-size: 0.875rem;
+  color: #c1121f;
+}
+
+.errorList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+  color: #c1121f;
+  font-size: 0.875rem;
+}
+
+.actionsTitle {
+  display: flex;
+  justify-content: center;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+}
+
+.actions button {
+  width: 100%;
+  padding: 0.75rem 0;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--color-primary-2);
+  color: var(--color-primary-3);
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.actions button:hover {
+  background-color: var(--color-hover);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.actions button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.title {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 0 0 0.3rem 0;
+  color: var(--color-primary);
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+}
+
+.tableRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+  padding: 0.75rem 0;
+  gap: 0.5rem;
+  border-bottom: 1px solid #ddd;
+}
+
+@media (max-width: 580px) {
+  .tableRow {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.tableHeader {
+  font-weight: bold;
+}
+
+.editButton {
+  border: 1px solid var(--color-primary-2);
+  color: var(--color-primary-2);
+  background-color: transparent;
+  border-radius: 5px;
+  padding: 8px 15px;
+  transition: all 0.3s ease;
+}
+
+.editButton:hover {
+  background-color: var(--color-primary-2);
+  color: white;
+  cursor: pointer;
+}
+
+.saveButton {
+  border: none;
+  color: var(--color-primary-3);
+  background-color: var(--color-primary-2);
+  border-radius: 5px;
+  padding: 8px 15px;
+  transition: all 0.3s ease;
+}
+
+.saveButton:hover {
+  background-color: var(--color-hover);
+  cursor: pointer;
+}
+
+.deleteButton {
+  border: none;
+  background-color: #e74c3c;
+  color: white;
+  border-radius: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.deleteButton:hover {
+  background-color: #c0392b;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.message {
+  text-align: center;
+}
+
+.inlineForm {
+  display: inline-flex;
+}
+
+.cancelButton {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #e6e6e6;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.cancelButton:hover {
+  background-color: #d9d9d9;
+}
+
+.tableRow > form {
+  width: 100%;
+  display: contents; /* form behaves like a wrapper without breaking grid */
+}
+
+.tableRow > form input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
+}

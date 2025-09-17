@@ -9,7 +9,6 @@ export function EditProfileForm() {
   const data = useRouteLoaderData('profile');
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  console.log(data);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 

@@ -16,6 +16,7 @@ import { profileLoader, profileAction } from './pages/profile';
 import { availableslotsLoader } from './components/content/availableslotsLoader';
 import { AvailableSlots } from './components/content/AvailableSlots';
 import { bookingAction } from './components/content/bookingAction';
+import { vehicleAction } from './components/content/vehicleAction';
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
         element: <AvailableSlots />,
         loader: availableslotsLoader,
         action: bookingAction,
+      },
+      {
+        path: 'vehicles',
+        action: vehicleAction,
       },
     ],
   },

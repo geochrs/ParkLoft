@@ -7,7 +7,8 @@ export async function bookingAction({ request }) {
   const bookingData = {
     fullName: data.get('fullName'),
     phone: data.get('phone'),
-    licensePlate: data.get('licensePlate'),
+    vehicle_id: data.get('vehicle_id') || null, // vehicle_id for logged-in users
+    licensePlate: data.get('licensePlate') || null, // licensePlate for guests
     entryTime: new Date(data.get('entryTime')).toISOString(),
     exitTime: new Date(data.get('exitTime')).toISOString(),
     location_id: data.get('location_id'),

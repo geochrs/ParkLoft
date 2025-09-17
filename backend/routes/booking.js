@@ -3,9 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import moment from 'moment-timezone';
 import { generateTicketId } from '../utils/generateTicketId.js';
 
-import Booking from '../models/Booking.js';
-import Slot from '../models/Slot.js';
-import Location from '../models/Location.js';
+import { Vehicle, Slot, Location, Booking } from '../models/index.js';
 import { authenticateToken } from '../middleware.js';
 import { validateBookingInput } from '../utils/validation.js';
 
@@ -28,10 +26,17 @@ router.get('/bookings', authenticateToken, async (req, res) => {
 });
 
 router.post('/bookings', authenticateToken, async (req, res) => {
-  const { fullName, phone, licensePlate, entryTime, exitTime, location_id } =
-    req.body;
+  const {
+    fullName,
+    phone,
+    vehicle_id,
+    licensePlate,
+    entryTime,
+    exitTime,
+    location_id,
+  } = req.body;
 
-  const errors = validateBookingInput(fullName, phone, licensePlate);
+  const errors = validateBookingInput(fullName, phone, licensePlate, vehicle_id);
   if (errors.length > 0) {
     return res.status(422).json({ message: errors });
   }
@@ -41,6 +46,16 @@ router.post('/bookings', authenticateToken, async (req, res) => {
     userPublicId = req.user.public_id;
   } else {
     userPublicId = uuidv4();
+  }
+
+  let finalLicensePlate = licensePlate;
+
+  if (vehicle_id) {
+    const vehicle = await Vehicle.findOne({
+      where: { vehicle_id, user_id: req.user.public_id },
+    });
+    if (!vehicle) return res.status(404).json({ message: 'Vehicle not found' });
+    finalLicensePlate = vehicle.licensePlate;
   }
 
   try {
@@ -62,7 +77,8 @@ router.post('/bookings', authenticateToken, async (req, res) => {
     const newBooking = await Booking.create({
       ticketId: generateTicketId(),
       userPublicId,
-      licensePlate,
+      vehicle_id: vehicle_id || null,
+      licensePlate: finalLicensePlate,
       slot_id: selectedSlot.slot_id,
       location_id,
       entryTime: entryTimeInUTC,

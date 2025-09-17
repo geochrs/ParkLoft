@@ -29,8 +29,9 @@ export function AvailableSlots() {
     const fullName = formData.get('fullName');
     const phone = formData.get('phone');
     const licensePlate = formData.get('licensePlate');
+    const vehicleId = formData.get('vehicle_id');
 
-    const errors = validateBookInputs(fullName, phone, licensePlate);
+    const errors = validateBookInputs(fullName, phone, licensePlate, vehicleId);
 
     if (Object.keys(errors).length > 0) {
       event.preventDefault();
@@ -267,23 +268,59 @@ export function AvailableSlots() {
                   </span>
                 )}
               </div>
-              <div className={classes.inputGroup}>
-                <input
-                  id="licensePlate"
-                  type="text"
-                  name="licensePlate"
-                  placeholder=" "
-                  maxLength={7}
-                  required
-                  onChange={handleInputChange}
-                />
-                <label htmlFor="licensePlate">License Plate</label>
-                {formErrors.licensePlate && (
-                  <span className={classes.errorValidation}>
-                    {formErrors.licensePlate}
-                  </span>
-                )}
-              </div>
+              <Suspense fallback={null}>
+                <Await resolve={user}>
+                  {(userResolved) => {
+                    if (userResolved?.vehicles?.length > 0) {
+                      // Dropdown for logged-in users
+                      return (
+                        <div className={classes.inputGroup}>
+                          <label
+                            id={classes.droplistVehicle}
+                            htmlFor="vehicle_id"
+                          >
+                            Select Vehicle
+                          </label>
+                          <select
+                            id="vehicle_id"
+                            name="vehicle_id"
+                            defaultValue=""
+                            onChange={handleInputChange}
+                            required
+                          >
+                            {userResolved.vehicles.map((v) => (
+                              <option key={v.vehicle_id} value={v.vehicle_id}>
+                                {v.licensePlate}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      );
+                    } else {
+                      // Input for guests
+                      return (
+                        <div className={classes.inputGroup}>
+                          <input
+                            id="licensePlate"
+                            type="text"
+                            name="licensePlate"
+                            placeholder=" "
+                            maxLength={7}
+                            required
+                            onChange={handleInputChange}
+                          />
+                          <label htmlFor="licensePlate">License Plate</label>
+                          {formErrors.licensePlate && (
+                            <span className={classes.errorValidation}>
+                              {formErrors.licensePlate}
+                            </span>
+                          )}
+                        </div>
+                      );
+                    }
+                  }}
+                </Await>
+              </Suspense>
             </div>
             <div className={classes.row}>
               <div className={classes.datePickerWrapper}>

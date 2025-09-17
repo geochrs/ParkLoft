@@ -2,6 +2,7 @@ import { DataTypes } from 'sequelize';
 import sequelize from '../config/config.js';
 import Slot from './Slot.js';
 import Location from './Location.js';
+import { Vehicle } from '../models/index.js';
 
 const Booking = sequelize.define(
   'Booking',
@@ -19,6 +20,15 @@ const Booking = sequelize.define(
     licensePlate: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    vehicle_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: Vehicle,
+        key: 'vehicle_id',
+      },
+      onDelete: 'SET NULL',
     },
     slot_id: {
       type: DataTypes.INTEGER,
@@ -64,13 +74,5 @@ const Booking = sequelize.define(
     timestamps: false,
   }
 );
-
-//Relationships
-Booking.belongsTo(Location, { foreignKey: 'location_id' });
-Booking.belongsTo(Slot, {
-  foreignKey: 'slot_id',
-  onDelete: 'CASCADE',
-});
-Slot.hasMany(Booking, { foreignKey: 'slot_id' });
 
 export default Booking;

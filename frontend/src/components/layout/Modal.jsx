@@ -4,6 +4,7 @@ import classes from './Modal.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { modalActions } from '../../store/modal';
 import { EditProfileForm } from '../content/EditProfileForm';
+import { EditVehiclesForm } from '../content/EditVehiclesForm';
 import { CookiesEdit } from './CookiesEdit';
 
 export default function Modal() {
@@ -17,6 +18,8 @@ export default function Modal() {
         return <CookiesEdit />;
       case 'editProfile':
         return <EditProfileForm />;
+      case 'editVehicles':
+        return <EditVehiclesForm />;
       default:
         return null;
     }

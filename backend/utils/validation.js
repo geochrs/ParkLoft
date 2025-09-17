@@ -36,7 +36,12 @@ export const validateLoginInput = (email, password) => {
   return errors;
 };
 
-export const validateBookingInput = (fullName, phone, licensePlate) => {
+export const validateBookingInput = (
+  fullName,
+  phone,
+  licensePlate,
+  vehicleId
+) => {
   const errors = [];
 
   if (!fullName) errors.push('Full name is required.');
@@ -48,12 +53,15 @@ export const validateBookingInput = (fullName, phone, licensePlate) => {
     errors.push('Phone must contain exactly 10 digits.');
   }
 
-  const licensePlateRegex = /^[A-Za-z0-9]{7}$/;
-  if (!licensePlate) {
-    errors.push('License plate is required.');
-  } else if (!licensePlateRegex.test(licensePlate.trim())) {
-    errors.push('License plate must be exactly 7 characters.');
+  if (!vehicleId) {
+    if (!licensePlate) {
+      errors.push('License plate is required.');
+    } else {
+      const licensePlateRegex = /^[A-Za-z0-9]{7}$/;
+      if (!licensePlateRegex.test(licensePlate.trim())) {
+        errors.push('License plate must be exactly 7 characters.');
+      }
+    }
   }
-
   return errors;
 };

@@ -8,10 +8,17 @@ export const validateInputs = (username, email, password, mode = 'signup') => {
   return errors;
 };
 
-export const validateBookInputs = (fullName, phone, licensePlate) => {
+export const validateBookInputs = (
+  fullName,
+  phone,
+  licensePlate,
+  vehicleId
+) => {
   const errors = {};
   if (!fullName) errors.fullName = 'Full name is required.';
   if (!phone) errors.phone = 'Phone is required.';
-  if (!licensePlate) errors.licensePlate = 'License plate is required.';
+  if (!vehicleId && !licensePlate) {
+    errors.licensePlate = 'License plate is required.';
+  }
   return errors;
 };

@@ -8,7 +8,9 @@ import authRoutes from './routes/auth.js';
 import userRoutes from './routes/user.js';
 import bookingRoutes from './routes/booking.js';
 import slotRoutes from './routes/slotsAvailable.js';
+import vehicleRoutes from './routes/vehicle.js'
 import aiAssistant from './routes/aiChat.js';
+import './models/index.js';
 
 dotenv.config();
 
@@ -42,6 +44,7 @@ app.use(authRoutes);
 app.use(userRoutes);
 app.use(bookingRoutes);
 app.use(slotRoutes);
+app.use(vehicleRoutes);
 app.use(aiAssistant);
 
 app.get('/health', (req, res) => {

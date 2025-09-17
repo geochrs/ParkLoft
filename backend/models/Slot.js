@@ -34,11 +34,4 @@ const Slot = sequelize.define(
   }
 );
 
-// Relationships
-Slot.belongsTo(Location, {
-  foreignKey: 'location_id',
-  onDelete: 'CASCADE',
-});
-Location.hasMany(Slot, { foreignKey: 'location_id' });
-
 export default Slot;

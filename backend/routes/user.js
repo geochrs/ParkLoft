@@ -1,5 +1,5 @@
 import express from 'express';
-import User from '../models/User.js';
+import { User, Vehicle } from '../models/index.js';
 import { authenticateToken } from '../middleware.js';
 
 const router = express.Router();
@@ -8,7 +8,10 @@ router.get('/profile', authenticateToken, async (req, res) => {
   const userId = req.user.public_id;
 
   try {
-    const user = await User.findOne({ where: { public_id: userId } });
+    const user = await User.findOne({
+      where: { public_id: userId },
+      include: [{ model: Vehicle, as: 'vehicles' }],
+    });
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });

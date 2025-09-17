@@ -18,6 +18,14 @@ export default function ProfilePage() {
     );
   };
 
+  const handleManageClick = () => {
+    dispatch(
+      modalActions.openModal({
+        key: 'editVehicles',
+      })
+    );
+  };
+
   return (
     <div data-aos="fade">
       <ProfileSection>
@@ -39,9 +47,29 @@ export default function ProfilePage() {
             <div className={classes.textMuted}>Date of Birth:</div>
             <div>{profile.dateOfBirth}</div>
           </div>
-          <button className={classes.editButton} onClick={handleEditClick}>
-            Edit Profile
-          </button>
+          <div className={classes.row}>
+            <div className={classes.textMuted}>Vehicles:</div>
+            <div>
+              {profile.vehicles && profile.vehicles.length > 0
+                ? profile.vehicles.map((v, index) => (
+                    <div key={v.vehicle_id}>
+                      {index + 1}. {v.licensePlate}
+                    </div>
+                  ))
+                : 'No vehicles added'}
+            </div>
+          </div>
+          <div className={classes.rowButtons}>
+            <button className={classes.editButton} onClick={handleEditClick}>
+              Edit Profile
+            </button>
+            <button
+              className={classes.manageButton}
+              onClick={handleManageClick}
+            >
+              Manage Vehicles
+            </button>
+          </div>
         </div>
         <div className={classes.bookingCard}>
           <h3>Your Bookings</h3>

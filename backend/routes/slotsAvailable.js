@@ -1,9 +1,6 @@
 import express from 'express';
-import Location from '../models/Location.js';
-import Slot from '../models/Slot.js';
-import Booking from '../models/Booking.js';
+import {Location, Slot, Booking} from '../models/index.js';
 
-import { Op } from 'sequelize';
 import { authenticateToken } from '../middleware.js';
 
 const router = express.Router();
