@@ -59,6 +59,9 @@
   border-bottom: 5px solid #ccc;
 }
 
+.card:hover {
+border-bottom: 5px solid var(--color-hover);}
+
 .card img {
   display: block;
   width: 3.35rem;
@@ -80,7 +83,7 @@
 
 .active {
   background: #f7f8ff;
-  border-bottom: 5px solid var(--color-primary-2);
+  border-bottom: 5px solid var(--color-active);
 }
 
 .active img {
