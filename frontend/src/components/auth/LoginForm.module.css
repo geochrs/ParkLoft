@@ -72,6 +72,10 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+.actions button:active {
+  background-color: var(--color-active);
+}
+
 .actions button:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
@@ -111,6 +115,10 @@
   text-decoration: underline;
 }
 
+.signupLink:active {
+  color: var(--color-active);
+}
+
 .forgotPassword {
   text-align: left;
   font-size: 0.875rem;
@@ -125,6 +133,10 @@
 .forgotPassword a:hover {
   text-decoration: underline;
   color: var(--color-hover);
+}
+
+.forgotPassword a:active {
+  color: var(--color-active);
 }
 
 .errorValidation {

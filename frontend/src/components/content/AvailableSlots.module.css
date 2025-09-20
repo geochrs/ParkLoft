@@ -163,8 +163,17 @@
   background-color: var(--color-hover);
 }
 
+.bookButton:active,
+.confirmButton:active {
+  background-color: var(--color-active);
+}
+
 .backButton:hover {
-  background-color: #d9d9d9  ;
+  background-color: #d9d9d9;
+}
+
+.backButton:active {
+  background-color: #bfbfbf;
 }
 
 .bookButton:disabled,

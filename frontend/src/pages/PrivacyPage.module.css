@@ -8,7 +8,7 @@
   display: inline-flex;
   align-items: center;
   border: none;
-  background-color: #f7f8ff;
+  background-color: #e6e6e6;
   font-size: 0.875rem;
   padding: 15px 25px;
   border-radius: 0.5rem;
@@ -17,8 +17,12 @@
 }
 
 .backButton:hover {
-  background-color: #bcbcc0;
+  background-color: #d9d9d9;
   transition: all 0.3s ease;
+}
+
+.backButton:active {  
+  background-color: #bfbfbf;
 }
 
 .backIcon {

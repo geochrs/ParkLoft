@@ -2,6 +2,7 @@ import { useLoaderData } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { modalActions } from '../store/modal';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 import { ProfileSection } from '../components/content/ProfileSection';
 import classes from '../components/content/ProfileSection.module.css';
@@ -9,6 +10,8 @@ import classes from '../components/content/ProfileSection.module.css';
 export default function ProfilePage() {
   const { profile, bookings } = useLoaderData();
   const dispatch = useDispatch();
+
+  const [view, setView] = useState('active');
 
   const handleEditClick = () => {
     dispatch(
@@ -25,6 +28,12 @@ export default function ProfilePage() {
       })
     );
   };
+
+  const now = new Date();
+  const activeBookings = bookings.filter((b) => new Date(b.exitTime) >= now);
+  const pastBookings = bookings.filter((b) => new Date(b.exitTime) < now);
+
+  const displayedBookings = view === 'active' ? activeBookings : pastBookings;
 
   return (
     <div data-aos="fade">
@@ -71,20 +80,34 @@ export default function ProfilePage() {
             </button>
           </div>
         </div>
+        {/* Booking section */}
         <div className={classes.bookingCard}>
-          <h3>Your Bookings</h3>
-          <div className={classes.table}>
-            <div className={`${classes.tableRow} ${classes.tableHeader}`}>
-              <div>TICKET ID</div>
-              <div>LICENSE PLATE</div>
-              <div>PLACE</div>
-              <div>ENTRY TIME</div>
-              <div>EXIT TIME</div>
+          <div className={classes.bookingHeader}>
+            <h3>{view === 'active' ? 'Active Bookings' : 'Past Bookings'}</h3>
+            <div>
+              <button
+                className={classes.toggleButton}
+                onClick={() => setView(view === 'active' ? 'past' : 'active')}
+              >
+                {view === 'active' ? 'Past Bookings' : 'Active Bookings'}
+              </button>
             </div>
-            {bookings.length === 0 ? (
-              <p>No bookings found.</p>
-            ) : (
-              bookings.map((booking) => {
+          </div>
+          {displayedBookings.length === 0 ? (
+            <div className={classes.noData}>
+              {view === 'active' ? 'No active bookings.' : 'No past bookings.'}
+            </div>
+          ) : (
+            <div className={classes.table}>
+              <div className={`${classes.tableRow} ${classes.tableHeader}`}>
+                <div>TICKET ID</div>
+                <div>LICENSE PLATE</div>
+                <div>PLACE</div>
+                <div>ENTRY TIME</div>
+                <div>EXIT TIME</div>
+              </div>
+
+              {displayedBookings.map((booking) => {
                 const entry = new Date(booking.entryTime);
                 const exit = new Date(booking.exitTime);
 
@@ -112,16 +135,16 @@ export default function ProfilePage() {
                     <div>{booking.licensePlate}</div>
                     <div>{booking.Location?.name}</div>
                     <div>
-                      {formattedDateEntry} <br></br> {formattedTimeEntry}
+                      {formattedDateEntry} <br /> {formattedTimeEntry}
                     </div>
                     <div>
-                      {formattedDateExit} <br></br> {formattedTimeExit}
+                      {formattedDateExit} <br /> {formattedTimeExit}
                     </div>
                   </div>
                 );
-              })
-            )}
-          </div>
+              })}
+            </div>
+          )}
           <div className={classes.bookNowContainer}>
             <Link to="/slots-available" className={classes.bookNowButton}>
               Book Now

@@ -37,3 +37,7 @@
 .errorHomeButton:hover {
   background-color: var(--color-hover);
 }
+
+.errorHomeButton:active {
+  background-color: var(--color-active);
+}

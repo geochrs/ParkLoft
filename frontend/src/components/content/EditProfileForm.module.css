@@ -72,6 +72,10 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+.actions button:active {
+  background-color: var(--color-active);
+}
+
 .actions button:disabled {
   background-color: #cccccc;
   cursor: not-allowed;

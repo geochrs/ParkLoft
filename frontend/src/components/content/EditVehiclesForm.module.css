@@ -83,6 +83,10 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+.actions button:active {
+  background-color: var(--color-active);
+}
+
 .actions button:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
@@ -129,9 +133,13 @@
 }
 
 .editButton:hover {
-  background-color: var(--color-primary-2);
+  background-color: var(--color-hover);
   color: white;
   cursor: pointer;
+}
+
+.editButton:active {
+  background-color: var(--color-active);
 }
 
 .saveButton {
@@ -148,6 +156,10 @@
   cursor: pointer;
 }
 
+.saveButton:active {
+  background-color: var(--color-active);
+}
+
 .deleteButton {
   border: none;
   background-color: #e74c3c;
@@ -160,6 +172,10 @@
 
 .deleteButton:hover {
   background-color: #c0392b;
+}
+
+.deleteButton:active {
+  background-color: #a93226;
 }
 
 .buttonGroup {
@@ -188,6 +204,10 @@
 
 .cancelButton:hover {
   background-color: #d9d9d9;
+}
+
+.cancelButton:active {
+  background-color: #bfbfbf;
 }
 
 .tableRow > form {

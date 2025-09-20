@@ -88,8 +88,12 @@
 }
 
 .leftLinks a:hover {
-  color: var(--color-primary-2);
+  color: var(--color-hover);
   transition: color 0.3s ease;
+}
+
+.leftLinks a.active {
+  color: var(--color-active);
 }
 
 .rightLinks {
@@ -115,6 +119,10 @@
   color: var(--color-hover);
 }
 
+.loginButton:active {
+  color: var(--color-active);
+}
+
 .logoutButton {
   font-size: inherit;
   background: none;
@@ -123,6 +131,10 @@
 
 .logoutButton:hover {
   color: var(--color-hover);
+}
+
+.logoutButton:active {
+  color: var(--color-active);
 }
 
 .signupButton,
@@ -137,6 +149,11 @@
 .signupButton:hover,
 .profileButton:hover {
   background-color: var(--color-hover);
+}
+
+.signupButton:active,
+.profileButton:active {
+  background-color: var(--color-active);
 }
 
 .hamburger {
@@ -192,7 +209,7 @@
     flex-grow: 0;
   }
 
-   .rightLinks {
+  .rightLinks {
     flex-direction: column;
     align-items: center;
     justify-content: center;
