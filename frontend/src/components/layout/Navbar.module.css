@@ -1,5 +1,5 @@
 .header {
-  padding: 20px 0;
+  padding: 10px 0;
   position: fixed;
   width: 100%;
   top: 0;
@@ -24,7 +24,7 @@
 .sticky {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 5px 0;
+  /* padding: 5px 0; */
   transition: padding 0.4s ease, box-shadow 0.6s ease;
 }
 
@@ -195,7 +195,7 @@
     right: 0;
     left: 0;
     background-color: #fff;
-    padding: 20px;
+    padding: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1002;
     height: calc(100vh - 120px);

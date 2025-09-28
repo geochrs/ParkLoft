@@ -21,8 +21,15 @@
   --color-active: #4258d2;
 }
 
+html {
+  height: 100%;
+  overflow-y: scroll; /* always show scrollbar */
+}
+
 body {
+  min-height: 100%;
   margin: 0;
+  overflow-y: visible; /* prevent double scroll */
 }
 
 ul {

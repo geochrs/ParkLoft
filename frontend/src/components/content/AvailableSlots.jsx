@@ -1,5 +1,5 @@
 import classes from './AvailableSlots.module.css';
-import cardImg from '../../assets/parkloft.jpg';
+import cardImg from '../../assets/parkloft.webp';
 import logo from '../../assets/parkloftLogo.png';
 import arrow from '../../assets/arrow.svg';
 import confirm from '../../assets/confirm.svg';

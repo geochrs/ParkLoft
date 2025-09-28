@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import classes from './Navbar.module.css';
 import logo from '../../assets/parkloftLogo.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { modalActions } from '../../store/modal';
 import { menuActions } from '../../store/menu';
 import { tokenLoader } from '../../utils/auth';
 

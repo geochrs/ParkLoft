@@ -8,7 +8,7 @@
 .container {
   display: flex;
   align-items: center;
-  padding: 180px 20px 50px;
+  padding: 130px 20px 50px;
   max-width: 1380px;
   margin: 0 auto;
   min-height: 100vh;
@@ -37,8 +37,8 @@
 
 .section::after {
   content: '';
-  background-image: url('../../assets/parkloft.jpg');
-  top: 100px;
+  background-image: url('../../assets/parkloft.webp');
+  top: 85px;
   left: 0;
   bottom: 20px;
   /* max-width: 1700px; */
