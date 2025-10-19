@@ -11,6 +11,7 @@ import slotRoutes from './routes/slotsAvailable.js';
 import vehicleRoutes from './routes/vehicle.js'
 import aiAssistant from './routes/aiChat.js';
 import './models/index.js';
+import { releaseExpiredSlots } from './jobs/releaseExpiredSlots.js';
 
 dotenv.config();
 
@@ -47,6 +48,10 @@ app.use(slotRoutes);
 app.use(vehicleRoutes);
 app.use(aiAssistant);
 
+const INTERVAL_MS = 10 * 60 * 1000; // 10 minutes
+setInterval(releaseExpiredSlots, INTERVAL_MS);
+releaseExpiredSlots(); // run once at startup
+
 app.get('/health', (req, res) => {
   res.status(200).json({ message: 'Server is up and running!' });
 });
@@ -54,3 +59,5 @@ app.get('/health', (req, res) => {
 app.listen(8080, () => {
   console.log('Server running on port 8080');
 });
+
+export default app;
