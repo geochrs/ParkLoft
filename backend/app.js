@@ -8,7 +8,7 @@ import authRoutes from './routes/auth.js';
 import userRoutes from './routes/user.js';
 import bookingRoutes from './routes/booking.js';
 import slotRoutes from './routes/slotsAvailable.js';
-import vehicleRoutes from './routes/vehicle.js'
+import vehicleRoutes from './routes/vehicle.js';
 import aiAssistant from './routes/aiChat.js';
 import './models/index.js';
 import { releaseExpiredSlots } from './jobs/releaseExpiredSlots.js';
@@ -27,7 +27,7 @@ app.use(
     methods: 'GET,POST,PUT,DELETE',
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
-  })
+  }),
 );
 app.use(cookieParser());
 app.use(express.json());
@@ -48,16 +48,19 @@ app.use(slotRoutes);
 app.use(vehicleRoutes);
 app.use(aiAssistant);
 
-const INTERVAL_MS = 10 * 60 * 1000; // 10 minutes
-setInterval(releaseExpiredSlots, INTERVAL_MS);
-releaseExpiredSlots(); // run once at startup
+if (process.env.NODE_ENV !== 'test') {
+  const INTERVAL_MS = 10 * 60 * 1000;
+  setInterval(releaseExpiredSlots, INTERVAL_MS);
+  releaseExpiredSlots();
+}
 
 app.get('/health', (req, res) => {
   res.status(200).json({ message: 'Server is up and running!' });
 });
 
-app.listen(8080, () => {
-  console.log('Server running on port 8080');
-});
-
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(8080, () => {
+    console.log('Server running on port 8080');
+  });
+}
 export default app;
