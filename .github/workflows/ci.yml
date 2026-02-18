@@ -11,7 +11,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: server
+        working-directory: backend
 
     env:
       NODE_ENV: test
