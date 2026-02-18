@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon app.js",
     "start": "node app.js",
-    "test": "set NODE_ENV=test&& vitest run"
+    "test": "cross-env NODE_ENV=test vitest run"
   },
   "keywords": [],
   "author": "geochris",
@@ -26,6 +26,7 @@
     "uuid": "^11.0.5"
   },
   "devDependencies": {
+    "cross-env": "^10.1.0",
     "supertest": "^7.1.4",
     "vitest": "^3.2.4"
   }
