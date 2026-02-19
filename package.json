@@ -1,5 +1,9 @@
 {
   "name": "parkloft",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/geochrs/ParkLoft.git"
+  },
   "version": "1.0.0",
   "description": "**ParkLoft** is a React app with a Node.js backend designed to simplify parking reservations, making it easier to find and book parking spots. It helps users save time and reduce the hassle of parking.",
   "main": "index.js",
